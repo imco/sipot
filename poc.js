@@ -65,6 +65,8 @@ const puppeteer = require('puppeteer');
   const downloadButton = await page.$x('//a[contains(text(), "DESCARGAR")]')
   await downloadButton[0].click()
 
+  await page.waitFor(500)
+
   // Seleccionar opción de descargar en la modal
   const downloadLabel = await page.$x('//label[contains(text(), "Descargar")]')
   await downloadLabel[0].click()
@@ -74,10 +76,8 @@ const puppeteer = require('puppeteer');
   const options = await page.$x('//select[@id="formModalRangos:rangoExcel"]/option')
 
   for (let i in options) {
-    console.log('---------------------------------------')
-    const o = options[i]
-    console.log(o)
-    console.log(o.label, o.text, o.value, o.innerText, o.innerHTML)
+    const [text, value] = await options[i].evaluate(node => [node.text, node.value])
+    console.log('found option:', text, value)
   }
 
   await browser.close()
