@@ -45,6 +45,40 @@ const puppeteer = require('puppeteer');
     console.log('No se encontró sección de contratos')
   }
 
-  await page.waitFor(15000)
+  // Espera a que carge la página de documentos
+  await page.waitForXPath('//div[@id="formListaFormatos:listaSelectorFormatos"]')
+
+  // Selecciona todos en Periodo de actualización
+  const checkboxPath = '//input[@id="formInformacionNormativa:checkPeriodos:4"]'
+  const checkbox = await page.$x(checkboxPath)
+  await checkbox[0].click()
+
+  // Consultar
+  const queryButton = await page.$x('//a[contains(text(), "CONSULTAR")]')
+  await queryButton[0].click()
+
+  // Espera a la ventana emergente
+  // TODO: identificar con un DOMElement que la consulta termina
+  await page.waitFor(5000)
+
+  // Seleccionar opción de descargar
+  const downloadButton = await page.$x('//a[contains(text(), "DESCARGAR")]')
+  await downloadButton[0].click()
+
+  // Seleccionar opción de descargar en la modal
+  const downloadLabel = await page.$x('//label[contains(text(), "Descargar")]')
+  await downloadLabel[0].click()
+
+  // Espera a que cargue el rango de formatos
+  await page.waitForXPath('//select[@id="formModalRangos:rangoExcel"]')
+  const options = await page.$x('//select[@id="formModalRangos:rangoExcel"]/option')
+
+  for (let i in options) {
+    console.log('---------------------------------------')
+    const o = options[i]
+    console.log(o)
+    console.log(o.label, o.text, o.value, o.innerText, o.innerHTML)
+  }
+
   await browser.close()
 })()
