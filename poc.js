@@ -62,9 +62,8 @@ const puppeteer = require('puppeteer');
     window.scrollTo(0, 400)
   })
 
-  // Espera a la ventana emergente
-  // TODO: identificar con un DOMElement que la consulta termina
-  await page.waitFor(10000)
+  // Espera a que el bloqueo de pantalla de la consulta se quite
+  await page.waitForSelector('div.capaBloqueaPantalla', { hidden: true })
 
   // Seleccionar opción de descargar
   const downloadButton = await page.$x('//a[contains(text(), "DESCARGAR")]')
