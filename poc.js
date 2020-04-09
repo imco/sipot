@@ -25,7 +25,11 @@ const puppeteer = require('puppeteer');
 
   // Se abre el menú y seleccionamos la SEP (44 de la lista)
   const orgElements = await section.$$('li.sOFiltrable input')
-  await orgElements[43].click()
+  const targetOrganization = orgElements[43]
+
+  const targetName = await targetOrganization.evaluate(node => node.value)
+  console.log('Objetivo:', targetName)
+  await targetOrganization.click()
 
   // Ahora queremos cargar la sección de "CONTRATOS DE OBRAS, BIENES, Y SERVICIOS".
   // El elemento a clickear tiene un id con una terminación numérica que
@@ -52,6 +56,7 @@ const puppeteer = require('puppeteer');
   const checkboxPath = '//input[@id="formInformacionNormativa:checkPeriodos:4"]'
   const checkbox = await page.$x(checkboxPath)
   await checkbox[0].click()
+  console.log('Seleccionamos todos los periodos de actualización')
 
   // Consultar
   const queryButton = await page.$x('//a[contains(text(), "CONSULTAR")]')
@@ -93,7 +98,7 @@ const puppeteer = require('puppeteer');
   // Descargar cada opcion disponible
   for (let i in options) {
     const [text, value] = await options[i].evaluate(node => [node.text, node.value])
-    console.log('found option:', text, value)
+    console.log('Opción encontrada:', text, value)
 
     // Excepto el primer elemento que dice "Seleccionar" cuyo valor es -1
     if (value === '-1') continue
@@ -105,7 +110,7 @@ const puppeteer = require('puppeteer');
     const downloadExcel = await page.waitForXPath('//input[@id="formModalRangos:btnDescargaExcel"]')
     await downloadExcel.click()
 
-    console.log('range downloaded')
+    console.log('Rango descargado')
   }
 
   // Dar tiempo para la descarga
