@@ -57,28 +57,59 @@ const puppeteer = require('puppeteer');
   const queryButton = await page.$x('//a[contains(text(), "CONSULTAR")]')
   await queryButton[0].click()
 
+  // Scroll up
+  await page.evaluate(_ => {
+    window.scrollTo(0, 400)
+  })
+
   // Espera a la ventana emergente
   // TODO: identificar con un DOMElement que la consulta termina
-  await page.waitFor(5000)
+  await page.waitFor(10000)
 
   // Seleccionar opción de descargar
   const downloadButton = await page.$x('//a[contains(text(), "DESCARGAR")]')
   await downloadButton[0].click()
 
-  await page.waitFor(500)
+  await page.waitFor(1000)
 
   // Seleccionar opción de descargar en la modal
-  const downloadLabel = await page.$x('//label[contains(text(), "Descargar")]')
-  await downloadLabel[0].click()
+  try {
+    const downloadLabel = await page.$x('//label[contains(text(), "Descargar")]')
+    await downloadLabel[0].click()
+  } catch (e) {
+    console.log('No se encontro el boton de descarga - active manualmente')
+    await page.waitFor(10000)
+  }
+
+  // Hacer click en el dropdown menu
+  const dropdown = await page.waitForXPath('//button[@data-id="formModalRangos:rangoExcel"]')
+  await dropdown.click()
 
   // Espera a que cargue el rango de formatos
   await page.waitForXPath('//select[@id="formModalRangos:rangoExcel"]')
+
+  // Obtener las opciones
   const options = await page.$x('//select[@id="formModalRangos:rangoExcel"]/option')
 
+  // Descargar cada opcion disponible
   for (let i in options) {
     const [text, value] = await options[i].evaluate(node => [node.text, node.value])
     console.log('found option:', text, value)
+
+    // Excepto el primer elemento que dice "Seleccionar" cuyo valor es -1
+    if (value === '-1') continue
+
+    // Selecciona esta opción del rango
+    (await page.$x(`//a/span[contains(text(), "${text}")]`))[0].click()
+
+    // Descarga archivo Excel
+    const downloadExcel = await page.waitForXPath('//input[@id="formModalRangos:btnDescargaExcel"]')
+    await downloadExcel.click()
+
+    console.log('range downloaded')
   }
 
+  // Dar tiempo para la descarga
+  await page.waitFor(10000)
   await browser.close()
 })()
