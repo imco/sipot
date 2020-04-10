@@ -48,6 +48,9 @@ const puppeteer = require('puppeteer');
   yearOption.click()
   console.log('Seleccionamos el año', year)
 
+  // Espera a que el bloqueo de pantalla de la consulta se quite
+  await page.waitForSelector('div.capaBloqueaPantalla', { hidden: true })
+
   // Ahora queremos cargar la sección de "CONTRATOS DE OBRAS, BIENES, Y SERVICIOS".
   // El elemento a clickear tiene un id con una terminación numérica que
   // no se repite entre renders.
