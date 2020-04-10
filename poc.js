@@ -2,6 +2,11 @@ const puppeteer = require('puppeteer');
 (async () => {
   const browser = await puppeteer.launch({ headless: false, slowMo: 50 })
   const page = await browser.newPage()
+
+  // Podemos buscar organización por nombre, o por índice en la lista
+  // let organizationName = 'Secretaría de Educación Pública (SEP)'
+  let organizationName = null
+  const organizationIndex = 42
   const year = 2018
 
   await page.goto('https://consultapublicamx.inai.org.mx/vut-web/faces/view/consultaPublica.xhtml#inicio')
@@ -15,22 +20,23 @@ const puppeteer = require('puppeteer');
   const fed = await page.waitForSelector('.btn-group > .dropdown-menu > .dropdown-menu > li:nth-child(2) > a')
   await fed.click()
 
-  // La página se divide en menús colapsables por letra del abecedario
+  // La página se divide en menús [.botonActiva] colapsables por letra del abecedario
   await page.waitForSelector('.botonActiva')
-  const alphaSections = await page.$$('.botonActiva')
 
-  // Hacemos click en la número 17 (S)
-  const section = alphaSections[16]
-  const letter = await section.$('.indiceListaSO', node => node.innerText)
-  section.click()
+  if (!organizationName) {
+    // Buscamos la organización que le corresponde tal índice
+    const orgElements = await page.$x('//input[starts-with(@id, "formListaSujetosAZ")]')
+    const targetOrganization = orgElements[organizationIndex]
+    organizationName = await targetOrganization.evaluate(node => node.value)
+  }
 
-  // Se abre el menú y seleccionamos la SEP (44 de la lista)
-  const orgElements = await section.$$('li.sOFiltrable input')
-  const targetOrganization = orgElements[43]
-
-  const targetName = await targetOrganization.evaluate(node => node.value)
-  console.log('Objetivo:', targetName)
-  await targetOrganization.click()
+  console.log('Objetivo:', organizationName)
+  // Filtramos la lista para que aparezca nuestra opción
+  await page.focus('input.form-control.intitucionResp')
+  await page.keyboard.type(organizationName)
+  // Hacemos click en la organización de interés
+  const orgInput = await page.waitForXPath(`//input[@value="${organizationName}"]`)
+  orgInput.click()
 
   await page.waitForXPath('//form[@id="formListaObligaciones"]')
 
