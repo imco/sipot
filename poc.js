@@ -2,6 +2,7 @@ const puppeteer = require('puppeteer');
 (async () => {
   const browser = await puppeteer.launch({ headless: false, slowMo: 50 })
   const page = await browser.newPage()
+  const year = 2018
 
   await page.goto('https://consultapublicamx.inai.org.mx/vut-web/faces/view/consultaPublica.xhtml#inicio')
   await page.setViewport({ width: 1280, height: 800 })
@@ -31,12 +32,21 @@ const puppeteer = require('puppeteer');
   console.log('Objetivo:', targetName)
   await targetOrganization.click()
 
+  await page.waitForXPath('//form[@id="formListaObligaciones"]')
+
+  // Selecciona el año del dropdown
+  const periodMenu = await page.waitForXPath('//div[@id="periodoOriginal"]/div/button')
+  await periodMenu.click()
+  const yearSelector = `//div[@id="periodoOriginal"]/div/div/ul/li/a/span[contains(text(), ${year})]`
+  const yearOption = await page.waitForXPath(yearSelector)
+  yearOption.click()
+  console.log('Seleccionamos el año', year)
+
   // Ahora queremos cargar la sección de "CONTRATOS DE OBRAS, BIENES, Y SERVICIOS".
   // El elemento a clickear tiene un id con una terminación numérica que
   // no se repite entre renders.
   // Es por esto que vamos a buscar el label con la etiqueta CONTRATOS DE OBRAS...
   // y luego obtener una referencia al ancestro que sí es clickeable.
-  await page.waitForXPath('//form[@id="formListaObligaciones"]')
   await page.waitForXPath('//div[@class="tituloObligacion"]')
   const contractsLabelPath = '//label[contains(text(), "CONTRATOS DE OBRAS, BIENES Y SERVICIOS")]'
   const contractsLabel = await page.$x(contractsLabelPath)
