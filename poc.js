@@ -7,19 +7,19 @@ const puppeteer = require('puppeteer');
   await page.setViewport({ width: 1280, height: 800 })
 
   // Click en el filtro "Estado o Federación"
-  await page.waitForSelector('#filaSelectEF > .col-md-4 > .btn-group > .btn > .filter-option')
-  await page.click('#filaSelectEF > .col-md-4 > .btn-group > .btn > .filter-option')
+  const filter = await page.waitForSelector('#filaSelectEF > .col-md-4 > .btn-group > .btn > .filter-option')
+  await filter.click()
 
   // Selecciona el segundo elemento del dropdown: "Federación"
-  await page.waitForSelector('.btn-group > .dropdown-menu > .dropdown-menu > li:nth-child(2) > a')
-  await page.click('.btn-group > .dropdown-menu > .dropdown-menu > li:nth-child(2) > a')
+  const fed = await page.waitForSelector('.btn-group > .dropdown-menu > .dropdown-menu > li:nth-child(2) > a')
+  await fed.click()
 
   // La página se divide en menús colapsables por letra del abecedario
   await page.waitForSelector('.botonActiva')
   const alphaSections = await page.$$('.botonActiva')
 
   // Hacemos click en la número 17 (S)
-  const section = await alphaSections[16]
+  const section = alphaSections[16]
   const letter = await section.$('.indiceListaSO', node => node.innerText)
   section.click()
 
