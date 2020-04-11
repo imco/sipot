@@ -55,16 +55,8 @@ const puppeteer = require('puppeteer');
   // Es por esto que vamos a buscar el label con la etiqueta CONTRATOS DE OBRAS...
   // y luego obtener una referencia al ancestro que sí es clickeable.
   await page.waitForXPath('//div[@class="tituloObligacion"]')
-  const contractsLabelPath = '//label[contains(text(), "CONTRATOS DE OBRAS, BIENES Y SERVICIOS")]'
-  const contractsLabel = await page.$x(contractsLabelPath)
-  if (contractsLabel.length) {
-    const contractsElement = await contractsLabel[0].$x('./../../../..')
-    if (contractsElement.length) {
-      await contractsElement[0].click()
-    }
-  } else {
-    console.log('No se encontró sección de contratos')
-  }
+  const contractsLabel = await page.waitForXPath('//label[contains(text(), "CONTRATOS DE OBRAS, BIENES Y SERVICIOS")]')
+  await contractsLabel.click()
 
   // Espera a que carge la página de documentos
   await page.waitForXPath('//div[@id="formListaFormatos:listaSelectorFormatos"]')
