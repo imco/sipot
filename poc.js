@@ -41,11 +41,9 @@ const puppeteer = require('puppeteer');
   await page.waitForXPath('//form[@id="formListaObligaciones"]')
 
   // Selecciona el año del dropdown
-  const periodMenu = await page.waitForXPath('//div[@id="periodoOriginal"]/div/button')
-  await periodMenu.click()
-  const yearSelector = `//div[@id="periodoOriginal"]/div/div/ul/li/a/span[contains(text(), ${year})]`
-  const yearOption = await page.waitForXPath(yearSelector)
-  yearOption.click()
+  const period = await page.waitForXPath('//select[@id="formEntidadFederativa:cboEjercicio"]')
+  await period.select(String(year))
+
   console.log('Seleccionamos el año', year)
 
   // Espera a que el bloqueo de pantalla de la consulta se quite
