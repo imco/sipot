@@ -3,6 +3,16 @@ const puppeteer = require('puppeteer');
   const browser = await puppeteer.launch({ headless: false, slowMo: 50 })
   const page = await browser.newPage()
 
+  await page.setRequestInterception(true)
+  page.on('request', interceptedRequest => {
+    // No tiene caso desperdiciar ancho de banda en imágenes
+    if (['.jpg', '.png', '.svg'].some(ext => interceptedRequest.url().endsWith(ext))) {
+      interceptedRequest.abort()
+    } else {
+      interceptedRequest.continue()
+    }
+  })
+
   // Podemos buscar organización por nombre, o por índice en la lista
   // let organizationName = 'Secretaría de Educación Pública (SEP)'
   let organizationName = null
