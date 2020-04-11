@@ -78,6 +78,7 @@ const puppeteer = require('puppeteer');
 
   // Espera a que el bloqueo de pantalla de la consulta se quite
   await page.waitForSelector('div.capaBloqueaPantalla', { hidden: true })
+  await page.waitFor(1000)
 
   // Seleccionar opción de descargar
   const downloadButton = await page.$x('//a[contains(text(), "DESCARGAR")]')
