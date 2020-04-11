@@ -3,6 +3,12 @@ const puppeteer = require('puppeteer');
   const browser = await puppeteer.launch({ headless: false, slowMo: 50 })
   const page = await browser.newPage()
 
+  // Descarga archivos en /tmp
+  await page._client.send('Page.setDownloadBehavior', {
+    behavior: 'allow',
+    downloadPath: '/tmp'
+  })
+
   await page.setRequestInterception(true)
   page.on('request', interceptedRequest => {
     // No tiene caso desperdiciar ancho de banda en imágenes
