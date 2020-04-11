@@ -82,8 +82,8 @@ const puppeteer = require('puppeteer');
   await page.waitFor(1000)
 
   // Seleccionar opción de descargar
-  const downloadButton = await page.$x('//a[contains(text(), "DESCARGAR")]')
-  await downloadButton[0].click()
+  const downloadButton = await page.waitForXPath('//a[contains(text(), "DESCARGAR")]')
+  await downloadButton.click()
 
   await page.waitFor(1000)
 
