@@ -32,8 +32,9 @@ const puppeteer = require('puppeteer');
 
   console.log('Objetivo:', organizationName)
   // Filtramos la lista para que aparezca nuestra opción
-  await page.focus('input.form-control.intitucionResp')
-  await page.keyboard.type(organizationName)
+  const orgFilter = await page.waitForSelector('input.form-control.intitucionResp')
+  await orgFilter.type(organizationName)
+
   // Hacemos click en la organización de interés
   const orgInput = await page.waitForXPath(`//input[@value="${organizationName}"]`)
   orgInput.click()
