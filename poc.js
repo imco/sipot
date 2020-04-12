@@ -3,10 +3,10 @@ const puppeteer = require('puppeteer');
   const browser = await puppeteer.launch({ headless: false, slowMo: 50 })
   const page = await browser.newPage()
 
-  // Descarga archivos en /tmp
+  // Descarga archivos en la carpeta local
   await page._client.send('Page.setDownloadBehavior', {
     behavior: 'allow',
-    downloadPath: '/tmp'
+    downloadPath: process.cwd()
   })
 
   await page.setRequestInterception(true)
