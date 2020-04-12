@@ -189,11 +189,14 @@ function toDownload (filename, timeoutSeconds = 60, intervalSeconds = 1) {
     const downloadExcel = await page.waitForXPath('//input[@id="formModalRangos:btnDescargaExcel"]')
     await downloadExcel.click()
 
-    console.log('Rango descargado')
+    console.log('Rango seleccionado')
+
+    // Esperamos a que los clicks surtan efecto
+    await page.waitFor(5000)
   }
 
-  // Esperamos a que los clicks surtan efecto
-  await page.waitFor(2000)
+  // Esperamos un poco a que el servidor responda
+  await page.waitFor(5000)
 
   // El método toDownload hace que esperemos a que la descarga termine
   await Promise.all(downloadsInProgress)
