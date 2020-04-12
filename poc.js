@@ -1,7 +1,43 @@
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer')
+const fs = require('fs')
+const { promisify } = require('util')
+const exists = promisify(fs.stat)
+const path = require('path')
+
+function toDownload (filename, timeoutSeconds = 60, intervalSeconds = 1) {
+  return new Promise((resolve, reject) => {
+    let interval
+    let timeout
+    const filepath = path.join(process.cwd(), filename)
+
+    timeout = setTimeout(() => {
+      clearInterval(interval)
+      const error = `No hemos podido descargar ${filename} en menos de 60s`
+      console.log(error)
+      return reject(error)
+    }, timeoutSeconds * 1000)
+
+    interval = setInterval(async () => {
+      try {
+        await exists(filepath)
+        clearTimeout(timeout)
+        clearInterval(interval)
+
+        const success = `Se ha descargado ${filename}`
+        console.log(success)
+        return resolve(success)
+      } catch (e) {
+        console.log(filepath, 'aun no existe')
+      }
+    }, intervalSeconds * 1000)
+  })
+}
+
+
 (async () => {
   const browser = await puppeteer.launch({ headless: false, slowMo: 50 })
   const page = await browser.newPage()
+  const downloadsInProgress = []
 
   // Descarga archivos en la carpeta local
   await page._client.send('Page.setDownloadBehavior', {
@@ -16,6 +52,22 @@ const puppeteer = require('puppeteer');
       interceptedRequest.abort()
     } else {
       interceptedRequest.continue()
+    }
+  })
+
+  // Inspecciona respuestas para buscar el nombre del archivo a descargar
+  page.on('response', async res => {
+    if (res.url().endsWith('consultaPublica.xhtml')) {
+      const headers = res.headers()
+      if (headers['content-type'] === 'application/vnd.ms-excel') {
+        // Si pedimos un excel, checar el nombre
+        const match = headers['content-disposition'].match(/filename\="(.*)"/) || []
+        const filename = match[1]
+        console.log('Descargando', filename)
+
+        // Marcamos la descarga como pendiente
+        downloadsInProgress.push(toDownload(filename))
+      }
     }
   })
 
@@ -140,7 +192,11 @@ const puppeteer = require('puppeteer');
     console.log('Rango descargado')
   }
 
-  // Dar tiempo para la descarga
-  await page.waitFor(10000)
+  // Esperamos a que los clicks surtan efecto
+  await page.waitFor(2000)
+
+  // El método toDownload hace que esperemos a que la descarga termine
+  await Promise.all(downloadsInProgress)
+
   await browser.close()
 })()
