@@ -148,8 +148,13 @@ async function getContract (page, organizationName = null, organizationIndex = 0
   // Es por esto que vamos a buscar el label con la etiqueta CONTRATOS DE OBRAS...
   // y luego obtener una referencia al ancestro que sí es clickeable.
   await page.waitForXPath('//div[@class="tituloObligacion"]')
-  const contractsLabel = await page.waitForXPath('//label[contains(text(), "CONTRATOS DE OBRAS, BIENES Y SERVICIOS")]')
-  await contractsLabel.click()
+  const contractsLabel = await page.$x('//label[contains(text(), "CONTRATOS DE OBRAS, BIENES Y SERVICIOS")]')
+  if (!contractsLabel.length) {
+    console.log('No hay contratos para', organizationName)
+    return false
+  }
+
+  await contractsLabel[0].click()
 
   // Espera a que carge la página de documentos
   await page.waitForXPath('//div[@id="formListaFormatos:listaSelectorFormatos"]')
