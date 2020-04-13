@@ -33,6 +33,19 @@ function toDownload (filename, timeoutSeconds = 60, intervalSeconds = 1) {
   })
 }
 
+async function startBrowser (params) {
+  let options = params || {}
+  if (options.development) {
+    options = {
+      headless: false,
+      slowMo: 50
+    }
+  }
+
+  const browser = await puppeteer.launch(options)
+  return browser
+}
+
 /**
  * Prepara la configuración común de la página a escrapear
  * @param {Object} puppeeter.Browser
@@ -64,13 +77,12 @@ async function getPage (browser) {
 
 /**
  * Consigue el archivo Excel de contratos para una organization
+ * @param {Object} page de Puppeteer.Page
  * @param {String} organizationName se puede usar nombre ('Secretaría de Educación Pública (SEP)')
  * @param {Number} organizationIndex o se puede usar índice (42)
  */
-async function getContract (organizationName = null, organizationIndex = 0) {
+async function getContract (page, organizationName = null, organizationIndex = 0) {
   const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consultaPublica.xhtml#inicio'
-  const browser = await puppeteer.launch({ headless: false, slowMo: 50 })
-  const page = await getPage(browser)
   const year = 2018
 
   const downloadsInProgress = []
@@ -213,8 +225,10 @@ async function getContract (organizationName = null, organizationIndex = 0) {
 
   // El método toDownload hace que esperemos a que la descarga termine
   await Promise.all(downloadsInProgress)
-
-  await browser.close()
 }
 
-module.exports = { getContract }
+module.exports = {
+  getContract,
+  getPage,
+  startBrowser
+}

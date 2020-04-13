@@ -8,7 +8,10 @@ const organization = argv.organization
 
 ;(async () => {
   try {
-    await scraper.getContract(organization)
+    const browser = await scraper.startBrowser({ development: true })
+    const page = await scraper.getPage(browser)
+    await scraper.getContract(page, organization)
+    await browser.close()
     console.log('Terminamos el scraping')
   } catch (e) {
     console.log('Algo falló')
