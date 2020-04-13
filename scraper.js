@@ -75,6 +75,16 @@ async function getPage (browser) {
   return page
 }
 
+async function navigateToOrganizations (page) {
+  // Click en el filtro "Estado o Federación"
+  const filter = await page.waitForSelector('#filaSelectEF > .col-md-4 > .btn-group > .btn > .filter-option')
+  await filter.click()
+
+  // Selecciona el segundo elemento del dropdown: "Federación"
+  const fed = await page.waitForSelector('.btn-group > .dropdown-menu > .dropdown-menu > li:nth-child(2) > a')
+  await fed.click()
+}
+
 /**
  * Consigue el archivo Excel de contratos para una organization
  * @param {Object} page de Puppeteer.Page
@@ -82,7 +92,6 @@ async function getPage (browser) {
  * @param {Number} organizationIndex o se puede usar índice (42)
  */
 async function getContract (page, organizationName = null, organizationIndex = 0) {
-  const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consultaPublica.xhtml#inicio'
   const year = 2018
 
   const downloadsInProgress = []
@@ -102,16 +111,6 @@ async function getContract (page, organizationName = null, organizationIndex = 0
       }
     }
   })
-
-  await page.goto(startUrl)
-
-  // Click en el filtro "Estado o Federación"
-  const filter = await page.waitForSelector('#filaSelectEF > .col-md-4 > .btn-group > .btn > .filter-option')
-  await filter.click()
-
-  // Selecciona el segundo elemento del dropdown: "Federación"
-  const fed = await page.waitForSelector('.btn-group > .dropdown-menu > .dropdown-menu > li:nth-child(2) > a')
-  await fed.click()
 
   // La página se divide en menús [.botonActiva] colapsables por letra del abecedario
   await page.waitForSelector('.botonActiva')
@@ -225,10 +224,16 @@ async function getContract (page, organizationName = null, organizationIndex = 0
 
   // El método toDownload hace que esperemos a que la descarga termine
   await Promise.all(downloadsInProgress)
+
+  // Quita la ventana modal
+  const modal = await page.$('#modalRangos')
+  await modal.click()
+  await page.waitForSelector('div.capaBloqueaPantalla', { hidden: true })
 }
 
 module.exports = {
   getContract,
   getPage,
+  navigateToOrganizations,
   startBrowser
 }
