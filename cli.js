@@ -42,15 +42,24 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
     } else {
       for (let i = from; i <= to; i++) {
         console.log('Trabajando en la organización', i)
-        const res = await scraper.getContract(page, null, i)
-        if (res) {
-          // Esperamos a que las descargas terminen
-          await Promise.all(downloadsInProgress)
-          // Vamos de regreso
-          await page.goto(startUrl + '#obligaciones')
-        }
+        try {
+          const res = await scraper.getContract(page, null, i)
+          if (res) {
+            // Esperamos a que las descargas terminen
+            await Promise.all(downloadsInProgress)
+            // Vamos de regreso
+            await page.goto(startUrl + '#obligaciones')
+          }
 
-        await page.goto(startUrl + '#sujetosObligados')
+          await page.goto(startUrl + '#sujetosObligados')
+        } catch (e) {
+          // Nos lo brincamos si falla
+          console.log(e)
+          console.log(`La organización ${i} no se pudo escrapear; brincando...`)
+          await page.goto(startUrl + '#obligaciones')
+          await page.goto(startUrl + '#sujetosObligados')
+          continue
+        }
       }
     }
 
