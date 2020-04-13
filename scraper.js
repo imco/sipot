@@ -207,7 +207,7 @@ async function getContract (page, organizationName = null, organizationIndex = 0
   }
 
   // Quita la ventana modal
-  const modal = await page.$('#modalRangos')
+  const modal = await page.waitForSelector('#modalRangos')
   await modal.click()
   await page.waitForSelector('div.capaBloqueaPantalla', { hidden: true })
 
