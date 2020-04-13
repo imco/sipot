@@ -33,11 +33,16 @@ function toDownload (filename, timeoutSeconds = 60, intervalSeconds = 1) {
   })
 }
 
-
-(async () => {
+/**
+ * Consigue el archivo Excel de contratos para una organization
+ * @param {String} organizationName se puede usar nombre ('Secretaría de Educación Pública (SEP)')
+ * @param {Number} organizationIndex o se puede usar índice (42)
+ */
+async function getContract (organizationName = null, organizationIndex = 0) {
   const browser = await puppeteer.launch({ headless: false, slowMo: 50 })
   const page = await browser.newPage()
   const downloadsInProgress = []
+  const year = 2018
 
   // Descarga archivos en la carpeta local
   await page._client.send('Page.setDownloadBehavior', {
@@ -70,12 +75,6 @@ function toDownload (filename, timeoutSeconds = 60, intervalSeconds = 1) {
       }
     }
   })
-
-  // Podemos buscar organización por nombre, o por índice en la lista
-  // let organizationName = 'Secretaría de Educación Pública (SEP)'
-  let organizationName = null
-  const organizationIndex = 42
-  const year = 2018
 
   await page.goto('https://consultapublicamx.inai.org.mx/vut-web/faces/view/consultaPublica.xhtml#inicio')
   await page.setViewport({ width: 1280, height: 800 })
@@ -202,4 +201,6 @@ function toDownload (filename, timeoutSeconds = 60, intervalSeconds = 1) {
   await Promise.all(downloadsInProgress)
 
   await browser.close()
-})()
+}
+
+module.exports = { getContract }
