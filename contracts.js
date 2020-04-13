@@ -34,15 +34,12 @@ function toDownload (filename, timeoutSeconds = 60, intervalSeconds = 1) {
 }
 
 /**
- * Consigue el archivo Excel de contratos para una organization
- * @param {String} organizationName se puede usar nombre ('Secretaría de Educación Pública (SEP)')
- * @param {Number} organizationIndex o se puede usar índice (42)
+ * Prepara la configuración común de la página a escrapear
+ * @param {Object} puppeeter.Browser
+ * @returns {Object} puppeeter.Page
  */
-async function getContract (organizationName = null, organizationIndex = 0) {
-  const browser = await puppeteer.launch({ headless: false, slowMo: 50 })
+async function getPage (browser) {
   const page = await browser.newPage()
-  const downloadsInProgress = []
-  const year = 2018
 
   // Descarga archivos en la carpeta local
   await page._client.send('Page.setDownloadBehavior', {
@@ -60,6 +57,24 @@ async function getContract (organizationName = null, organizationIndex = 0) {
     }
   })
 
+  await page.setViewport({ width: 1280, height: 800 })
+
+  return page
+}
+
+/**
+ * Consigue el archivo Excel de contratos para una organization
+ * @param {String} organizationName se puede usar nombre ('Secretaría de Educación Pública (SEP)')
+ * @param {Number} organizationIndex o se puede usar índice (42)
+ */
+async function getContract (organizationName = null, organizationIndex = 0) {
+  const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consultaPublica.xhtml#inicio'
+  const browser = await puppeteer.launch({ headless: false, slowMo: 50 })
+  const page = await getPage(browser)
+  const year = 2018
+
+  const downloadsInProgress = []
+
   // Inspecciona respuestas para buscar el nombre del archivo a descargar
   page.on('response', async res => {
     if (res.url().endsWith('consultaPublica.xhtml')) {
@@ -76,8 +91,7 @@ async function getContract (organizationName = null, organizationIndex = 0) {
     }
   })
 
-  await page.goto('https://consultapublicamx.inai.org.mx/vut-web/faces/view/consultaPublica.xhtml#inicio')
-  await page.setViewport({ width: 1280, height: 800 })
+  await page.goto(startUrl)
 
   // Click en el filtro "Estado o Federación"
   const filter = await page.waitForSelector('#filaSelectEF > .col-md-4 > .btn-group > .btn > .filter-option')
