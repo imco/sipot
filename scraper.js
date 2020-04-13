@@ -94,24 +94,6 @@ async function navigateToOrganizations (page) {
 async function getContract (page, organizationName = null, organizationIndex = 0) {
   const year = 2018
 
-  const downloadsInProgress = []
-
-  // Inspecciona respuestas para buscar el nombre del archivo a descargar
-  page.on('response', async res => {
-    if (res.url().endsWith('consultaPublica.xhtml')) {
-      const headers = res.headers()
-      if (headers['content-type'] === 'application/vnd.ms-excel') {
-        // Si pedimos un excel, checar el nombre
-        const match = headers['content-disposition'].match(/filename\="(.*)"/) || []
-        const filename = match[1]
-        console.log('Descargando', filename)
-
-        // Marcamos la descarga como pendiente
-        downloadsInProgress.push(toDownload(filename))
-      }
-    }
-  })
-
   // La página se divide en menús [.botonActiva] colapsables por letra del abecedario
   await page.waitForSelector('.botonActiva')
 
@@ -224,12 +206,6 @@ async function getContract (page, organizationName = null, organizationIndex = 0
     await page.waitFor(5000)
   }
 
-  // Esperamos un poco a que el servidor responda
-  await page.waitFor(5000)
-
-  // El método toDownload hace que esperemos a que la descarga termine
-  await Promise.all(downloadsInProgress)
-
   // Quita la ventana modal
   const modal = await page.$('#modalRangos')
   await modal.click()
@@ -242,5 +218,6 @@ module.exports = {
   getContract,
   getPage,
   navigateToOrganizations,
-  startBrowser
+  startBrowser,
+  toDownload
 }
