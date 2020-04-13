@@ -22,7 +22,7 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
     if (organization) {
       await scraper.getContract(page, organization)
     } else {
-      for (let i = from; from <= to; i++) {
+      for (let i = from; i <= to; i++) {
         console.log('Trabajando en la organización', i)
         const res = await scraper.getContract(page, null, i)
         if (res) {
