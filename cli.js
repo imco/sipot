@@ -24,8 +24,11 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
     } else {
       for (let i = from; from <= to; i++) {
         console.log('Trabajando en la organización', i)
-        await scraper.getContract(page, null, i)
-        await page.goto(startUrl + '#obligaciones')
+        const res = await scraper.getContract(page, null, i)
+        if (res) {
+          await page.goto(startUrl + '#obligaciones')
+        }
+
         await page.goto(startUrl + '#sujetosObligados')
       }
     }

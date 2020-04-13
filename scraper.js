@@ -234,6 +234,8 @@ async function getContract (page, organizationName = null, organizationIndex = 0
   const modal = await page.$('#modalRangos')
   await modal.click()
   await page.waitForSelector('div.capaBloqueaPantalla', { hidden: true })
+
+  return true
 }
 
 module.exports = {
