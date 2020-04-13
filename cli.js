@@ -12,6 +12,8 @@ const to = Number(argv.to || 965)
 const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consultaPublica.xhtml'
 
 ;(async () => {
+  console.log('Nueva sesión', new Date())
+
   try {
     const browser = await scraper.startBrowser({ development: true })
 
