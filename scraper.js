@@ -234,10 +234,10 @@ async function getContract (page, organizationName = null, organizationIndex = 0
 
     console.log('Rango seleccionado')
 
-    // Esperamos indefinidamente a que el servidor responda a nuestra petición de descarga
+    // Esperamos 90s a que el servidor responda a nuestra petición de descarga
     const gotBack = await page.waitForResponse(r => {
       return fromTargetUrl(r) && r.status() === 200
-    }, { timeout: 0 })
+    }, { timeout: 90000 })
 
     if (!gotBack.ok()) {
       console.log('No contesto el servidor con éxito')
