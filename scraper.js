@@ -196,6 +196,24 @@ async function getContract (page, organizationName = null, organizationIndex = 0
   // Obtener las opciones
   const options = await page.$x('//select[@id="formModalRangos:rangoExcel"]/option')
 
+  // Inspecciona respuestas para buscar el nombre del archivo a descargar
+  // Y agregar una <Promise> a esperar
+  const downloadsInProgress = []
+  page.on('response', async res => {
+    if (res.url().endsWith('consultaPublica.xhtml')) {
+      const headers = res.headers()
+      if (headers['content-type'] === 'application/vnd.ms-excel') {
+        // Si pedimos un excel, checar el nombre
+        const match = headers['content-disposition'].match(/filename\="(.*)"/) || []
+        const filename = match[1]
+        console.log('Descargando', filename)
+
+        // Marcamos la descarga como pendiente
+        downloadsInProgress.push(toDownload(filename))
+      }
+    }
+  })
+
   // Descargar cada opcion disponible
   for (let i in options) {
     const [text, value] = await options[i].evaluate(node => [node.text, node.value])
@@ -216,6 +234,9 @@ async function getContract (page, organizationName = null, organizationIndex = 0
     // Esperamos a que los clicks surtan efecto
     await page.waitFor(5000)
   }
+
+  // Esperamos a que las descargas terminen
+  await Promise.all(downloadsInProgress)
 
   // Quita la ventana modal
   const modal = await page.waitForSelector('#modalRangos')

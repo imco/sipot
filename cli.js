@@ -35,23 +35,6 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
 
     const page = await scraper.getPage(browser)
 
-    // Inspecciona respuestas para buscar el nombre del archivo a descargar
-    const downloadsInProgress = []
-    page.on('response', async res => {
-      if (res.url().endsWith('consultaPublica.xhtml')) {
-        const headers = res.headers()
-        if (headers['content-type'] === 'application/vnd.ms-excel') {
-          // Si pedimos un excel, checar el nombre
-          const match = headers['content-disposition'].match(/filename\="(.*)"/) || []
-          const filename = match[1]
-          console.log('Descargando', filename)
-
-          // Marcamos la descarga como pendiente
-          downloadsInProgress.push(scraper.toDownload(filename))
-        }
-      }
-    })
-
     await page.goto(startUrl + '#inicio')
     await scraper.navigateToOrganizations(page)
 
@@ -76,8 +59,6 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
         try {
           const res = await scraper.getContract(page, ...invocationParams, year)
           if (res) {
-            // Esperamos a que las descargas terminen
-            await Promise.all(downloadsInProgress)
             // Vamos de regreso
             await page.goto(startUrl + '#obligaciones')
           }
