@@ -1,10 +1,17 @@
 #!/usr/bin/env node
 // usage: cli.js --organization "Secretaría de Cultura"
+// usage: cli.js --organizationList obligados.json
+// usage: cli.js --from 10 --to 12
 
 const argv = require('minimist')(process.argv.slice(2))
+const fs = require('fs')
+const path = require('path')
 const scraper = require('./scraper')
 
+const { promisify } = require('util')
+
 const organization = argv.organization
+const organizationList = argv.organizationList
 const from = Number(argv.from || 0)
 // TODO: encontrar este número dinámicamente
 const to = Number(argv.to || 965)
@@ -13,6 +20,14 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
 
 ;(async () => {
   console.log('Nueva sesión', new Date())
+
+  let organizations
+  if (organizationList) {
+    const read = promisify(fs.readFile)
+    const orgData = await read(organizationList)
+    organizations = JSON.parse(orgData.toString())
+    console.log(`Se encontraron ${organizations.length} organizaciones en ${organizationList}`)
+  }
 
   try {
     const browser = await scraper.startBrowser({ development: true })
@@ -42,10 +57,23 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
     if (organization) {
       await scraper.getContract(page, organization)
     } else {
-      for (let i = from; i <= to; i++) {
+      // Prepara parametros para el for loop
+      let parameters = []
+      if (organizations) {
+        // Iteramos una lista de organizaciones
+        parameters = organizations.map(o => [o, null])
+      } else {
+        // O una secuencia ascendente
+        parameters = new Array(to - from + 1)
+          .fill(0)
+          .map((_, i) => [null, from + i])
+      }
+
+      for (let i in parameters) {
+        const invocationParams = parameters[i]
         console.log('Trabajando en la organización', i)
         try {
-          const res = await scraper.getContract(page, null, i)
+          const res = await scraper.getContract(page, ...invocationParams)
           if (res) {
             // Esperamos a que las descargas terminen
             await Promise.all(downloadsInProgress)
