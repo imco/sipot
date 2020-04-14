@@ -199,9 +199,10 @@ async function getContract (page, organizationName = null, organizationIndex = 0
   // Inspecciona respuestas para buscar el nombre del archivo a descargar
   // Y agregar una <Promise> a esperar
   const downloadsInProgress = []
-  page.on('response', async res => {
+  async function responseHandle (res) {
     if (res.url().endsWith('consultaPublica.xhtml')) {
       const headers = res.headers()
+      // Si es un excel, registramos el nombre y monitoreamos la descarga
       if (headers['content-type'] === 'application/vnd.ms-excel') {
         // Si pedimos un excel, checar el nombre
         const match = headers['content-disposition'].match(/filename\="(.*)"/) || []
@@ -212,9 +213,10 @@ async function getContract (page, organizationName = null, organizationIndex = 0
         downloadsInProgress.push(toDownload(filename))
       }
     }
-  })
+  }
 
   // Descargar cada opcion disponible
+  page.on('response', responseHandle)
   for (let i in options) {
     const [text, value] = await options[i].evaluate(node => [node.text, node.value])
     console.log('Opción encontrada:', text, value)
@@ -237,6 +239,8 @@ async function getContract (page, organizationName = null, organizationIndex = 0
 
   // Esperamos a que las descargas terminen
   await Promise.all(downloadsInProgress)
+
+  page.removeListener('response', responseHandle)
 
   // Quita la ventana modal
   const modal = await page.waitForSelector('#modalRangos')
