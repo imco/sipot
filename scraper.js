@@ -199,8 +199,9 @@ async function getContract (page, organizationName = null, organizationIndex = 0
   // Inspecciona respuestas para buscar el nombre del archivo a descargar
   // Y agregar una <Promise> a esperar
   const downloadsInProgress = []
+  const fromTargetUrl = res => res.url().endsWith('consultaPublica.xhtml')
   async function responseHandle (res) {
-    if (res.url().endsWith('consultaPublica.xhtml')) {
+    if (fromTargetUrl(res)) {
       const headers = res.headers()
       // Si es un excel, registramos el nombre y monitoreamos la descarga
       if (headers['content-type'] === 'application/vnd.ms-excel') {
@@ -233,8 +234,15 @@ async function getContract (page, organizationName = null, organizationIndex = 0
 
     console.log('Rango seleccionado')
 
-    // Esperamos a que los clicks surtan efecto
-    await page.waitFor(5000)
+    // Esperamos indefinidamente a que el servidor responda a nuestra petición de descarga
+    const gotBack = await page.waitForResponse(r => {
+      return fromTargetUrl(r) && r.status() === 200
+    }, { timeout: 0 })
+
+    if (!gotBack.ok()) {
+      console.log('No contesto el servidor con éxito')
+      return false
+    }
   }
 
   // Esperamos a que las descargas terminen
