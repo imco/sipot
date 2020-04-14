@@ -90,10 +90,9 @@ async function navigateToOrganizations (page) {
  * @param {Object} page de Puppeteer.Page
  * @param {String} organizationName se puede usar nombre ('Secretaría de Educación Pública (SEP)')
  * @param {Number} organizationIndex o se puede usar índice (42)
+ * @param {Number} year
  */
-async function getContract (page, organizationName = null, organizationIndex = 0) {
-  const year = 2018
-
+async function getContract (page, organizationName = null, organizationIndex = 0, year = 2018) {
   // La página se divide en menús [.botonActiva] colapsables por letra del abecedario
   await page.waitForSelector('.botonActiva')
 

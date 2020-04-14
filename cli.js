@@ -15,6 +15,7 @@ const organizationList = argv.organizationList
 const from = Number(argv.from || 0)
 // TODO: encontrar este número dinámicamente
 const to = Number(argv.to || 965)
+const year = argv.year
 
 const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consultaPublica.xhtml'
 
@@ -55,7 +56,7 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
     await scraper.navigateToOrganizations(page)
 
     if (organization) {
-      await scraper.getContract(page, organization)
+      await scraper.getContract(page, organization, null, year)
     } else {
       // Prepara parametros para el for loop
       let parameters = []
@@ -73,7 +74,7 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
         const invocationParams = parameters[i]
         console.log('Trabajando en la organización', i)
         try {
-          const res = await scraper.getContract(page, ...invocationParams)
+          const res = await scraper.getContract(page, ...invocationParams, year)
           if (res) {
             // Esperamos a que las descargas terminen
             await Promise.all(downloadsInProgress)
