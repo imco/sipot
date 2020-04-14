@@ -72,7 +72,7 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
 
       for (let i in parameters) {
         const invocationParams = parameters[i]
-        console.log('Trabajando en la organización', i)
+        console.log('Trabajando en la organización', invocationParams[0] || invocationParams[1])
         try {
           const res = await scraper.getContract(page, ...invocationParams, year)
           if (res) {
