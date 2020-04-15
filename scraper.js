@@ -4,87 +4,6 @@ const { promisify } = require('util')
 const exists = promisify(fs.stat)
 const path = require('path')
 
-function toDownload (filename, timeoutSeconds = 60, intervalSeconds = 1) {
-  return new Promise((resolve, reject) => {
-    let interval
-    let timeout
-    const filepath = path.join(process.cwd(), filename)
-
-    timeout = setTimeout(() => {
-      clearInterval(interval)
-      const error = `No hemos podido descargar ${filename} en menos de 60s`
-      console.log(error)
-      return reject(error)
-    }, timeoutSeconds * 1000)
-
-    interval = setInterval(async () => {
-      try {
-        await exists(filepath)
-        clearTimeout(timeout)
-        clearInterval(interval)
-
-        const success = `Se ha descargado ${filename}`
-        console.log(success)
-        return resolve(success)
-      } catch (e) {
-        console.log(filepath, 'aun no existe')
-      }
-    }, intervalSeconds * 1000)
-  })
-}
-
-async function startBrowser (params) {
-  let options = params || {}
-  if (options.development) {
-    options = {
-      headless: false,
-      slowMo: 50
-    }
-  }
-
-  const browser = await puppeteer.launch(options)
-  return browser
-}
-
-/**
- * Prepara la configuración común de la página a escrapear
- * @param {Object} puppeeter.Browser
- * @returns {Object} puppeeter.Page
- */
-async function getPage (browser) {
-  const page = await browser.newPage()
-
-  // Descarga archivos en la carpeta local
-  await page._client.send('Page.setDownloadBehavior', {
-    behavior: 'allow',
-    downloadPath: process.cwd()
-  })
-
-  await page.setRequestInterception(true)
-  page.on('request', interceptedRequest => {
-    // No tiene caso desperdiciar ancho de banda en imágenes
-    if (['.jpg', '.png', '.svg'].some(ext => interceptedRequest.url().endsWith(ext))) {
-      interceptedRequest.abort()
-    } else {
-      interceptedRequest.continue()
-    }
-  })
-
-  await page.setViewport({ width: 1280, height: 800 })
-
-  return page
-}
-
-async function navigateToOrganizations (page) {
-  // Click en el filtro "Estado o Federación"
-  const filter = await page.waitForSelector('#filaSelectEF > .col-md-4 > .btn-group > .btn > .filter-option')
-  await filter.click()
-
-  // Selecciona el segundo elemento del dropdown: "Federación"
-  const fed = await page.waitForSelector('.btn-group > .dropdown-menu > .dropdown-menu > li:nth-child(2) > a')
-  await fed.click()
-}
-
 /**
  * Consigue el archivo Excel de contratos para una organization
  * @param {Object} page de Puppeteer.Page
@@ -256,6 +175,87 @@ async function getContract (page, organizationName = null, organizationIndex = 0
   await page.waitForSelector('div.capaBloqueaPantalla', { hidden: true })
 
   return true
+}
+
+/**
+ * Prepara la configuración común de la página a escrapear
+ * @param {Object} puppeeter.Browser
+ * @returns {Object} puppeeter.Page
+ */
+async function getPage (browser) {
+  const page = await browser.newPage()
+
+  // Descarga archivos en la carpeta local
+  await page._client.send('Page.setDownloadBehavior', {
+    behavior: 'allow',
+    downloadPath: process.cwd()
+  })
+
+  await page.setRequestInterception(true)
+  page.on('request', interceptedRequest => {
+    // No tiene caso desperdiciar ancho de banda en imágenes
+    if (['.jpg', '.png', '.svg'].some(ext => interceptedRequest.url().endsWith(ext))) {
+      interceptedRequest.abort()
+    } else {
+      interceptedRequest.continue()
+    }
+  })
+
+  await page.setViewport({ width: 1280, height: 800 })
+
+  return page
+}
+
+async function navigateToOrganizations (page) {
+  // Click en el filtro "Estado o Federación"
+  const filter = await page.waitForSelector('#filaSelectEF > .col-md-4 > .btn-group > .btn > .filter-option')
+  await filter.click()
+
+  // Selecciona el segundo elemento del dropdown: "Federación"
+  const fed = await page.waitForSelector('.btn-group > .dropdown-menu > .dropdown-menu > li:nth-child(2) > a')
+  await fed.click()
+}
+
+async function startBrowser (params) {
+  let options = params || {}
+  if (options.development) {
+    options = {
+      headless: false,
+      slowMo: 50
+    }
+  }
+
+  const browser = await puppeteer.launch(options)
+  return browser
+}
+
+function toDownload (filename, timeoutSeconds = 60, intervalSeconds = 1) {
+  return new Promise((resolve, reject) => {
+    let interval
+    let timeout
+    const filepath = path.join(process.cwd(), filename)
+
+    timeout = setTimeout(() => {
+      clearInterval(interval)
+      const error = `No hemos podido descargar ${filename} en menos de 60s`
+      console.log(error)
+      return reject(error)
+    }, timeoutSeconds * 1000)
+
+    interval = setInterval(async () => {
+      try {
+        await exists(filepath)
+        clearTimeout(timeout)
+        clearInterval(interval)
+
+        const success = `Se ha descargado ${filename}`
+        console.log(success)
+        return resolve(success)
+      } catch (e) {
+        console.log(filepath, 'aun no existe')
+      }
+    }, intervalSeconds * 1000)
+  })
 }
 
 module.exports = {
