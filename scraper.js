@@ -139,6 +139,10 @@ async function getContract (page, organizationName = null, organizationIndex = 0
     await Promise.all(downloadsInProgress)
   }
 
+  // Wait again for any remaining download to get to the queue (esp. the last one)
+  await page.waitFor(1000)
+  await Promise.all(downloadsInProgress)
+
   // Quita la ventana modal
   const modal = await page.waitForSelector('#modalRangos')
   await modal.click()
