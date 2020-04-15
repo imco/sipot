@@ -61,20 +61,13 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
       console.log('Trabajando en la organización', orgId)
       try {
         const res = await scraper.getContract(page, ...invocationParams, year)
-        if (res) {
-          // Vamos de regreso
-          await page.goto(startUrl + '#obligaciones')
-        }
-
-        await page.goto(startUrl + '#sujetosObligados')
       } catch (e) {
         // Nos lo brincamos si falla
         console.log(e)
         console.log(`La organización ${orgId} no se pudo escrapear; brincando...`)
-        await page.goto(startUrl + '#obligaciones')
-        await page.goto(startUrl + '#sujetosObligados')
-        continue
       }
+
+      await scraper.backTo(page, 'sujetosObligados')
     }
 
     await browser.close()

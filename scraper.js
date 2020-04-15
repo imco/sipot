@@ -8,6 +8,47 @@ const downloadsInProgress = []
 const fromTargetUrl = res => res.url().endsWith('consultaPublica.xhtml')
 
 /**
+ * Navega en reversa el sitio.
+ * Por ejemplo si queremos regresar de las descargas de una org
+ * al listado de organizaciones.
+ * @param {Page} page
+ * @param {string} nextLocation
+ */
+async function backTo(page, nextLocation) {
+  const url = page.url()
+  console.log('Actualmente estoy en', url.split('/').slice(-1)[0])
+
+  const [base, target] = url.split('#')
+
+  const sequence = [
+    'inicio',
+    'sujetosObligados',
+    'obligaciones',
+    'tarjetaInformativa'
+  ]
+
+  // Nota: target es el # actual
+  const nextLocationIndex = sequence.indexOf(nextLocation)
+  const targetIndex = sequence.indexOf(target)
+
+  // Si la ubicación deseada (nextLocation) es la misma o enfrente
+  // salimos del método
+  if (nextLocationIndex - targetIndex >= 0) {
+    console.log('Ya estamos en la ubicación deseada')
+    return true
+  }
+
+  const navigationSteps = sequence
+    .slice(nextLocationIndex, targetIndex)
+    .reverse()
+
+  console.log('Navegando', navigationSteps.join('->'))
+  for (let i in navigationSteps) {
+    await page.goto(`${base}#${navigationSteps[i]}`)
+  }
+}
+
+/**
  * Consigue el archivo Excel de contratos para una organization
  * @param {Object} page de Puppeteer.Page
  * @param {String} organizationName se puede usar nombre ('Secretaría de Educación Pública (SEP)')
@@ -287,6 +328,7 @@ function toDownload (filename, timeoutSeconds = 60, intervalSeconds = 1) {
 }
 
 module.exports = {
+  backTo,
   getContract,
   getPage,
   navigateToOrganizations,
