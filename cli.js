@@ -70,7 +70,12 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
       await scraper.backTo(page, 'sujetosObligados')
     }
 
+    // Por si quedan algunas descargas pendientes
+    await Promise.all(scraper.downloadsInProgress)
+
     await browser.close()
+
+    console.log('Se descargaron %i archivos', scraper.downloadsInProgress.length)
     console.log('Terminamos el scraping')
   } catch (e) {
     console.log('Algo falló')

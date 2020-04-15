@@ -134,6 +134,7 @@ async function getContract (page, organizationName = null, organizationIndex = 0
       return false
     }
 
+    await page.waitFor(1000)
     await Promise.all(downloadsInProgress)
   }
 
@@ -331,6 +332,7 @@ function toDownload (filename, timeoutSeconds = 60, intervalSeconds = 1) {
 
 module.exports = {
   backTo,
+  downloadsInProgress,
   getContract,
   getPage,
   navigateToOrganizations,
