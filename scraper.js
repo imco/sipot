@@ -16,43 +16,7 @@ const fromTargetUrl = res => res.url().endsWith('consultaPublica.xhtml')
  */
 async function getContract (page, organizationName = null, organizationIndex = 0, year = 2018) {
   await navigateToObligations(page, organizationName, organizationIndex)
-
-  await page.waitForXPath('//form[@id="formListaObligaciones"]')
-
-  // Selecciona el año del dropdown
-  const period = await page.waitForXPath('//select[@id="formEntidadFederativa:cboEjercicio"]')
-  await period.select(String(year))
-
-  console.log('Seleccionamos el año', year)
-
-  // Espera a que el bloqueo de pantalla de la consulta se quite
-  await page.waitForSelector('div.capaBloqueaPantalla', { hidden: true })
-
-  // Algunas organizaciones no tendrán sección de contratos
-  let contractsLabel = []
-
-  // Otras muestran un popup, así que hay que asegurarnos de cerrarlo
-  const hasDisplay = 'contains(@style, "display: block")'
-  const noContractsPopup = await page.$x(`//div[@id="modalSinObligaciones" and ${hasDisplay}]`)
-
-  if (noContractsPopup.length) {
-    await noContractsPopup[0].click()
-  } else {
-    // Ahora queremos cargar la sección de "CONTRATOS DE OBRAS, BIENES, Y SERVICIOS".
-    // El elemento a clickear tiene un id con una terminación numérica que
-    // no se repite entre renders.
-    // Es por esto que vamos a buscar el label con la etiqueta CONTRATOS DE OBRAS...
-    // y luego obtener una referencia al ancestro que sí es clickeable.
-    await page.waitForXPath('//div[@class="tituloObligacion"]')
-    contractsLabel = await page.$x('//label[contains(text(), "CONTRATOS DE OBRAS, BIENES Y SERVICIOS")]')
-  }
-
-  if (!contractsLabel.length) {
-    console.log('No hay contratos para', organizationName)
-    return false
-  }
-
-  await contractsLabel[0].click()
+  await navigateToInformationCard(page, year)
 
   // Espera a que carge la página de documentos
   await page.waitForXPath('//div[@id="formListaFormatos:listaSelectorFormatos"]')
@@ -235,6 +199,49 @@ async function navigateToObligations (page, organizationName = null, organizatio
   // Hacemos click en la organización de interés
   const orgInput = await page.waitForXPath(`//input[@value="${organizationName}"]`)
   orgInput.click()
+}
+
+/**
+ * Getting from #obligaciones to #tarjetaInformativa
+ */
+async function navigateToInformationCard (page, year = 2018) {
+  await page.waitForXPath('//form[@id="formListaObligaciones"]')
+
+  // Selecciona el año del dropdown
+  const period = await page.waitForXPath('//select[@id="formEntidadFederativa:cboEjercicio"]')
+  await period.select(String(year))
+
+  console.log('Seleccionamos el año', year)
+
+  // Espera a que el bloqueo de pantalla de la consulta se quite
+  await page.waitForSelector('div.capaBloqueaPantalla', { hidden: true })
+
+  // Algunas organizaciones no tendrán sección de contratos
+  let contractsLabel = []
+
+  // Otras muestran un popup, así que hay que asegurarnos de cerrarlo
+  const hasDisplay = 'contains(@style, "display: block")'
+  const noContractsPopup = await page.$x(`//div[@id="modalSinObligaciones" and ${hasDisplay}]`)
+
+  if (noContractsPopup.length) {
+    await noContractsPopup[0].click()
+  } else {
+    // Ahora queremos cargar la sección de "CONTRATOS DE OBRAS, BIENES, Y SERVICIOS".
+    // El elemento a clickear tiene un id con una terminación numérica que
+    // no se repite entre renders.
+    // Es por esto que vamos a buscar el label con la etiqueta CONTRATOS DE OBRAS...
+    // y luego obtener una referencia al ancestro que sí es clickeable.
+    await page.waitForXPath('//div[@class="tituloObligacion"]')
+    contractsLabel = await page.$x('//label[contains(text(), "CONTRATOS DE OBRAS, BIENES Y SERVICIOS")]')
+  }
+
+  if (!contractsLabel.length) {
+    const msg = 'No hay contratos para esta organización'
+    console.log(msg)
+    throw new Error(msg)
+  } else {
+    await contractsLabel[0].click()
+  }
 }
 
 async function startBrowser (params) {
