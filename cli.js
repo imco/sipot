@@ -67,7 +67,11 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
         console.log(`La organización ${orgId} no se pudo escrapear; brincando...`)
       }
 
-      await scraper.backTo(page, 'sujetosObligados')
+      await scraper.takeTo(page, 'sujetosObligados', {
+        organizationName: invocationParams[0],
+        organizationIndex: invocationParams[1],
+        year
+      })
     }
 
     // Por si quedan algunas descargas pendientes

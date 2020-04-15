@@ -6,6 +6,12 @@ const path = require('path')
 
 const downloadsInProgress = []
 const fromTargetUrl = res => res.url().endsWith('consultaPublica.xhtml')
+const sequence = [
+  'inicio',
+  'sujetosObligados',
+  'obligaciones',
+  'tarjetaInformativa'
+]
 
 /**
  * Navega en reversa el sitio.
@@ -14,18 +20,10 @@ const fromTargetUrl = res => res.url().endsWith('consultaPublica.xhtml')
  * @param {Page} page
  * @param {string} nextLocation
  */
-async function backTo(page, nextLocation) {
+async function backTo (page, nextLocation) {
   const url = page.url()
   console.log('Actualmente estoy en', url.split('/').slice(-1)[0])
-
   const [base, target] = url.split('#')
-
-  const sequence = [
-    'inicio',
-    'sujetosObligados',
-    'obligaciones',
-    'tarjetaInformativa'
-  ]
 
   // Nota: target es el # actual
   const nextLocationIndex = sequence.indexOf(nextLocation)
@@ -45,6 +43,38 @@ async function backTo(page, nextLocation) {
   console.log('Navegando', navigationSteps.join('->'))
   for (let i in navigationSteps) {
     await page.goto(`${base}#${navigationSteps[i]}`)
+  }
+}
+
+async function takeTo (page, nextLocation, params) {
+  const { organizationName, organizationIndex, year } = params
+
+  const url = page.url()
+  console.log('Actualmente estoy en', url.split('/').slice(-1)[0])
+  const [base, target] = url.split('#')
+
+  // Nota: target es el # actual
+  const nextLocationIndex = sequence.indexOf(nextLocation)
+  const targetIndex = sequence.indexOf(target)
+
+  if (nextLocationIndex - targetIndex <= 0) {
+    return await backTo(page, nextLocation)
+  }
+
+  // Pa' delante (sin contar el inicio)
+  if (nextLocationIndex > 0) {
+    console.log('navegando a #sujetosObligados')
+    await navigateToOrganizations(page)
+  }
+
+  if (nextLocationIndex > 1) {
+    console.log('navegando a #obligaciones')
+    await navigateToObligations(page, organizationName, organizationIndex)
+  }
+
+  if (nextLocationIndex > 2) {
+    console.log('navegando a #tarjetaInformativa')
+    await navigateToInformationCard(page, year)
   }
 }
 
@@ -337,5 +367,6 @@ module.exports = {
   getPage,
   navigateToOrganizations,
   startBrowser,
+  takeTo,
   toDownload
 }
