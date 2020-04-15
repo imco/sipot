@@ -19,6 +19,7 @@ function getMetadataForFile (filepath) {
 }
 
 ;(async () => {
+  const DELIMITER = ';'
   const dir = path.join(process.cwd(), argv.directory || '')
 
   const readdir = promisify(fs.readdir)
@@ -34,13 +35,13 @@ function getMetadataForFile (filepath) {
     'Archivo'
   ]
 
-  const scandata = [headers]
+  const scandata = [headers.join(DELIMITER)]
 
   for (let filename of xls) {
     const filepath = `${dir}${filename}`
     const metadata = getMetadataForFile(filepath)
     metadata.push(filename)
-    scandata.push(metadata)
+    scandata.push(metadata.join(DELIMITER))
   }
 
   console.log(scandata.join('\n'))
