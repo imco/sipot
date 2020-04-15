@@ -111,6 +111,14 @@ async function getContract (page, organizationName = null, organizationIndex = 0
   await page.waitForSelector('div.capaBloqueaPantalla', { hidden: true })
   await page.waitFor(1000)
 
+  // Si no hay resultados nos brincamos la organización
+  const downloadCounter = await page.$x('//span[contains(text(), "Se encontraron")]/..')
+  const counterText = await downloadCounter[0].evaluate(node => node.innerText)
+  const match = counterText.match(/Se encontraron (\d+) resultados/) || []
+  const count = Number(match[1])
+  console.log(`Se encontraron ${count} resultados en la consulta`)
+  if (count === 0) return false
+
   // Seleccionar opción de descargar
   const downloadButton = await page.waitForXPath('//a[contains(text(), "DESCARGAR")]')
   await downloadButton.click()
