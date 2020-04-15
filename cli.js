@@ -31,7 +31,7 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
   }
 
   try {
-    const browser = await scraper.startBrowser({ development: true })
+    const browser = await scraper.startBrowser({ development: !!argv.development })
 
     const page = await scraper.getPage(browser)
 
