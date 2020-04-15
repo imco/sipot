@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // usage: cli.js --organization "Secretaría de Cultura"
-// usage: cli.js --organizationList obligados.json
+// usage: cli.js --organizationList obligados.[json|txt]
 // usage: cli.js --from 10 --to 12
 
 const argv = require('minimist')(process.argv.slice(2))
@@ -26,7 +26,12 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
   if (organizationList) {
     const read = promisify(fs.readFile)
     const orgData = await read(organizationList)
-    organizations = JSON.parse(orgData.toString())
+    try {
+      organizations = JSON.parse(orgData.toString())
+    } catch (e) {
+      organizations = orgData.toString().replace(/"/g, '').split('\n')
+    }
+
     console.log(`Se encontraron ${organizations.length} organizaciones en ${organizationList}`)
   }
 
