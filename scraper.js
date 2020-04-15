@@ -266,8 +266,13 @@ async function navigateToObligations (page, organizationName = null, organizatio
   }
 
   console.log('Objetivo:', organizationName)
-  // Filtramos la lista para que aparezca nuestra opción
+
+  // Filtramos la lista para que aparezca nuestra opción,
+  // pero primero limpiamos el campo
   const orgFilter = await page.waitForSelector('input.form-control.intitucionResp')
+  await page.evaluate(() => {
+    $('input.form-control.intitucionResp')[0].value = ''
+  })
   await orgFilter.type(organizationName)
 
   // Hacemos click en la organización de interés
