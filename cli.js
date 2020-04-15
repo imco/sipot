@@ -40,38 +40,39 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
 
     if (organization) {
       await scraper.getContract(page, organization, null, year)
+      await browser.close()
+      return true
+    }
+
+    // Prepara parametros para el loop de scraping
+    // Iteramos una lista de organizaciones
+    // o una secuencia ascendente
+    let parameters = []
+    if (organizations) {
+      parameters = organizations.map(o => [o, null])
     } else {
-      // Prepara parametros para el for loop
-      let parameters = []
-      if (organizations) {
-        // Iteramos una lista de organizaciones
-        parameters = organizations.map(o => [o, null])
-      } else {
-        // O una secuencia ascendente
-        parameters = new Array(to - from + 1)
-          .fill(0)
-          .map((_, i) => [null, from + i])
-      }
+      parameters = new Array(to - from + 1).fill(0)
+        .map((_, i) => [null, from + i])
+    }
 
-      for (let i in parameters) {
-        const invocationParams = parameters[i]
-        console.log('Trabajando en la organización', invocationParams[0] || invocationParams[1])
-        try {
-          const res = await scraper.getContract(page, ...invocationParams, year)
-          if (res) {
-            // Vamos de regreso
-            await page.goto(startUrl + '#obligaciones')
-          }
-
-          await page.goto(startUrl + '#sujetosObligados')
-        } catch (e) {
-          // Nos lo brincamos si falla
-          console.log(e)
-          console.log(`La organización ${i} no se pudo escrapear; brincando...`)
+    for (let i in parameters) {
+      const invocationParams = parameters[i]
+      console.log('Trabajando en la organización', invocationParams[0] || invocationParams[1])
+      try {
+        const res = await scraper.getContract(page, ...invocationParams, year)
+        if (res) {
+          // Vamos de regreso
           await page.goto(startUrl + '#obligaciones')
-          await page.goto(startUrl + '#sujetosObligados')
-          continue
         }
+
+        await page.goto(startUrl + '#sujetosObligados')
+      } catch (e) {
+        // Nos lo brincamos si falla
+        console.log(e)
+        console.log(`La organización ${i} no se pudo escrapear; brincando...`)
+        await page.goto(startUrl + '#obligaciones')
+        await page.goto(startUrl + '#sujetosObligados')
+        continue
       }
     }
 
