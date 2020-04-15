@@ -4,6 +4,9 @@ const { promisify } = require('util')
 const exists = promisify(fs.stat)
 const path = require('path')
 
+const downloadsInProgress = []
+const fromTargetUrl = res => res.url().endsWith('consultaPublica.xhtml')
+
 /**
  * Consigue el archivo Excel de contratos para una organization
  * @param {Object} page de Puppeteer.Page
@@ -115,28 +118,7 @@ async function getContract (page, organizationName = null, organizationIndex = 0
   // Obtener las opciones
   const options = await page.$x('//select[@id="formModalRangos:rangoExcel"]/option')
 
-  // Inspecciona respuestas para buscar el nombre del archivo a descargar
-  // Y agregar una <Promise> a esperar
-  const downloadsInProgress = []
-  const fromTargetUrl = res => res.url().endsWith('consultaPublica.xhtml')
-  async function responseHandle (res) {
-    if (fromTargetUrl(res)) {
-      const headers = res.headers()
-      // Si es un excel, registramos el nombre y monitoreamos la descarga
-      if (headers['content-type'] === 'application/vnd.ms-excel') {
-        // Si pedimos un excel, checar el nombre
-        const match = headers['content-disposition'].match(/filename\="(.*)"/) || []
-        const filename = match[1]
-        console.log('Descargando', filename)
-
-        // Marcamos la descarga como pendiente
-        downloadsInProgress.push(toDownload(filename))
-      }
-    }
-  }
-
   // Descargar cada opcion disponible
-  page.on('response', responseHandle)
   for (let i in options) {
     const [text, value] = await options[i].evaluate(node => [node.text, node.value])
     console.log('Opción encontrada:', text, value)
@@ -154,20 +136,19 @@ async function getContract (page, organizationName = null, organizationIndex = 0
     console.log('Rango seleccionado')
 
     // Esperamos 90s a que el servidor responda a nuestra petición de descarga
-    const gotBack = await page.waitForResponse(r => {
+    // El listener <responseHandler> agregará el archivo a la lista
+    // de descargas pendientes, y esperaremos a que terminen antes de continuar.
+    const downloadRequest = await page.waitForResponse(async r => {
       return fromTargetUrl(r) && r.status() === 200
     }, { timeout: 90000 })
 
-    if (!gotBack.ok()) {
+    if (!downloadRequest.ok()) {
       console.log('No contesto el servidor con éxito')
       return false
     }
+
+    await Promise.all(downloadsInProgress)
   }
-
-  // Esperamos a que las descargas terminen
-  await Promise.all(downloadsInProgress)
-
-  page.removeListener('response', responseHandle)
 
   // Quita la ventana modal
   const modal = await page.waitForSelector('#modalRangos')
@@ -175,6 +156,33 @@ async function getContract (page, organizationName = null, organizationIndex = 0
   await page.waitForSelector('div.capaBloqueaPantalla', { hidden: true })
 
   return true
+}
+
+/**
+ * Inspecciona respuestas para buscar el nombre del archivo a descargar
+ * Agrega también una {Promise} de descarga (ver toDownload) a la
+ * lista global de descargas pendientes.
+ * @params {Response) res
+ * @return {string|null} filename
+ */
+function responseHandler (res) {
+  if (fromTargetUrl(res)) {
+    const headers = res.headers()
+    // Si es un excel, registramos el nombre y monitoreamos la descarga
+    if (headers['content-type'] === 'application/vnd.ms-excel') {
+      // Si pedimos un excel, checar el nombre
+      const match = headers['content-disposition'].match(/filename\="(.*)"/) || []
+      const filename = match[1]
+      console.log('Descargando', filename)
+
+      // Marcamos la descarga como pendiente
+      downloadsInProgress.push(toDownload(filename))
+
+      return filename
+    }
+  }
+
+  return null
 }
 
 /**
@@ -202,6 +210,8 @@ async function getPage (browser) {
   })
 
   await page.setViewport({ width: 1280, height: 800 })
+
+  page.on('response', responseHandler)
 
   return page
 }
