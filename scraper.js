@@ -108,14 +108,12 @@ async function getContract (page, organizationName = null, organizationIndex = 0
     await page.waitFor(10000)
   }
 
-  // Hacer click en el dropdown menu
+  // Para hacer click en el dropdown menu en cada iteración
   const dropdown = await page.waitForXPath('//button[@data-id="formModalRangos:rangoExcel"]')
-  await dropdown.click()
 
   // Espera a que cargue el rango de formatos
+  // y obtiene las opciones
   await page.waitForXPath('//select[@id="formModalRangos:rangoExcel"]')
-
-  // Obtener las opciones
   const options = await page.$x('//select[@id="formModalRangos:rangoExcel"]/option')
 
   // Descargar cada opcion disponible
@@ -127,7 +125,10 @@ async function getContract (page, organizationName = null, organizationIndex = 0
     if (value === '-1') continue
 
     // Selecciona esta opción del rango
-    (await page.$x(`//a/span[contains(text(), "${text}")]`))[0].click()
+    await dropdown.click()
+
+    const optionSpan = await page.$x(`//a/span[contains(text(), "${text}")]`)
+    await optionSpan[0].click()
 
     // Descarga archivo Excel
     const downloadExcel = await page.waitForXPath('//input[@id="formModalRangos:btnDescargaExcel"]')
