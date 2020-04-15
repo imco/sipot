@@ -85,15 +85,13 @@ async function getContract (page, organizationName = null, organizationIndex = 0
   const downloadButton = await page.waitForXPath('//a[contains(text(), "DESCARGAR")]')
   await downloadButton.click()
 
-  await page.waitFor(1000)
-
   // Seleccionar opción de descargar en la modal
+  const downloadLabel = await page.waitForXPath('//label[contains(text(), "Descargar")]')
+
   try {
-    const downloadLabel = await page.$x('//label[contains(text(), "Descargar")]')
-    await downloadLabel[0].click()
+    await downloadLabel.click()
   } catch (e) {
-    console.log('No se encontro el boton de descarga - active manualmente')
-    await page.waitFor(10000)
+    throw new Error('No se encontro el boton de descarga en el modal')
   }
 
   // Para hacer click en el dropdown menu en cada iteración
