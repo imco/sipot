@@ -15,24 +15,7 @@ const fromTargetUrl = res => res.url().endsWith('consultaPublica.xhtml')
  * @param {Number} year
  */
 async function getContract (page, organizationName = null, organizationIndex = 0, year = 2018) {
-  // La página se divide en menús [.botonActiva] colapsables por letra del abecedario
-  await page.waitForSelector('.botonActiva')
-
-  if (!organizationName) {
-    // Buscamos la organización que le corresponde tal índice
-    const orgElements = await page.$x('//input[starts-with(@id, "formListaSujetosAZ")]')
-    const targetOrganization = orgElements[organizationIndex]
-    organizationName = await targetOrganization.evaluate(node => node.value)
-  }
-
-  console.log('Objetivo:', organizationName)
-  // Filtramos la lista para que aparezca nuestra opción
-  const orgFilter = await page.waitForSelector('input.form-control.intitucionResp')
-  await orgFilter.type(organizationName)
-
-  // Hacemos click en la organización de interés
-  const orgInput = await page.waitForXPath(`//input[@value="${organizationName}"]`)
-  orgInput.click()
+  await navigateToObligations(page, organizationName, organizationIndex)
 
   await page.waitForXPath('//form[@id="formListaObligaciones"]')
 
@@ -217,6 +200,9 @@ async function getPage (browser) {
   return page
 }
 
+/**
+ * Getting from #inicio to #sujetosObligados
+ */
 async function navigateToOrganizations (page) {
   // Click en el filtro "Estado o Federación"
   const filter = await page.waitForSelector('#filaSelectEF > .col-md-4 > .btn-group > .btn > .filter-option')
@@ -225,6 +211,30 @@ async function navigateToOrganizations (page) {
   // Selecciona el segundo elemento del dropdown: "Federación"
   const fed = await page.waitForSelector('.btn-group > .dropdown-menu > .dropdown-menu > li:nth-child(2) > a')
   await fed.click()
+}
+
+/**
+ * Getting from #sujetosObligados to #obligaciones
+ */
+async function navigateToObligations (page, organizationName = null, organizationIndex = 0) {
+  // La página se divide en menús [.botonActiva] colapsables por letra del abecedario
+  await page.waitForSelector('.botonActiva')
+
+  if (!organizationName) {
+    // Buscamos la organización que le corresponde tal índice
+    const orgElements = await page.$x('//input[starts-with(@id, "formListaSujetosAZ")]')
+    const targetOrganization = orgElements[organizationIndex]
+    organizationName = await targetOrganization.evaluate(node => node.value)
+  }
+
+  console.log('Objetivo:', organizationName)
+  // Filtramos la lista para que aparezca nuestra opción
+  const orgFilter = await page.waitForSelector('input.form-control.intitucionResp')
+  await orgFilter.type(organizationName)
+
+  // Hacemos click en la organización de interés
+  const orgInput = await page.waitForXPath(`//input[@value="${organizationName}"]`)
+  orgInput.click()
 }
 
 async function startBrowser (params) {
