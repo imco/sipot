@@ -2,6 +2,9 @@
 // usage: cli.js --organization "Secretaría de Cultura"
 // usage: cli.js --organizationList obligados.[json|txt]
 // usage: cli.js --from 10 --to 12
+// Por default descarga documentos de Licitación pública e invitación a 3
+// Para descargar procedimientos de adjudicación directa usar type=1
+// usage: cli.js --from 10 --to 12 --type 1
 
 const argv = require('minimist')(process.argv.slice(2))
 const fs = require('fs')
@@ -16,6 +19,7 @@ const from = Number(argv.from || 0)
 // TODO: encontrar este número dinámicamente
 const to = Number(argv.to || 965)
 const year = argv.year
+const type = Number(argv.type)
 
 const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consultaPublica.xhtml'
 
@@ -43,8 +47,16 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
     await page.goto(startUrl + '#inicio')
     await scraper.navigateToOrganizations(page)
 
+    console.log('Descargando documentos para el año', year)
+
+    if (type === 1) {
+      console.log('Procedimientos de adjudicación directa')
+    } else {
+      console.log('Procedimientos de licitación pública e invitación a cuando menos tres personas')
+    }
+
     if (organization) {
-      await scraper.getContract(page, organization, null, year)
+      await scraper.getContract(page, organization, null, year, type)
       await browser.close()
       return true
     }
@@ -65,7 +77,7 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
       const orgId = invocationParams[0] || invocationParams[1]
       console.log('Trabajando en la organización', orgId)
       try {
-        const res = await scraper.getContract(page, ...invocationParams, year)
+        const res = await scraper.getContract(page, ...invocationParams, year, type)
       } catch (e) {
         // Nos lo brincamos si falla
         console.log(e)

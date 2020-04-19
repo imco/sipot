@@ -87,12 +87,18 @@ async function takeTo (page, nextLocation, params) {
  * @param {Number} organizationIndex o se puede usar índice (42)
  * @param {Number} year
  */
-async function getContract (page, organizationName = null, organizationIndex = 0, year = 2018) {
+async function getContract (page, organizationName = null, organizationIndex = 0, year = 2018, type) {
   await navigateToObligations(page, organizationName, organizationIndex)
   await navigateToInformationCard(page, year)
 
   // Espera a que carge la página de documentos
   await page.waitForXPath('//div[@id="formListaFormatos:listaSelectorFormatos"]')
+
+  if (type === 1) {
+    const typeCheckbox = await page.$x('//label[contains(@class, "containerCheck")]')
+    await typeCheckbox[1].click()
+    await page.waitForSelector('div.capaBloqueaPantalla', { hidden: true })
+  }
 
   // Selecciona todos en Periodo de actualización
   const checkboxPath = '//input[@id="formInformacionNormativa:checkPeriodos:4"]'
