@@ -4,8 +4,10 @@ const { promisify } = require('util')
 const exists = promisify(fs.stat)
 const path = require('path')
 
+let didRedirect = false
 const downloadsInProgress = []
 const fromTargetUrl = res => res.url().endsWith('consultaPublica.xhtml')
+const hasDisplay = 'contains(@style, "display: block")'
 const sequence = [
   'inicio',
   'sujetosObligados',
@@ -172,6 +174,20 @@ async function getContract (page, organizationName = null, organizationIndex = 0
       return false
     }
 
+    if (didRedirect) {
+      // Algunas organizaciones no se pueden descargar, más que por email
+      // entonces el sistema redirige al inicio y muestra un modal
+      const sizePopup = await page.waitForXPath(`//div[@id="modalAvisoError" and ${hasDisplay}]`)
+      if (sizePopup) {
+        const errorDiv = await page.$x(`//div[@id="modalAvisoError"]`)
+        const errorMsg = await errorDiv[0].evaluate(node => node.innerText)
+        console.log(errorMsg.trim().split('.')[0])
+      }
+
+      console.log('Sitio redirige al inicio')
+      return false
+    }
+
     await page.waitFor(1000)
     await Promise.all(downloadsInProgress)
   }
@@ -209,6 +225,8 @@ function responseHandler (res) {
       downloadsInProgress.push(toDownload(filename))
 
       return filename
+    } else if ((headers['set-cookie'] || '').endsWith('path=/')) {
+      didRedirect = true
     }
   }
 
@@ -307,7 +325,6 @@ async function navigateToInformationCard (page, year = 2018) {
   let contractsLabel = []
 
   // Otras muestran un popup, así que hay que asegurarnos de cerrarlo
-  const hasDisplay = 'contains(@style, "display: block")'
   const noContractsPopup = await page.$x(`//div[@id="modalSinObligaciones" and ${hasDisplay}]`)
 
   if (noContractsPopup.length) {
