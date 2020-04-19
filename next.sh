@@ -18,18 +18,25 @@ sed 's/^"//' 2019.only | sed 's/"$//' | sed 's/\\"/"/g' > 2019.next
 grep -B4 -R "No hay" 2018/ | grep Objetivo | cut -d ' ' -f 2- | sort | uniq > no-obligados-2018.txt
 grep -B4 -R "No hay" 2019/ | grep Objetivo | cut -d ' ' -f 2- | sort | uniq > no-obligados-2019.txt
 
+# Find orgs with no results
+grep -B4 -R "Se encontraron 0 resultados en la consulta" 2018/ | grep Objetivo | cut -d ' ' -f 2- | sort | uniq > 2018.noresults
+grep -B4 -R "Se encontraron 0 resultados en la consulta" 2019/ | grep Objetivo | cut -d ' ' -f 2- | sort | uniq > 2019.noresults
+
 # Filter orgs with contracts
 comm 2018.next no-obligados-2018.txt -23 > 2018.obliged
 comm 2019.next no-obligados-2019.txt -23 > 2019.obliged
+
+comm 2018.obliged 2018.noresults -23 > 2018.toget
+comm 2019.obliged 2019.noresults -23 > 2019.toget
 
 # Some orgs don't allow direct downloads
 grep -B7 -R "Execution context was destroyed" 2018/ | grep Objetivo | cut -d ' ' -f 2- | sort | uniq > 2018.email
 grep -B7 -R "Execution context was destroyed" 2019/ | grep Objetivo | cut -d ' ' -f 2- | sort | uniq > 2019.email
 
 # Final filter for orgs to scrape
-comm 2018.obliged 2018.email -23 > 2018.pending
-comm 2019.obliged 2019.email -23 > 2019.pending
+comm 2018.toget 2018.email -23 > 2018.pending
+comm 2019.toget 2019.email -23 > 2019.pending
 
 # Remove temp files (just keep the index of downloads)
-rm 2018.downloaded 2018.only 2018.next 2018.obliged no-obligados-2018.txt
-rm 2019.downloaded 2019.only 2019.next 2019.obliged no-obligados-2019.txt
+rm 2018.downloaded 2018.only 2018.next 2018.noresults 2018.obliged no-obligados-2018.txt 2018.toget
+rm 2019.downloaded 2019.only 2019.next 2019.noresults 2019.obliged no-obligados-2019.txt 2019.toget
