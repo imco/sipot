@@ -302,7 +302,7 @@ async function navigateToObligations (page, organizationName = null, organizatio
   await orgFilter.type(organizationName)
 
   // Hacemos click en la organización de interés
-  const orgInput = await page.waitForXPath(`//input[@value="${organizationName}"]`)
+  const orgInput = await page.waitForXPath(`//input[@value='${organizationName}']`)
   orgInput.click()
 }
 
