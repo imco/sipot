@@ -45,6 +45,12 @@ comm 2019.obliged 2019.noresults -23 > 2019.toget
 grep -B7 -R "Execution context was destroyed" 2018/ | grep Objetivo | cut -d ' ' -f 2- | sort | uniq > 2018.email
 grep -B7 -R "Execution context was destroyed" 2019/ | grep Objetivo | cut -d ' ' -f 2- | sort | uniq > 2019.email
 
+grep -B7 -R "descarga excede" 2018/ | grep Objetivo | cut -d ' ' -f 2- | sort | uniq >> 2018.email
+grep -B7 -R "descarga excede" 2019/ | grep Objetivo | cut -d ' ' -f 2- | sort | uniq >> 2019.email
+
+sort 2018.email | uniq | tee 2018.email
+sort 2019.email | uniq | tee 2019.email
+
 echo "De los logs, organizaciones que requieren email para 2018: $(wc -l 2018.email | cut -d' ' -f1)"
 echo "De los logs, organizaciones que requieren email para 2019: $(wc -l 2019.email | cut -d' ' -f1)"
 
