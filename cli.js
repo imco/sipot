@@ -29,7 +29,7 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
     try {
       organizations = JSON.parse(orgData.toString())
     } catch (e) {
-      organizations = orgData.toString().replace(/"/g, '').split('\n')
+      organizations = orgData.toString().split('\n')
     }
 
     console.log(`Se encontraron ${organizations.length} organizaciones en ${organizationList}`)
