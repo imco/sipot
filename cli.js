@@ -56,6 +56,7 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
     }
 
     if (organization) {
+      await scraper.takeTo(page, 'obligaciones', { organizationName: organization, year })
       await scraper.getContract(page, organization, null, year, type)
       await browser.close()
       return true
