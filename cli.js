@@ -4,7 +4,7 @@
 // usage: cli.js --from 10 --to 12
 // Por default descarga documentos de Licitación pública e invitación a 3
 // Para descargar procedimientos de adjudicación directa usar type=1
-// usage: cli.js --from 10 --to 12 --type 1
+// usage: cli.js --from 10 --to 12 --type 1 --year 2018 --timeout 90000
 
 const argv = require('minimist')(process.argv.slice(2))
 const fs = require('fs')
@@ -42,7 +42,7 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
   try {
     const browser = await scraper.startBrowser({ development: !!argv.development })
 
-    const page = await scraper.getPage(browser)
+    const page = await scraper.getPage(browser, argv)
 
     await page.goto(startUrl + '#inicio')
 

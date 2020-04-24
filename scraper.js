@@ -242,10 +242,12 @@ function responseHandler (res) {
 /**
  * Prepara la configuración común de la página a escrapear
  * @param {Object} puppeeter.Browser
+ * @param {Object} opts
  * @returns {Object} puppeeter.Page
  */
-async function getPage (browser) {
+async function getPage (browser, opts) {
   const page = await browser.newPage()
+  const timeout = opts.timeout || 60000
 
   // Descarga archivos en la carpeta local
   await page._client.send('Page.setDownloadBehavior', {
@@ -264,7 +266,7 @@ async function getPage (browser) {
   })
 
   await page.setViewport({ width: 1280, height: 800 })
-  page.setDefaultTimeout(60000)
+  page.setDefaultTimeout(timeout)
 
   page.on('response', responseHandler)
 
