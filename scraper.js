@@ -64,19 +64,22 @@ async function takeTo (page, nextLocation, params) {
   }
 
   // Pa' delante (sin contar el inicio)
-  if (nextLocationIndex > 0) {
-    console.log('navegando a #sujetosObligados')
-    await navigateToOrganizations(page)
-  }
+  const steps = sequence.slice(targetIndex + 1, nextLocationIndex + 1)
 
-  if (nextLocationIndex > 1) {
-    console.log('navegando a #obligaciones')
-    await navigateToObligations(page, organizationName, organizationIndex)
-  }
-
-  if (nextLocationIndex > 2) {
-    console.log('navegando a #tarjetaInformativa')
-    await navigateToInformationCard(page, year)
+  for (let i in steps) {
+    const step = steps[i]
+    console.log(`navegando a #${step}`)
+    switch (step) {
+      case 'sujetosObligados':
+        await navigateToOrganizations(page)
+        break
+      case 'obligaciones':
+        await navigateToObligations(page, organizationName, organizationIndex)
+        break
+      case 'tarjetaInformativa':
+        await navigateToInformationCard(page, year)
+        break
+    }
   }
 }
 
