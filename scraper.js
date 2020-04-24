@@ -91,8 +91,6 @@ async function takeTo (page, nextLocation, params) {
  * @param {Number} year
  */
 async function getContract (page, organizationName = null, organizationIndex = 0, year = 2018, type) {
-  await navigateToInformationCard(page, year)
-
   // Espera a que carge la página de documentos
   await page.waitForXPath('//div[@id="formListaFormatos:listaSelectorFormatos"]')
 

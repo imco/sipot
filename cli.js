@@ -45,10 +45,8 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
     const page = await scraper.getPage(browser)
 
     await page.goto(startUrl + '#inicio')
-    await scraper.navigateToOrganizations(page)
 
     console.log('Descargando documentos para el año', year)
-
     if (type === 1) {
       console.log('Procedimientos de adjudicación directa')
     } else {
@@ -56,7 +54,7 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
     }
 
     if (organization) {
-      await scraper.takeTo(page, 'obligaciones', { organizationName: organization, year })
+      await scraper.takeTo(page, 'tarjetaInformativa', { organizationName: organization, year })
       await scraper.getContract(page, organization, null, year, type)
       await browser.close()
       return true
@@ -77,6 +75,12 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
       const invocationParams = parameters[i]
       const orgId = invocationParams[0] || invocationParams[1]
       console.log('Trabajando en la organización', orgId)
+      await scraper.takeTo(page, 'tarjetaInformativa', {
+        organizationName: invocationParams[0],
+        organizationIndex: invocationParams[1],
+        year
+      })
+
       try {
         const res = await scraper.getContract(page, ...invocationParams, year, type)
       } catch (e) {
