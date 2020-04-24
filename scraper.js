@@ -293,7 +293,7 @@ async function selectNextOrganization (page, orgId) {
   const dropdownButton = await page.$x('//button[@data-id="formEntidadFederativa:cboSujetoObligado"]')
   if (dropdownButton.length) {
     await dropdownButton[0].click()
-    const dropdownOrg = await page.waitForXPath(`//a/span[contains(text(), "${orgId}")]`)
+    const dropdownOrg = await page.waitForXPath(`//a/span[contains(text(), '${orgId}')]`)
     if (!dropdownOrg) {
       console.log('Organización no encontrada en dropdown', orgId)
     } else {
