@@ -285,6 +285,28 @@ async function navigateToOrganizations (page) {
 }
 
 /**
+ * Selecciona del dropdown la organización
+ * @param {Page} page
+ * @param {string} orgId
+ */
+async function selectNextOrganization (page, orgId) {
+  const dropdownButton = await page.$x('//button[@data-id="formEntidadFederativa:cboSujetoObligado"]')
+  if (dropdownButton.length) {
+    await dropdownButton[0].click()
+    const dropdownOrg = await page.waitForXPath(`//a/span[contains(text(), "${orgId}")]`)
+    if (!dropdownOrg) {
+      console.log('Organización no encontrada en dropdown', orgId)
+    } else {
+      console.log('Seleccionando del dropdown a', orgId)
+      await dropdownOrg.click()
+      await page.waitForSelector('div.capaBloqueaPantalla', { hidden: true })
+    }
+  } else {
+    console.log('No encontramos el dropdown de organizaciones')
+  }
+}
+
+/**
  * Getting from #sujetosObligados to #obligaciones
  */
 async function navigateToObligations (page, organizationName = null, organizationIndex = 0) {
@@ -403,6 +425,7 @@ module.exports = {
   getContract,
   getPage,
   navigateToOrganizations,
+  selectNextOrganization,
   startBrowser,
   takeTo,
   toDownload

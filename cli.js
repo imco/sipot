@@ -71,9 +71,11 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
         .map((_, i) => [null, from + i])
     }
 
-    for (let i in parameters) {
+    for (let i = 0; i < parameters.length; i++) {
+      const nextParams = parameters[i + 1]
       const invocationParams = parameters[i]
       const orgId = invocationParams[0] || invocationParams[1]
+
       console.log('Trabajando en la organización', orgId)
       await scraper.takeTo(page, 'tarjetaInformativa', {
         organizationName: invocationParams[0],
@@ -89,11 +91,13 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
         console.log(`La organización ${orgId} no se pudo escrapear; brincando...`)
       }
 
-      await scraper.takeTo(page, 'sujetosObligados', {
-        organizationName: invocationParams[0],
-        organizationIndex: invocationParams[1],
-        year
-      })
+      // Selecciona la siguiente organización del dropdown
+      // Nota: seremos redirigidos a #obligaciones pero al inicio del loop llamamos a takeTo
+      if (nextParams) {
+        const nextId = nextParams[0] || nextParams[1]
+        console.log('La siguiente org sera', nextId)
+        await scraper.selectNextOrganization(page, nextId)
+      }
     }
 
     // Por si quedan algunas descargas pendientes
