@@ -77,13 +77,13 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
       const orgId = invocationParams[0] || invocationParams[1]
 
       console.log('Trabajando en la organización', orgId)
-      await scraper.takeTo(page, 'tarjetaInformativa', {
-        organizationName: invocationParams[0],
-        organizationIndex: invocationParams[1],
-        year
-      })
-
       try {
+        await scraper.takeTo(page, 'tarjetaInformativa', {
+          organizationName: invocationParams[0],
+          organizationIndex: invocationParams[1],
+          year
+        })
+
         const res = await scraper.getContract(page, ...invocationParams, year, type)
       } catch (e) {
         // Nos lo brincamos si falla
