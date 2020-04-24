@@ -11,8 +11,16 @@ function getMetadataForFile (filepath) {
   const formatCellValue = (v = '') => quote(v.trim().replace(':', ''))
 
   let workbook = XLSX.readFile(filepath)
-  const infoSheet = workbook.Sheets['Informacion']
-  const metadata = ['B1', 'B2', 'B3', 'B4', 'B7']
+  // A veces "Informacion" otras "Información" pero siempre la primera
+  const infoSheetName = workbook.SheetNames[0]
+  const infoSheet = workbook.Sheets[infoSheetName]
+
+  // Los XLSX enviados por correo traen otras 2 columnas en B y C que tenemos que saltar
+  const cells = filepath.endsWith('.xlsx')
+    ? ['B1', 'B2', 'B3', 'B4', 'D7']
+    : ['B1', 'B2', 'B3', 'B4', 'B7']
+
+  const metadata = cells
     .map(cellId => formatCellValue((infoSheet[cellId] || {}).v))
 
   return metadata
