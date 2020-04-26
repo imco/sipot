@@ -89,6 +89,13 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
         // Nos lo brincamos si falla
         console.log(e)
         console.log(`La organización ${orgId} no se pudo escrapear; brincando...`)
+        if (e.message.match('redirige')) {
+          await scraper.takeTo(page, 'tarjetaInformativa', {
+            organizationName: invocationParams[0],
+            organizationIndex: invocationParams[1],
+            year
+          })
+        }
       }
 
       // Selecciona la siguiente organización del dropdown

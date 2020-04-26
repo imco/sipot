@@ -190,7 +190,9 @@ async function getContract (page, organizationName = null, organizationIndex = 0
         console.log(errorMsg.trim().split('.')[0])
       }
 
-      console.log('Sitio redirige al inicio')
+      const redirectMsg = 'Sitio redirige al inicio'
+      console.log(redirectMsg)
+      throw new Error(redirectMsg)
       return false
     }
 
