@@ -39,9 +39,9 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
     console.log(`Se encontraron ${organizations.length} organizaciones en ${organizationList}`)
   }
 
-  try {
-    const browser = await scraper.startBrowser({ development: !!argv.development })
+  const browser = await scraper.startBrowser({ development: !!argv.development })
 
+  try {
     const page = await scraper.getPage(browser, argv)
 
     await page.goto(startUrl + '#inicio')
@@ -102,12 +102,12 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
 
     // Por si quedan algunas descargas pendientes
     await Promise.all(scraper.downloadsInProgress)
-
     await browser.close()
 
     console.log('Se descargaron %i archivos', scraper.downloadsInProgress.length)
     console.log('Terminamos el scraping')
   } catch (e) {
+    await browser.close()
     console.log('Algo falló')
     throw e
   }
