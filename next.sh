@@ -24,11 +24,11 @@ echo "Organizaciones sin descargas aún para: $(wc -l file.only | cut -d' ' -f1)
 sed 's/^"//' file.only | sed 's/"$//' | sed 's/\\"/"/g' > file.next
 
 # Encuentra organizaciones que no mostraron contratos
-grep -B4 -R "No hay" $DIR | grep Objetivo | cut -d ' ' -f 2- | sort | uniq > no-obligados.txt
+grep -B4 -R "No hay" $DIR/*log | grep Objetivo | cut -d ' ' -f 2- | sort | uniq > no-obligados.txt
 echo "De los logs, organizaciones sin contratos: $(wc -l no-obligados.txt | cut -d' ' -f1)"
 
 # Enlista organizaciones que no tuvieron resultados de búsqueda
-grep -B4 -R "Se encontraron 0 resultados en la consulta" $DIR | grep Objetivo | cut -d ' ' -f 2- | sort | uniq > file.noresults
+grep -B4 -R "Se encontraron 0 resultados en la consulta" $DIR/*log | grep Objetivo | cut -d ' ' -f 2- | sort | uniq > file.noresults
 echo "De los logs, organizaciones con 0 resultados: $(wc -l file.noresults | cut -d' ' -f1)"
 
 # Filtra las que [aparentemente] no tienen obligaciones
@@ -37,8 +37,8 @@ comm file.next no-obligados.txt -23 > file.obliged
 comm file.obliged file.noresults -23 > file.toget
 
 # Algunas organizaciones se tienen que pedir por correo
-grep -B7 -R "Execution context was destroyed" $DIR | grep Objetivo | cut -d ' ' -f 2- | sort | uniq > file.email
-grep -B7 -R "descarga excede" $DIR | grep Objetivo | cut -d ' ' -f 2- | sort | uniq >> file.email
+grep -B7 -R "Execution context was destroyed" $DIR/*log | grep Objetivo | cut -d ' ' -f 2- | sort | uniq > file.email
+grep -B7 -R "descarga excede" $DIR/*log | grep Objetivo | cut -d ' ' -f 2- | sort | uniq >> file.email
 echo "De los logs, organizaciones que requieren email: $(wc -l file.email | cut -d' ' -f1)"
 echo "----------------"
 sort file.email | uniq | tee file.email
