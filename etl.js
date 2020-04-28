@@ -6,6 +6,9 @@ const path = require('path')
 const { promisify } = require('util')
 const XLSX = require('xlsx')
 
+const DELIMITER = ';'
+const dir = path.join(process.cwd(), argv.directory || '')
+
 function getMetadataForFile (filepath) {
   const quote = s => `"${s}"`
   const formatCellValue = (v = '') => quote(v.trim().replace(':', ''))
@@ -26,14 +29,11 @@ function getMetadataForFile (filepath) {
   return metadata
 }
 
-;(async () => {
-  const DELIMITER = ';'
-  const dir = path.join(process.cwd(), argv.directory || '')
-
-  const readdir = promisify(fs.readdir)
-  const files = await readdir(dir)
-  const xls = files.filter(f => f.endsWith('.xls') || f.endsWith('.xlsx'))
-
+/**
+ * Create downloads index, output to stdout in CSV format
+ * @param {array} xls filenames
+ */
+function index (xls) {
   const headers = [
     'Nombre del Sujeto Obligado',
     'Normativa',
@@ -53,4 +53,12 @@ function getMetadataForFile (filepath) {
   }
 
   console.log(scandata.join('\n'))
+}
+
+;(async () => {
+  const readdir = promisify(fs.readdir)
+  const files = await readdir(dir)
+  const xls = files.filter(f => f.endsWith('.xls') || f.endsWith('.xlsx'))
+
+  index(xls)
 })()
