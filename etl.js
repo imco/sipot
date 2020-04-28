@@ -44,16 +44,14 @@ function index (xls) {
     'Archivo'
   ]
 
-  const scandata = [headers.join(DELIMITER)]
+  console.log(headers.join(DELIMITER))
 
   for (let filename of xls) {
     const filepath = path.join(dir, filename)
     const metadata = getMetadataForFile(filepath)
     metadata.push(filename)
-    scandata.push(metadata.join(DELIMITER))
+    console.log(metadata.join(DELIMITER))
   }
-
-  console.log(scandata.join('\n'))
 }
 
 ;(async () => {
