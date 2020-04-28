@@ -45,8 +45,12 @@ comm file.next no-obligados.txt -23 > file.obliged
 comm file.obliged file.noresults -23 > file.toget
 
 # Algunas organizaciones se tienen que pedir por correo
-grep -B7 -R "Execution context was destroyed" $DIR/*log | grep Objetivo | cut -d ' ' -f 2- | sort | uniq > file.email
-grep -B7 -R "descarga excede" $DIR/*log | grep Objetivo | cut -d ' ' -f 2- | sort | uniq >> file.email
+grep -B7 -R "Execution context was destroyed" $DIR/*log | grep Objetivo | cut -d ' ' -f 2- > file.email
+grep -B7 -R "descarga excede" $DIR/*log | grep Objetivo | cut -d ' ' -f 2- >> file.email
+grep -B9 -R "descarga excede" $DIR/*log | \
+  grep Trabajando | cut -d '-' -f 2- | cut -d ' ' -f 5- >> file.email
+sort file.email | uniq > file.email.sorted
+mv file.email.sorted file.email
 echo "De los logs, organizaciones que requieren email: $(wc -l file.email | cut -d' ' -f1)"
 echo "----------------"
 sort file.email | uniq | tee file.email
