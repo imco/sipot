@@ -46,7 +46,7 @@ function index (xls) {
   const scandata = [headers.join(DELIMITER)]
 
   for (let filename of xls) {
-    const filepath = `${dir}${filename}`
+    const filepath = path.join(dir, filename)
     const metadata = getMetadataForFile(filepath)
     metadata.push(filename)
     scandata.push(metadata.join(DELIMITER))
