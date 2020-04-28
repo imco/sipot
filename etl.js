@@ -3,12 +3,14 @@
 const argv = require('minimist')(process.argv.slice(2))
 const fs = require('fs')
 const path = require('path')
+const { spawn } = require('child_process')
 const { promisify } = require('util')
 const XLSX = require('xlsx')
 
 const DELIMITER = ';'
 const dir = path.join(process.cwd(), argv.directory || '')
 const op = argv.op || 'index'
+const cores = argv.cores || 4
 
 function getMetadataForFile (filepath) {
   const quote = s => `"${s}"`
@@ -54,6 +56,23 @@ function index (xls) {
   }
 }
 
+/**
+ * Merge all xls* files from a directory into one large CSV
+ */
+function merge () {
+  const outname = `./${Date.now()}.csv`
+  const out = fs.openSync(outname, 'a')
+  const err = fs.openSync(outname.replace('csv', 'err'), 'a')
+  const pipeline = [
+    `ls ${path.join(dir, '*.xls*')}`,
+    `xargs -P ${cores} -I {} in2csv {}`
+  ].join(' | ')
+
+  console.log('Ejecutando', pipeline)
+  console.log('Escribiendo a', outname)
+  spawn('sh', ['-c', pipeline], { stdio: ['ignore', out, err] })
+}
+
 ;(async () => {
   const readdir = promisify(fs.readdir)
   const files = await readdir(dir)
@@ -61,7 +80,9 @@ function index (xls) {
 
   if (op === 'index') {
     index(xls)
+  } else if (op === 'merge') {
+    merge()
   } else {
-    console.log('uso: ./etl.js --op [index|merge]')
+    console.log('uso: ./etl.js --op [index|merge] --directory <directory> --cores [4]')
   }
 })()
