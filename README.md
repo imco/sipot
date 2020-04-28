@@ -12,14 +12,21 @@ navegador y ejecutar programáticamente una secuencia de clicks
 para descargar archivos de Excel publicados bajo "Contratos de Obras,
 Bienes, y Servicios" para un conjunto de organizaciones definidas en un archivo de texto.
 
-Require uso de una terminal bash y una instalación reciente de
-Node.js.
-
 # Instalación
 
 ```
 npm install
 ```
+
+## Requerimientos
+
+Para el scraper
+- Instalación de Node.js en versión mínima 10
+- Chrome
+
+Para etl.js
+- Terminal tipo bash
+- Instalado python y csvkit
 
 # Uso
 
