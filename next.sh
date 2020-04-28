@@ -24,11 +24,19 @@ echo "Organizaciones sin descargas aún para: $(wc -l file.only | cut -d' ' -f1)
 sed 's/^"//' file.only | sed 's/"$//' | sed 's/\\"/"/g' > file.next
 
 # Encuentra organizaciones que no mostraron contratos
-grep -B4 -R "No hay" $DIR/*log | grep Objetivo | cut -d ' ' -f 2- | sort | uniq > no-obligados.txt
+grep -B4 -R "No hay" $DIR/*log | grep Objetivo | cut -d ' ' -f 2- > no-obligados.txt
+grep -B4 -R "No hay" $DIR/*log | \
+  grep Trabajando | cut -d '-' -f 2- | cut -d ' ' -f 5- >> no-obligados.txt
+sort no-obligados.txt | uniq > no-obligados.sorted
+mv no-obligados.sorted no-obligados.txt
 echo "De los logs, organizaciones sin contratos: $(wc -l no-obligados.txt | cut -d' ' -f1)"
 
 # Enlista organizaciones que no tuvieron resultados de búsqueda
-grep -B4 -R "Se encontraron 0 resultados en la consulta" $DIR/*log | grep Objetivo | cut -d ' ' -f 2- | sort | uniq > file.noresults
+grep -B4 -R "Se encontraron 0 resultados en la consulta" $DIR/*log | grep Objetivo | cut -d ' ' -f 2- > file.noresults
+grep -B5 -R "Se encontraron 0 resultados en la consulta" $DIR/*log | \
+  grep Trabajando | cut -d '-' -f 2- | cut -d ' ' -f 5- >> file.noresults
+sort file.noresults | uniq > file.noresults.sorted
+mv file.noresults.sorted file.noresults
 echo "De los logs, organizaciones con 0 resultados: $(wc -l file.noresults | cut -d' ' -f1)"
 
 # Filtra las que [aparentemente] no tienen obligaciones
