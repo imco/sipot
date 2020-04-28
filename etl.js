@@ -8,6 +8,7 @@ const XLSX = require('xlsx')
 
 const DELIMITER = ';'
 const dir = path.join(process.cwd(), argv.directory || '')
+const op = argv.op || 'index'
 
 function getMetadataForFile (filepath) {
   const quote = s => `"${s}"`
@@ -60,5 +61,9 @@ function index (xls) {
   const files = await readdir(dir)
   const xls = files.filter(f => f.endsWith('.xls') || f.endsWith('.xlsx'))
 
-  index(xls)
+  if (op === 'index') {
+    index(xls)
+  } else {
+    console.log('uso: ./etl.js --op [index|merge]')
+  }
 })()
