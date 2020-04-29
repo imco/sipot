@@ -64,7 +64,7 @@ function merge () {
   const out = fs.openSync(outname, 'a')
   const err = fs.openSync(outname.replace('csv', 'err'), 'a')
   const pipeline = [
-    `ls ${path.join(dir, '*.xls*')}`,
+    `ls -1 ${path.join(dir, '*.xls*')}`,
     `xargs -P ${cores} -I {} in2csv {}`
   ].join(' | ')
 
