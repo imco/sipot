@@ -65,9 +65,16 @@ function merge () {
   const err = fs.openSync(outname.replace('csv', 'err'), 'a')
 
   const format = argv.format || 'xls'
+  const type = argv.type || 'adjudicaciones'
+
+  // Column handling:
   // We'll remove the last column which is 47 for adjudicaciones and 61 for licitaciones
+  // For XLSX we'll remove FECHA_CREACION, FECHA_MODIFICACION which
+  // are not present in XLS files.
   const notecol = type === 'adjudicaciones' ? 47 : 61
-  let skipcols = [8, notecol]
+  const skipcols = format === 'xls' ?
+    [8, notecol] :
+    [2, 3, 10, notecol + 2]
 
   const pipeline = [
     `ls -1 ${path.join(dir, `*.${format}`)}`,
@@ -78,6 +85,8 @@ function merge () {
   ].join(' | ')
 
   console.log('Ejecutando', pipeline)
+  console.log(`Parseando archivos ${format} para ${type}`)
+  console.log('Columnas removidas:', skipcols)
   console.log('Escribiendo a', outname)
   spawn('sh', ['-c', pipeline], { stdio: ['ignore', out, err] })
 }
