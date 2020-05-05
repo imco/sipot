@@ -117,3 +117,25 @@ Varias limitaciones y defectos del sitio complican la operación eficiente del _
 También existen dependencias en las que dado el tamaño de los archivos,
 el sitio sugiere pedirlas por correo. Estas organizaciones se tienen que
 descargar manualmente.
+
+# ETL
+
+La utilería etl.js contiene varias herramientas para procesar los
+archivos descargados.
+
+- index: genera un índice de dependencias y la ubicación de sus archivos
+  en el directorio. Útil para evaluar cuáles se han descargado hasta el
+momento.
+- merge: mezcla todos los XLS o XLSX (los recibidos por email) de un directorio en un CSV.
+
+Ejemplo de uso:
+```
+./etl.js --cores 8 --op merge --directory data/adjudicaciones/2018 --format xlsx
+Ejecutando ls -1 data/adjudicaciones/2018/*.xlsx | xargs -P 8 -I {} in2csv --skip-lines 6 {} | csvcut --not-columns "2,3,10,49" | csvformat -U 1 -M '@' | tr '\n@' ' \n'
+Parseando archivos xlsx para adjudicaciones
+Columnas removidas: [ 2, 3, 10, 49 ]
+Escribiendo a ./1588001002003.csv
+```
+
+Dependencias:
+- [csvkit](https://csvkit.readthedocs.io/en/latest/)
