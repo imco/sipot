@@ -74,7 +74,7 @@ function merge () {
     `xargs -P ${cores} -I {} in2csv --skip-lines 6 {}`,
     `csvcut --not-columns "${String(skipcols)}"`,
     `csvformat -U 1 -M '@'`,
-    `tr '\n@' ' \n'`
+    `tr '\\n@' ' \\n'`
   ].join(' | ')
 
   console.log('Ejecutando', pipeline)
