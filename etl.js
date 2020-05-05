@@ -63,9 +63,18 @@ function merge () {
   const outname = `./${Date.now()}.csv`
   const out = fs.openSync(outname, 'a')
   const err = fs.openSync(outname.replace('csv', 'err'), 'a')
+
+  const format = argv.format || 'xls'
+  // We'll remove the last column which is 47 for adjudicaciones and 61 for licitaciones
+  const notecol = type === 'adjudicaciones' ? 47 : 61
+  let skipcols = [8, notecol]
+
   const pipeline = [
-    `ls -1 ${path.join(dir, '*.xls*')}`,
-    `xargs -P ${cores} -I {} in2csv {}`
+    `ls -1 ${path.join(dir, `*.${format}`)}`,
+    `xargs -P ${cores} -I {} in2csv --skip-lines 6 {}`,
+    `csvcut --not-columns "${String(skipcols)}"`,
+    `csvformat -U 1 -M '@'`,
+    `tr '\n@' ' \n'`
   ].join(' | ')
 
   console.log('Ejecutando', pipeline)
