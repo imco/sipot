@@ -139,3 +139,4 @@ Escribiendo a ./1588001002003.csv
 
 Dependencias:
 - [csvkit](https://csvkit.readthedocs.io/en/latest/)
+- [parallel](https://www.gnu.org/software/parallel/)

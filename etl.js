@@ -61,9 +61,6 @@ function index (xls) {
  */
 function merge () {
   const outname = `./${Date.now()}.csv`
-  const out = fs.openSync(outname, 'a')
-  const err = fs.openSync(outname.replace('csv', 'err'), 'a')
-
   const format = argv.format || 'xls'
   const type = argv.type || 'adjudicaciones'
 
@@ -77,19 +74,20 @@ function merge () {
     [2, 5, 8, notecol] :
     [2, 3, 4, 7, 10, notecol + 2]
 
-  const pipeline = [
+  const map = [
     `ls -1 ${path.join(dir, `*.${format}`)}`,
-    `xargs -P ${cores} -I {} in2csv --skip-lines 6 {}`,
-    `csvcut --not-columns "${String(skipcols)}"`,
-    `csvformat -U 1 -M '@'`,
-    `tr '\\n@' ' \\n'`
+    `parallel -k -j ${cores} --eta "./to-csv.sh {} '${String(skipcols)}' >> ${outname}.{%}-{#}"`
   ].join(' | ')
+
+  const reduce = `cat ${outname}.* > ${outname}; rm ${outname}.*`
+
+  const pipeline = `${map}; ${reduce}`
 
   console.log('Ejecutando', pipeline)
   console.log(`Parseando archivos ${format} para ${type}`)
   console.log('Columnas removidas:', skipcols)
   console.log('Escribiendo a', outname)
-  spawn('sh', ['-c', pipeline], { stdio: ['ignore', out, err] })
+  spawn('sh', ['-c', pipeline], { stdio: 'inherit' })
 }
 
 ;(async () => {
