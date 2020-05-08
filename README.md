@@ -129,12 +129,19 @@ momento.
 - merge: mezcla todos los XLS o XLSX (los recibidos por email) de un directorio en un CSV.
 
 Ejemplo de uso:
-```
-./etl.js --cores 8 --op merge --directory data/adjudicaciones/2018 --format xlsx
-Ejecutando ls -1 data/adjudicaciones/2018/*.xlsx | xargs -P 8 -I {} in2csv --skip-lines 6 {} | csvcut --not-columns "2,3,10,49" | csvformat -U 1 -M '@' | tr '\n@' ' \n'
+```sh
+time ./etl.js --op merge --directory data/adjudicaciones/2018 --format xlsx --cores 12
+Ejecutando ls -1 data/adjudicaciones/2018/*.xlsx | parallel -k -j 12 --eta "./to-csv.sh {} '2,3,4,7,10,49' >> ./1588906501453.csv.{%}-{#}"; cat ./1588906501453.csv.* > ./1588906501453.csv; rm ./1588906501453.csv.*
 Parseando archivos xlsx para adjudicaciones
-Columnas removidas: [ 2, 3, 10, 49 ]
-Escribiendo a ./1588001002003.csv
+Columnas removidas: [ 2, 3, 4, 7, 10, 49 ]
+Escribiendo a ./1588906501453.csv
+
+Computers / CPU cores / Max jobs to run
+1:local / 12 / 12
+
+Computer:jobs running/jobs completed/%of started jobs/Average seconds to complete
+ETA: 0s Left: 0 AVG: 0.88s  local:0/16/100%/1.1s
+./etl.js --op merge --directory data/adjudicaciones/2018 --format xlsx --core  161.57s user 6.82s system 911% cpu 18.469 total
 ```
 
 Dependencias:
