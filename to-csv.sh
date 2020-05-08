@@ -7,8 +7,8 @@
 # 4. Outputs to stdout
 # 5. Skipping the first lines down to the start of the data table
 
-in2csv --no-header-row $1 | \
-  csvcut --not-columns $2 | \
+in2csv --no-header-row "$1" | \
+  csvcut --not-columns "$2" | \
   csvformat -U 1 -M '@' | \
   tr '\n@' ' \n' | \
   awk 'NR>7'
