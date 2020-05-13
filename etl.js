@@ -69,10 +69,9 @@ function merge () {
   // For XLSX we'll remove FECHA_CREACION, FECHA_MODIFICACION which
   // are not present in XLS files.
   // We also find redundant to keep track of Ejercicio and Tipo de procedimiento
-  const notecol = type === 'adjudicaciones' ? 47 : 61
   const skipcols = format === 'xls' ?
-    [2, 5, 8, notecol] :
-    [2, 3, 4, 7, 10, notecol + 2]
+    (type === 'adjudicaciones' ? [2, 5, 8, 47] : [2, 5, 61]) :
+    (type === 'adjudicaciones' ? [2, 3, 4, 7, 10, 49]: [2, 3, 4, 7, 63])
 
   const map = [
     `ls -1 ${path.join(dir, `*.${format}`)}`,
