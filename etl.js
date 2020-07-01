@@ -1,5 +1,14 @@
 #!/usr/bin/env node
 
+/**
+ * CLI para manejar diversas operaciones sobre el montón de archivos Excel
+ * descargados por el scraper.
+ * Modos de operación (--op):
+ * index - genera un índice de los archivos descargados por el scraper
+ * merge - saca la primera hoja con la información de contratos y la mezcla en un archivo maestro
+ * table - saca las hojas marcadas como TABLA_ o Tabla_ y las mezcla en archivos nombrados como la hoja
+ */
+
 const argv = require('minimist')(process.argv.slice(2))
 const fs = require('fs')
 const path = require('path')
