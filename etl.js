@@ -98,6 +98,22 @@ function merge () {
   spawn('sh', ['-c', pipeline], { stdio: 'inherit' })
 }
 
+/**
+ * Create CSVs for secondary worksheets
+ */
+function table () {
+  const format = argv.format || 'xls'
+  const type = argv.type || 'adjudicaciones'
+  const pipeline = [
+    `ls -1 ${path.join(dir, `*.${format}`)}`,
+    `parallel -k -j ${cores} --eta "./sheets-to-csvs.sh {}"`
+  ].join(' | ')
+
+  console.log('Ejecutando', pipeline)
+  console.log(`Parseando archivos ${format} para ${type}`)
+  spawn('sh', ['-c', pipeline], { stdio: 'inherit' })
+}
+
 ;(async () => {
   const readdir = promisify(fs.readdir)
   const files = await readdir(dir)
@@ -107,6 +123,8 @@ function merge () {
     index(xls)
   } else if (op === 'merge') {
     merge()
+  } else if (op === 'table') {
+    table()
   } else {
     console.log('uso: ./etl.js --op [index|merge] --directory <directory> --cores [4]')
   }
