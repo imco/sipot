@@ -74,13 +74,12 @@ function merge () {
   const type = argv.type || 'adjudicaciones'
 
   // Column handling:
-  // We'll remove the last column which is 47 for adjudicaciones and 61 for licitaciones
+  // We'll remove the last column (NOTA) which is 47 for adjudicaciones and 61 for licitaciones
   // For XLSX we'll remove FECHA_CREACION, FECHA_MODIFICACION which
   // are not present in XLS files.
-  // We also find redundant to keep track of Ejercicio and Tipo de procedimiento
   const skipcols = format === 'xls' ?
-    (type === 'adjudicaciones' ? [2, 5, 8, 47] : [2, 5, 61]) :
-    (type === 'adjudicaciones' ? [2, 3, 4, 7, 10, 49]: [2, 3, 4, 7, 63])
+    (type === 'adjudicaciones' ? [47] : [61]) :
+    (type === 'adjudicaciones' ? [2, 3, 49]: [2, 3, 63])
 
   const map = [
     `ls -1 ${path.join(dir, `*.${format}`)}`,
