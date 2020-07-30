@@ -70,7 +70,7 @@ Los paramétros disponibles:
   seleccionan adjudicaciones directas.
 - year: año del ejercicio a descargar (default=2019)
 
-Uso recomendado:
+**Uso recomendado:**
 
 Se recomienda trabajar con una lista de organizaciones, guardar
 las descargas por año y tipo de procedimiento, así como almacenar
