@@ -36,31 +36,14 @@ simplemente con `./cli.js`.
 Al ejecutarse mostrará logs en la pantalla y almacenará las descargas
 de archivos XLS en la carpeta actual.
 
-Los modos de _scraping_ son:
-
-1) Una organización específica: usando --organization
-
-```
-./cli.js --organization "Secretaría de Turismo (SECTUR)"
-```
-
-2) Las organizaciones disponibles secuencia ascendente
-
-```
-./cli.js --from 40 --to 42
-```
-
-3) Las organizaciones definidas en una lista
+Para iniciar una sesión de _scraping_ es necesario pasar una lista de organizaciones en un archivo de texto:
 
 ```
 ./cli.js --organizationList obligados.txt
 ```
 
-Los paramétros disponibles:
+Los paramétros disponibles a configurar son:
 
-- organization: nombre de organización
-- from: inicio de la secuencia
-- to: fin de la secuencia
 - organizationList: archivo de texto con las organizaciones a descargar
 - development: cuando es true, se abre el navegador; de otra manera se
   hace headless
