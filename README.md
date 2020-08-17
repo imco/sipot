@@ -18,6 +18,11 @@ Bienes, y Servicios" para un conjunto de organizaciones definidas en un archivo 
 npm install
 ```
 
+El `npm` script instalará los siguientes paquetes para tu instalación de node (ver package.json):
+- minimist
+- puppeteer
+- xlsx
+
 ## Requerimientos
 
 Para el scraper
