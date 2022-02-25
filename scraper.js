@@ -4,7 +4,7 @@ const { promisify } = require('util')
 const exists = promisify(fs.stat)
 const path = require('path')
 
-let didRedirect = false
+let didReload = false
 const downloadsInProgress = []
 const fromTargetUrl = res => res.url().endsWith('consultaPublica.xhtml')
 const hasDisplay = 'contains(@style, "display: block")'
@@ -180,20 +180,19 @@ async function getContract (page, organizationName = null, organizationIndex = 0
       return false
     }
 
-    if (didRedirect) {
+    if (didReload) {
       // Algunas organizaciones no se pueden descargar, más que por email
-      // entonces el sistema redirige al inicio y muestra un modal
+      // entonces la página reinicia y muestra un modal
       const sizePopup = await page.waitForXPath(`//div[@id="modalAvisoError" and ${hasDisplay}]`)
       if (sizePopup) {
         const errorDiv = await page.$x(`//div[@id="modalAvisoError"]`)
         const errorMsg = await errorDiv[0].evaluate(node => node.innerText)
         console.log(errorMsg.trim().split('.')[0])
       }
-
-      const redirectMsg = 'Sitio redirige al inicio'
-      console.log(redirectMsg)
-      throw new Error(redirectMsg)
-      return false
+      const cerrar = await page.waitForSelector('#modalAvisoError > div > div > div > div:nth-child(2) > div > button')
+      await cerrar.click()
+      didReload = false  // Resetear la variable 
+      return true
     }
 
     await page.waitFor(1000)
@@ -234,7 +233,7 @@ function responseHandler (res) {
 
       return filename
     } else if ((headers['set-cookie'] || '').endsWith('path=/')) {
-      didRedirect = true
+      didReload = true
     }
   }
 
@@ -386,7 +385,7 @@ async function startBrowser (params) {
   if (options.development) {
     options = {
       headless: false,
-      slowMo: 50
+      slowMo: 200
     }
   }
 
