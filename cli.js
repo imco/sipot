@@ -4,9 +4,18 @@
 // usage: cli.js --from 10 --to 12
 // Por default descarga documentos de Licitación pública e invitación a 3
 // Para descargar procedimientos de adjudicación directa usar type=1
-// usage: cli.js --from 10 --to 12 --type 1 --year 2018 --timeout 90000
+// usage: cli.js --from 10 --to 12 --type 1 --year 2018 --timeout 90000 --downloads_dir /path/to/destination/dir/
 
-const argv = require('minimist')(process.argv.slice(2))
+const buildOptions = require('minimist-options');
+
+const options = buildOptions({
+	downloads_dir: {
+		type: 'string',
+		default: process.cwd()
+	}
+});
+
+const argv = require('minimist')(process.argv.slice(2), options)
 const fs = require('fs')
 const path = require('path')
 const scraper = require('./scraper')
@@ -20,6 +29,7 @@ const from = Number(argv.from || 0)
 const to = Number(argv.to || 965)
 const year = argv.year
 const type = Number(argv.type)
+const downloads_dir = argv.downloads_dir
 
 const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consultaPublica.xhtml'
 

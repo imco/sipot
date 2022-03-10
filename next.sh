@@ -3,7 +3,7 @@
 # compare la lista de sujetos obligados contra las descargas
 # encontradas, y así determinar que organizaciones se deben
 # buscar en la siguiente sesión.
-# uso: sh next2.sh <directorio_con_descargas>
+# uso: sh next.sh <directorio_con_descargas>
 
 DIR=$1
 

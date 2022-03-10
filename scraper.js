@@ -216,9 +216,10 @@ async function getContract (page, organizationName = null, organizationIndex = 0
  * Agrega también una {Promise} de descarga (ver toDownload) a la
  * lista global de descargas pendientes.
  * @params {Response) res
+ * @params {string} dest_dir
  * @return {string|null} filename
  */
-function responseHandler (res) {
+function responseHandler (res, dest_dir) {
   if (fromTargetUrl(res)) {
     const headers = res.headers()
     // Si es un excel, registramos el nombre y monitoreamos la descarga
@@ -229,7 +230,7 @@ function responseHandler (res) {
       console.log('Descargando', filename)
 
       // Marcamos la descarga como pendiente
-      downloadsInProgress.push(toDownload(filename))
+      downloadsInProgress.push(toDownload(filename, dest_dir))
 
       return filename
     } else if ((headers['set-cookie'] || '').endsWith('path=/')) {
@@ -249,11 +250,12 @@ function responseHandler (res) {
 async function getPage (browser, opts) {
   const page = await browser.newPage()
   const timeout = opts.timeout || 60000
+  const dest_dir = opts.downloads_dir
 
   // Descarga archivos en la carpeta local
   await page._client.send('Page.setDownloadBehavior', {
     behavior: 'allow',
-    downloadPath: process.cwd()
+    downloadPath: dest_dir
   })
 
   await page.setRequestInterception(true)
@@ -269,7 +271,7 @@ async function getPage (browser, opts) {
   await page.setViewport({ width: 1280, height: 800 })
   page.setDefaultTimeout(timeout)
 
-  page.on('response', responseHandler)
+  page.on('response', (response) => responseHandler(response, dest_dir));
 
   return page
 }
@@ -385,7 +387,7 @@ async function startBrowser (params) {
   if (options.development) {
     options = {
       headless: false,
-      slowMo: 200
+      slowMo: 250
     }
   }
 
@@ -393,11 +395,11 @@ async function startBrowser (params) {
   return browser
 }
 
-function toDownload (filename, timeoutSeconds = 60, intervalSeconds = 1) {
+function toDownload (filename, dest_dir, timeoutSeconds = 60, intervalSeconds = 1) {
   return new Promise((resolve, reject) => {
     let interval
     let timeout
-    const filepath = path.join(process.cwd(), filename)
+    const filepath = path.join(dest_dir, filename)
 
     timeout = setTimeout(() => {
       clearInterval(interval)

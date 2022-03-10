@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "minimist": "^1.2.5",
+    "minimist-options": "^4.1.0",
     "puppeteer": "^2.1.1",
     "xlsx": "^0.15.6"
   }

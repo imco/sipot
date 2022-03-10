@@ -2,3 +2,4 @@ node_modules/
 *xls
 *xlsx
 *log
+.DS_Store
