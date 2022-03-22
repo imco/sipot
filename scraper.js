@@ -48,7 +48,7 @@ async function backTo (page, nextLocation) {
   }
 }
 
-async function takeTo (page, nextLocation, params) {
+async function takeTo (page, nextLocation, stateCode, params) {
   const { organizationName, organizationIndex, year } = params
 
   const url = page.url()
@@ -71,7 +71,7 @@ async function takeTo (page, nextLocation, params) {
     console.log(`navegando a #${step}`)
     switch (step) {
       case 'sujetosObligados':
-        await navigateToOrganizations(page)
+        await navigateToOrganizations(page, stateCode)
         break
       case 'obligaciones':
         await navigateToObligations(page, organizationName, organizationIndex)
@@ -279,13 +279,13 @@ async function getPage (browser, opts) {
 /**
  * Getting from #inicio to #sujetosObligados
  */
-async function navigateToOrganizations (page) {
+async function navigateToOrganizations (page, stateCode) {
   // Click en el filtro "Estado o Federación"
   const filter = await page.waitForSelector('#filaSelectEF > .col-md-4 > .btn-group > .btn > .filter-option')
   await filter.click()
 
-  // Selecciona el segundo elemento del dropdown: "Federación"
-  const fed = await page.waitForSelector('.btn-group > .dropdown-menu > .dropdown-menu > li:nth-child(2) > a')
+  // Selecciona el estado dropdown (Default: segundo elemento del dropdown: "Federación")
+  const fed = await page.waitForSelector(`.btn-group > .dropdown-menu > .dropdown-menu > li:nth-child(${stateCode + 1}) > a`)
   await fed.click()
 }
 

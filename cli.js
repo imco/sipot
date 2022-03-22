@@ -12,8 +12,47 @@ const options = buildOptions({
 	downloads_dir: {
 		type: 'string',
 		default: process.cwd()
-	}
+	},
+  state: {
+    type: 'number',
+    default: 1
+  }
 });
+
+// Options for 'state' input 
+// 1: Federación
+// 2: Aguascalientes
+// 3: Baja California
+// 4: Baja California Sur             
+// 5: Campeche
+// 6: Coahuila de Zaragoza    
+// 7: Colima
+// 8: Chiapas
+// 9: Chihuahua
+// 10: Ciudad de México
+// 11: Durango
+// 12: Guanajuato
+// 13: Guerrero
+// 14: Hidalgo
+// 15: Jalisco
+// 16: México
+// 17: Michoacán de Ocampo  
+// 18: Morelos
+// 19: Nayarit
+// 20: Nuevo León
+// 21: Oaxaca
+// 22: Puebla
+// 23: Querétaro
+// 24: Quintana Roo
+// 25: San Luis Potosí
+// 26: Sinaloa
+// 27: Sonora
+// 28: Tabasco
+// 29: Tamaulipas
+// 30: Tlaxcala
+// 31: Veracruz
+// 32: Yucatán
+// 33: Zacatecas
 
 const argv = require('minimist')(process.argv.slice(2), options)
 const fs = require('fs')
@@ -30,6 +69,7 @@ const to = Number(argv.to || 965)
 const year = argv.year
 const type = Number(argv.type)
 const downloads_dir = argv.downloads_dir
+const stateCode = argv.state
 
 const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consultaPublica.xhtml'
 
@@ -64,7 +104,7 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
     }
 
     if (organization) {
-      await scraper.takeTo(page, 'tarjetaInformativa', { organizationName: organization, year })
+      await scraper.takeTo(page, 'tarjetaInformativa', stateCode, { organizationName: organization, year })
       await scraper.getContract(page, organization, null, year, type)
       await browser.close()
       return true
@@ -88,7 +128,7 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
 
       console.log('Trabajando en la organización', orgId)
       try {
-        await scraper.takeTo(page, 'tarjetaInformativa', {
+        await scraper.takeTo(page, 'tarjetaInformativa', stateCode, {
           organizationName: invocationParams[0],
           organizationIndex: invocationParams[1],
           year
@@ -100,7 +140,7 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
         console.log(e)
         console.log(`La organización ${orgId} no se pudo escrapear; brincando...`)
         if (e.message.match('redirige')) {
-          await scraper.takeTo(page, 'tarjetaInformativa', {
+          await scraper.takeTo(page, stateCode, 'tarjetaInformativa', {
             organizationName: invocationParams[0],
             organizationIndex: invocationParams[1],
             year
