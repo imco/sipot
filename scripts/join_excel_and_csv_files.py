@@ -41,6 +41,13 @@ def run_etl(input_dir, output_file):
 
     for f in excel_files:
         df = pd.read_excel(f, header=5)
+
+        # If file path contains 'estados', add the state name to new column
+        state_name = None
+        if '/estados/' in f:
+            state_name = f.split('estados/')[1].split('/')[0]
+            if state_name:
+                df['ESTADO'] = state_name.upper()
         
         # Add the 'Nombre del Sujeto Obligado' from the header
         df_meta = pd.read_excel(
@@ -54,7 +61,10 @@ def run_etl(input_dir, output_file):
 
         # Reorder the columns
         cols = list(df.columns)
-        cols = [cols[0]] + cols[-1:] + cols[1:-1]
+        if state_name is None:
+            cols = [cols[0]] + cols[-1:] + cols[1:-1]
+        else:
+            cols = [cols[0]] + cols[-2:] + cols[1:-2]
         df = df[cols]
 
         if main_df is None:
@@ -64,6 +74,13 @@ def run_etl(input_dir, output_file):
 
     for cfc in csv_files_clean:
         df = pd.read_csv(cfc, encoding='latin-1', skiprows=3)
+
+        # If file path contains 'estados', add the state name to new column
+        state_name = None
+        if '/estados/' in f:
+            state_name = f.split('estados/')[1].split('/')[0]
+            if state_name:
+                df['ESTADO'] = state_name
 
         # Add the 'Nombre del Sujeto Obligado' from the header
         df_meta = pd.read_csv(
@@ -78,7 +95,10 @@ def run_etl(input_dir, output_file):
 
         # Reorder the columns
         cols = list(df.columns)
-        cols = [cols[0]] + cols[-1:] + cols[1:-1]
+        if state_name is None:
+            cols = [cols[0]] + cols[-1:] + cols[1:-1]
+        else:
+            cols = [cols[0]] + cols[-2:] + cols[1:-2]
         df = df[cols]
 
         if main_df is None:
