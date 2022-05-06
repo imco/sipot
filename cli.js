@@ -9,13 +9,17 @@
 const buildOptions = require('minimist-options');
 
 const options = buildOptions({
-	downloads_dir: {
-		type: 'string',
-		default: process.cwd()
-	},
+  downloads_dir: {
+    type: 'string',
+    default: process.cwd()
+  },
   state: {
     type: 'number',
     default: 1
+  },
+  year: {
+    type: 'number',
+    default: 2021
   }
 });
 
@@ -68,12 +72,11 @@ const from = Number(argv.from || 0)
 const to = Number(argv.to || 965)
 const year = argv.year
 const type = Number(argv.type)
-const downloads_dir = argv.downloads_dir
 const stateCode = argv.state
 
-const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consultaPublica.xhtml'
+const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consultaPublica.xhtml';
 
-;(async () => {
+(async () => {
   console.log('Nueva sesión', new Date())
 
   let organizations

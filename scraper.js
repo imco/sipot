@@ -1,19 +1,27 @@
-const puppeteer = require('puppeteer')
-const fs = require('fs')
-const { promisify } = require('util')
-const exists = promisify(fs.stat)
-const path = require('path')
+// puppeteer-extra is a drop-in replacement for puppeteer,
+// it augments the installed puppeteer with plugin functionality
+const puppeteer = require('puppeteer-extra')
 
-let didReload = false
-const downloadsInProgress = []
-const fromTargetUrl = res => res.url().endsWith('consultaPublica.xhtml')
-const hasDisplay = 'contains(@style, "display: block")'
+// add stealth plugin and use defaults (all evasion techniques)
+const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+puppeteer.use(StealthPlugin());
+
+const fs = require('fs');
+const { promisify } = require('util');
+const exists = promisify(fs.stat);
+const path = require('path');
+const { Console } = require('console');
+
+let didReload = false;
+const downloadsInProgress = [];
+const fromTargetUrl = res => res.url().endsWith('consultaPublica.xhtml');
+const hasDisplay = 'contains(@style, "display: block")';
 const sequence = [
   'inicio',
   'sujetosObligados',
   'obligaciones',
   'tarjetaInformativa'
-]
+];
 
 /**
  * Navega en reversa el sitio.
@@ -90,7 +98,7 @@ async function takeTo (page, nextLocation, stateCode, params) {
  * @param {Number} organizationIndex o se puede usar índice (42)
  * @param {Number} year
  */
-async function getContract (page, organizationName = null, organizationIndex = 0, year = 2018, type) {
+async function getContract (page, organizationName = null, organizationIndex = 0, year = 2021, type) {
   // Espera a que carge la página de documentos
   await page.waitForXPath('//div[@id="formListaFormatos:listaSelectorFormatos"]')
 
@@ -180,19 +188,25 @@ async function getContract (page, organizationName = null, organizationIndex = 0
       return false
     }
 
-    if (didReload) {
+    if (didReload === true) {
       // Algunas organizaciones no se pueden descargar, más que por email
       // entonces la página reinicia y muestra un modal
+
       const sizePopup = await page.waitForXPath(`//div[@id="modalAvisoError" and ${hasDisplay}]`)
       if (sizePopup) {
         const errorDiv = await page.$x(`//div[@id="modalAvisoError"]`)
         const errorMsg = await errorDiv[0].evaluate(node => node.innerText)
         console.log(errorMsg.trim().split('.')[0])
       }
-      const cerrar = await page.waitForSelector('#modalAvisoError > div > div > div > div:nth-child(2) > div > button')
-      await cerrar.click()
-      didReload = false  // Resetear la variable 
-      return true
+      const continuar = await page.waitForSelector('#modalCSV > div > div > div > div:nth-child(2) > div > button');
+      await continuar.evaluate(b => b.click());
+
+      const cerrar = await page.waitForSelector('#modalAvisoError > div > div > div > div:nth-child(2) > div > button');
+      await cerrar.evaluate(b => b.click());
+
+      didReload = false;  // Resetear la variable 
+
+      return true;
     }
 
     await page.waitFor(1000)
@@ -205,7 +219,7 @@ async function getContract (page, organizationName = null, organizationIndex = 0
 
   // Quita la ventana modal
   const modal = await page.waitForSelector('#modalRangos')
-  await modal.click()
+  await modal.evaluate(b => b.click());
   await page.waitForSelector('div.capaBloqueaPantalla', { hidden: true })
 
   return true
@@ -224,6 +238,7 @@ function responseHandler (res, dest_dir) {
     const headers = res.headers()
     // Si es un excel, registramos el nombre y monitoreamos la descarga
     if (headers['content-type'] === 'application/vnd.ms-excel') {
+      didReload = false
       // Si pedimos un excel, checar el nombre
       const match = headers['content-disposition'].match(/filename\="(.*)"/) || []
       const filename = match[1]
@@ -233,7 +248,7 @@ function responseHandler (res, dest_dir) {
       downloadsInProgress.push(toDownload(filename, dest_dir))
 
       return filename
-    } else if ((headers['set-cookie'] || '').endsWith('path=/')) {
+    } else if (((headers['cache-control'] || '') != 'no-cache') && ((headers['content-length'] || '0') === '0') && ((headers['set-cookie'] || '').endsWith('path=/'))) {
       didReload = true
     }
   }
@@ -268,7 +283,7 @@ async function getPage (browser, opts) {
     }
   })
 
-  await page.setViewport({ width: 1280, height: 800 })
+  await page.setViewport({ width: 2000, height: 1000 })
   page.setDefaultTimeout(timeout)
 
   page.on('response', (response) => responseHandler(response, dest_dir));
@@ -298,7 +313,7 @@ async function selectNextOrganization (page, orgId) {
   const dropdownButton = await page.$x('//button[@data-id="formEntidadFederativa:cboSujetoObligado"]')
   if (dropdownButton.length) {
     await dropdownButton[0].click()
-    const dropdownOrg = await page.waitForXPath(`//a/span[contains(text(), '${orgId}')]`)
+    const dropdownOrg = await page.waitForXPath(`//a/span[text()='${orgId}']`)
     if (!dropdownOrg) {
       console.log('Organización no encontrada en dropdown', orgId)
     } else {
@@ -343,7 +358,7 @@ async function navigateToObligations (page, organizationName = null, organizatio
 /**
  * Getting from #obligaciones to #tarjetaInformativa
  */
-async function navigateToInformationCard (page, year = 2018) {
+async function navigateToInformationCard (page, year = 2021) {
   await page.waitForXPath('//form[@id="formListaObligaciones"]')
 
   // Selecciona el año del dropdown
@@ -386,8 +401,16 @@ async function startBrowser (params) {
   let options = params || {}
   if (options.development) {
     options = {
+    //   devtools: true,
       headless: false,
-      slowMo: 250
+      ignoreHTTPSErrors: true,
+      slowMo: 250,
+      args: [
+        "--no-sandbox",
+        "--no-zygote",
+        "--single-process",
+        "--window-position=000,000"
+      ]
     }
   }
 
