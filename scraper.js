@@ -3,25 +3,25 @@
 const puppeteer = require('puppeteer-extra')
 
 // add stealth plugin and use defaults (all evasion techniques)
-const StealthPlugin = require('puppeteer-extra-plugin-stealth');
-puppeteer.use(StealthPlugin());
+const StealthPlugin = require('puppeteer-extra-plugin-stealth')
+puppeteer.use(StealthPlugin())
 
-const fs = require('fs');
-const { promisify } = require('util');
-const exists = promisify(fs.stat);
-const path = require('path');
-const { Console } = require('console');
+const fs = require('fs')
+const { promisify } = require('util')
+const exists = promisify(fs.stat)
+const path = require('path')
+const { Console } = require('console')
 
-let didReload = false;
-const downloadsInProgress = [];
-const fromTargetUrl = res => res.url().endsWith('consultaPublica.xhtml');
-const hasDisplay = 'contains(@style, "display: block")';
+let didReload = false
+const downloadsInProgress = []
+const fromTargetUrl = res => res.url().endsWith('consultaPublica.xhtml')
+const hasDisplay = 'contains(@style, "display: block")'
 const sequence = [
   'inicio',
   'sujetosObligados',
   'obligaciones',
   'tarjetaInformativa'
-];
+]
 
 /**
  * Navega en reversa el sitio.
@@ -125,7 +125,7 @@ async function getContract (page, organizationName = null, organizationIndex = 0
 
   // Espera a que el bloqueo de pantalla de la consulta se quite
   await page.waitForSelector('div.capaBloqueaPantalla', { hidden: true })
-  await page.waitFor(1000)
+  await page.waitForTimeout(1000)
 
   // Si no hay resultados nos brincamos la organización
   const downloadCounter = await page.$x('//span[contains(text(), "Se encontraron")]/..')
@@ -145,7 +145,7 @@ async function getContract (page, organizationName = null, organizationIndex = 0
   try {
     await downloadLabel.click()
   } catch (e) {
-    throw new Error('No se encontro el boton de descarga en el modal')
+    throw new Error('No se encontró el botón de descarga en el modal')
   }
 
   // Para hacer click en el dropdown menu en cada iteración
@@ -184,9 +184,9 @@ async function getContract (page, organizationName = null, organizationIndex = 0
     }, { timeout: 90000 })
 
     if (!downloadRequest.ok()) {
-      console.log('No contesto el servidor con éxito')
+      console.log('No contestó el servidor con éxito')
       return false
-    }
+    };
 
     if (didReload === true) {
       // Algunas organizaciones no se pueden descargar, más que por email
@@ -198,28 +198,29 @@ async function getContract (page, organizationName = null, organizationIndex = 0
         const errorMsg = await errorDiv[0].evaluate(node => node.innerText)
         console.log(errorMsg.trim().split('.')[0])
       }
-      const continuar = await page.waitForSelector('#modalCSV > div > div > div > div:nth-child(2) > div > button');
-      await continuar.evaluate(b => b.click());
+      const continuar = await page.waitForSelector('#modalCSV > div > div > div > div:nth-child(2) > div > button')
+      await continuar.evaluate(b => b.click())
 
-      const cerrar = await page.waitForSelector('#modalAvisoError > div > div > div > div:nth-child(2) > div > button');
-      await cerrar.evaluate(b => b.click());
+      const cerrar = await page.waitForSelector('#modalAvisoError > div > div > div > div:nth-child(2) > div > button')
+      await cerrar.evaluate(b => b.click())
 
-      didReload = false;  // Resetear la variable 
+      // Resetear la variable
+      didReload = false
 
-      return true;
+      return true
     }
 
-    await page.waitFor(1000)
+    await page.waitForTimeout(1000)
     await Promise.all(downloadsInProgress)
   }
 
   // Wait again for any remaining download to get to the queue (esp. the last one)
-  await page.waitFor(1000)
+  await page.waitForTimeout(1000)
   await Promise.all(downloadsInProgress)
 
   // Quita la ventana modal
   const modal = await page.waitForSelector('#modalRangos')
-  await modal.evaluate(b => b.click());
+  await modal.evaluate(b => b.click())
   await page.waitForSelector('div.capaBloqueaPantalla', { hidden: true })
 
   return true
@@ -283,10 +284,10 @@ async function getPage (browser, opts) {
     }
   })
 
-  await page.setViewport({ width: 2000, height: 1000 })
+  await page.setViewport({ width: 1800, height: 1000 })
   page.setDefaultTimeout(timeout)
 
-  page.on('response', (response) => responseHandler(response, dest_dir));
+  page.on('response', (response) => responseHandler(response, dest_dir))
 
   return page
 }

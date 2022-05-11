@@ -1,9 +1,7 @@
 Administración de la Beneficencia Pública del Estado de Colima (PBP)
-Agua Tecomán
 Apac Colima
 Archivo Histórico del Municipio de Colima
 Asociación Mexicana de Mujeres Empresarias del Estado de Colima (AMMEEC)
-Centro de Agronegocios de Colima (CEDAGRO)
 Centro Estatal de Prevención Social de la Violencia y la Delincuencia con Participación Ciudadana
 Centro Estatal de Transfusión Sanguínea
 Centro Estatal para la Prevención y Atención a la Violencia Intrafamiliar (CEPAVI)
@@ -14,7 +12,7 @@ Comisión de Agua Potable y Alcantarillado del Municipio de Coquimatlán (CAPACO
 Comisión de Agua Potable y Alcantarillado del Municipio de Cuauhtémoc (CAPAMC)
 Comisión de Agua Potable y Alcantarillado del Municipio de Ixtlahuacán (CAPAI)
 Comisión de Agua Potable y Alcantarillado del Municipio de Minatitlán (CAPAMI)
-Comisión de Búsqueda de Personas del Estado de Colima
+Comisión de Agua Potable y Alcantarillado del Municipio de Tecomán (COMAPAT)
 Comisión de Búsqueda de Personas del Estado de Colima
 Comisión de Derechos Humanos del Estado de Colima (CDH)
 Comisión Ejecutiva Estatal de Atención a Víctimas (CEAVI)
@@ -30,8 +28,6 @@ Contraloría General del Estado (Poder Ejecutivo)
 Coordinación de Servicios Educativos del Estado de Colima
 Coordinación Estatal de Desarrollo Municipal (CEDEMUN)
 DIF  Minatitlán
-DIF Tecomán
-DIF Villa de Álvarez
 Dirección Municipal de Protección Civil (Colima)
 Fiscalía General del Estado de Colima
 H. Ayuntamiento de Armería
@@ -46,7 +42,7 @@ H. Ayuntamiento de Tecomán
 H. Ayuntamiento de Villa de Álvarez
 H. Congreso del Estado
 Instituto Colimense de la Infraestructura Física Educativa (INCOIFED)
-Instituto Colimense de las Mujeres (ICM)
+Instituto Colimense de las Mujeres (ICM) 
 Instituto Colimense del Deporte (INCODE)
 Instituto Colimense para la Discapacidad (INCODIS)
 Instituto Colimense para la Sociedad de la Información y el Conocimiento (ICSIC)
@@ -114,6 +110,8 @@ Sistema Municipal para el Desarrollo Integral de la Familia (DIF Comala)
 Sistema Municipal para el Desarrollo Integral de la Familia (DIF Coquimatlán)
 Sistema Municipal para el Desarrollo Integral de la Familia (DIF Ixtlahuacán)
 Sistema Municipal para el Desarrollo Integral de la Familia (DIF Manzanillo)
+Sistema Municipal para el Desarrollo Integral de la Familia (DIF TECOMÁN)
+Sistema Municipal para el Desarrollo Integral de la Familia (DIF VILLA DE ÁLVAREZ)
 Sistema para el Desarrollo Integral de la Familia de Cuauhtémoc ( DIF Cuauhtémoc)
 Subsecretaría de Administración (Depende de la Secretaría de Planeación, Finanzas y Administración)
 Subsecretaría de Cultura (Depende de la Secretaría de Educación y Cultura)

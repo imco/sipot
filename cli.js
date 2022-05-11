@@ -74,9 +74,9 @@ const year = argv.year
 const type = Number(argv.type)
 const stateCode = argv.state
 
-const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consultaPublica.xhtml';
+const startUrl = 'https://consultapublicamx.plataformadetransparencia.org.mx/vut-web/faces/view/consultaPublica.xhtml'
 
-(async () => {
+;(async () => {
   console.log('Nueva sesión', new Date())
 
   let organizations
@@ -97,8 +97,8 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
   try {
     const page = await scraper.getPage(browser, argv)
 
-    await page.goto(startUrl + '#inicio')
-
+    await page.goto(startUrl + '#inicio', {waitUntil : 'networkidle2' }).catch(e => void 0)
+    
     console.log('Descargando documentos para el año', year)
     if (type === 1) {
       console.log('Procedimientos de adjudicación directa')
@@ -155,7 +155,7 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
       // Nota: seremos redirigidos a #obligaciones pero al inicio del loop llamamos a takeTo
       if (nextParams) {
         const nextId = nextParams[0] || nextParams[1]
-        console.log('La siguiente org sera', nextId)
+        console.log('La siguiente org será', nextId)
         await scraper.selectNextOrganization(page, nextId)
       }
     }

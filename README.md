@@ -1,7 +1,7 @@
 # SIPOT
 
 Este proyecto automatiza la extracción de los documentos publicados
-en la [Plataforma Nacional de Transparencia](https://consultapublicamx.inai.org.mx/vut-web/faces/view/consultaPublica.xhtml#inicio).
+en la [Plataforma Nacional de Transparencia](https://consultapublicamx.plataformadetransparencia.org.mx/vut-web/faces/view/consultaPublica.xhtml#inicio).
 
 ![screenshot](https://github.com/imco/sipot/blob/master/screenshot.jpg)
 
