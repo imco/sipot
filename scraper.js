@@ -99,14 +99,40 @@ async function takeTo (page, nextLocation, stateCode, params) {
  * @param {Number} year
  */
 async function getContract (page, organizationName = null, organizationIndex = 0, year = 2021, type) {
+  let selection
+  if (type === 1) {
+      selection = "Procedimientos de adjudicación directa"
+  } else {
+      selection = "Procedimientos de licitación pública e invitación a cuando menos tres personas"
+  }
   // Espera a que carge la página de documentos
   await page.waitForXPath('//div[@id="formListaFormatos:listaSelectorFormatos"]')
-
-  if (type === 1) {
-    const typeCheckbox = await page.$x('//label[contains(@class, "containerCheck")]')
-    await typeCheckbox[1].click()
-    await page.waitForSelector('div.capaBloqueaPantalla', { hidden: true })
+  const typeCheckbox = await page.$x('//label[contains(@class, "containerCheck")]')
+  if (typeCheckbox.length) {
+      let found = false
+      for (let option of typeCheckbox) {
+          let text = await page.evaluate(el => el.innerText, option);
+          if (text == selection) {
+            await option.click()
+            found = true
+            break
+          } 
+      }
+      if (found === false) {
+          const msg = `Opción '${selection}' no encontrada para ${organizationName}; brincando...`
+          console.log(msg)
+          throw new Error(msg)
+      }
+  } else {  
+      // Algunas instituciones no tienen este selector, porque solamente están disponibles descargas para Procedimientos de adjudicación directa
+      if (!type) {
+        const msg = `No se encontraron contratos del tipo '${selection}' para ${organizationName}; brincando...`
+        console.log(msg)
+        throw new Error(msg)
+      }
   }
+
+  await page.waitForSelector('div.capaBloqueaPantalla', { hidden: true })
 
   // Selecciona todos en Periodo de actualización
   const checkboxPath = '//input[@id="formInformacionNormativa:checkPeriodos:4"]'
@@ -297,11 +323,11 @@ async function getPage (browser, opts) {
  */
 async function navigateToOrganizations (page, stateCode) {
   // Click en el filtro "Estado o Federación"
-  const filter = await page.waitForSelector('#filaSelectEF > .col-md-4 > .btn-group > .btn > .filter-option')
+  const filter = await page.waitForSelector('#filaSelectEF > div.col-md-4 > div > button > span.filter-option.pull-left')
   await filter.click()
 
   // Selecciona el estado dropdown (Default: segundo elemento del dropdown: "Federación")
-  const fed = await page.waitForSelector(`.btn-group > .dropdown-menu > .dropdown-menu > li:nth-child(${stateCode + 1}) > a`)
+  const fed = await page.waitForSelector(`#filaSelectEF > div.col-md-4 > div > div > ul > li:nth-child(${stateCode + 1}) > a`)
   await fed.click()
 }
 
