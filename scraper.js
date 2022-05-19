@@ -135,9 +135,16 @@ async function getContract (page, organizationName = null, organizationIndex = 0
   await page.waitForSelector('div.capaBloqueaPantalla', { hidden: true })
 
   // Selecciona todos en Periodo de actualización
-  const checkboxPath = '//input[@id="formInformacionNormativa:checkPeriodos:4"]'
-  const checkbox = await page.$x(checkboxPath)
-  await checkbox[0].click()
+  const periodsCheckboxes = await page.$x('//label[contains(@for, "formInformacionNormativa:checkPeriodos")]')
+  let foundPeriods = false
+  for (let option of periodsCheckboxes) {
+      let text = await page.evaluate(el => el.innerText, option);
+      if (text == "Seleccionar todos") {
+        await option.click()
+        foundPeriods = true
+        break
+      } 
+  }
   console.log('Seleccionamos todos los periodos de actualización')
 
   // Consultar
@@ -357,29 +364,16 @@ async function selectNextOrganization (page, orgId) {
  * Getting from #sujetosObligados to #obligaciones
  */
 async function navigateToObligations (page, organizationName = null, organizationIndex = 0) {
-  // La página se divide en menús [.botonActiva] colapsables por letra del abecedario
-  await page.waitForSelector('.botonActiva')
 
-  if (!organizationName) {
-    // Buscamos la organización que le corresponde tal índice
-    const orgElements = await page.$x('//input[starts-with(@id, "formListaSujetosAZ")]')
-    const targetOrganization = orgElements[organizationIndex]
-    organizationName = await targetOrganization.evaluate(node => node.value)
-  }
+  // Seleccionamos la institución desde el dropdown
+  const institutionDropdown = await page.waitForSelector('#tooltipInst > div > button')
+  await institutionDropdown.click()
 
   console.log('Objetivo:', organizationName)
 
-  // Filtramos la lista para que aparezca nuestra opción,
-  // pero primero limpiamos el campo
-  const orgFilter = await page.waitForSelector('input.form-control.intitucionResp')
-  await page.evaluate(() => {
-    $('input.form-control.intitucionResp')[0].value = ''
-  })
-  await orgFilter.type(organizationName)
-
   // Hacemos click en la organización de interés
-  const orgInput = await page.waitForXPath(`//input[@value='${organizationName}']`)
-  orgInput.click()
+  const dropdownOrg = await page.$x(`//a/span[contains(text(), "${organizationName}")]`)
+  await dropdownOrg[0].click()
 }
 
 /**
@@ -387,12 +381,6 @@ async function navigateToObligations (page, organizationName = null, organizatio
  */
 async function navigateToInformationCard (page, year = 2021) {
   await page.waitForXPath('//form[@id="formListaObligaciones"]')
-
-  // Selecciona el año del dropdown
-  const period = await page.waitForXPath('//select[@id="formEntidadFederativa:cboEjercicio"]')
-  await period.select(String(year))
-
-  console.log('Seleccionamos el año', year)
 
   // Espera a que el bloqueo de pantalla de la consulta se quite
   await page.waitForSelector('div.capaBloqueaPantalla', { hidden: true })
@@ -420,6 +408,16 @@ async function navigateToInformationCard (page, year = 2021) {
     console.log(msg)
     throw new Error(msg)
   } else {
+    await contractsLabel[0].click()
+
+    // Selecciona el año del dropdown
+    const period = await page.waitForXPath('//select[@id="formEntidadFederativa:cboEjercicio"]')
+    await period.select(String(year))
+    console.log('Seleccionamos el año', year)
+
+    // Hacer clic en "CONTRATOS DE OBRAS, BIENES, Y SERVICIOS" de nuevo
+    await page.waitForXPath('//div[@class="tituloObligacion"]')
+    contractsLabel = await page.$x('//label[contains(text(), "CONTRATOS DE OBRAS, BIENES Y SERVICIOS")]')
     await contractsLabel[0].click()
   }
 }

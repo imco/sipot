@@ -98,7 +98,7 @@ const startUrl = 'https://consultapublicamx.plataformadetransparencia.org.mx/vut
     const page = await scraper.getPage(browser, argv)
 
     await page.goto(startUrl + '#inicio', {waitUntil : 'networkidle2' }).catch(e => void 0)
-    
+
     console.log('Descargando documentos para el año', year)
     if (type === 1) {
       console.log('Procedimientos de adjudicación directa')
@@ -109,6 +109,7 @@ const startUrl = 'https://consultapublicamx.plataformadetransparencia.org.mx/vut
     if (organization) {
       await scraper.takeTo(page, 'tarjetaInformativa', stateCode, { organizationName: organization, year })
       await scraper.getContract(page, organization, null, year, type)
+      await page.close()
       await browser.close()
       return true
     }
@@ -162,6 +163,7 @@ const startUrl = 'https://consultapublicamx.plataformadetransparencia.org.mx/vut
 
     // Por si quedan algunas descargas pendientes
     await Promise.all(scraper.downloadsInProgress)
+    await page.close()
     await browser.close()
 
     console.log('Se descargaron %i archivos', scraper.downloadsInProgress.length)

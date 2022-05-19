@@ -9,17 +9,26 @@ Usage:
   join_excel_and_csv_files.py --input_dir=str --output_file=str
 
 Example:
-  python scripts/join_excel_and_csv_files.py --input_dir=/Users/me/Documents/github/sipot/data/adjudicaciones/2020/ --output_file=/Users/me/Downloads/sipot-federal-adjudicaciones2020.csv
+  python scripts/join_excel_and_csv_files.py --input_dir=/Users/me/Documents/github/sipot/data/adjudicaciones/2020/ --output_file=/Users/me/Downloads/sipot-federal-adjudicaciones2020.csv --type=licitaciones
 
 
 Input options (required):
   --input_dir=<str>    /path/to/directory/containing/raw_excel_and_csv_files/ 
   --output_file=<str>  /path/to/output_csv_filename_with_aggregated_results.csv
+  --type=<str>         Must be adjudicaciones OR licitaciones
 
 """
 
 
-def run_etl(input_dir, output_file):
+def run_etl(input_dir, output_file, contract_type):
+    if contract_type.lower() not in {'adjudicaciones', 'licitaciones'}:
+        print("Opción 'type' debe ser 'adjudicaciones' o 'licitaciones'.")
+        return
+    if contract_type.lower() == 'licitaciones':
+        formato_val = 'Procedimientos de licitación pública e invitación a cuando menos tres personas'
+    elif contract_type.lower() == 'adjudicaciones':
+        formato_val = 'Procedimientos de adjudicación directa'
+
     main_df = None
 
     excel_files = glob.glob(f'{input_dir}*.xls')
@@ -40,68 +49,19 @@ def run_etl(input_dir, output_file):
         f'{len(csv_files_clean)} archivos csv en el directorio {input_dir}'))
 
     for f in excel_files:
-        df = pd.read_excel(f, header=5)
-
-        # If file path contains 'estados', add the state name to new column
-        state_name = None
-        if '/estados/' in f:
-            state_name = f.split('estados/')[1].split('/')[0]
-            if state_name:
-                df['ESTADO'] = state_name.upper()
-        
-        # Add the 'Nombre del Sujeto Obligado' from the header
-        df_meta = pd.read_excel(
-            f, header=None, nrows=1, usecols=[0,1], names=['column', 'value'])
-        for d in df_meta.to_dict('records'):
-            df[d['column'][:-1]] = d['value']
-        
-        # Standardize column names
-        df.columns = df.columns.str.strip().str.upper().str.replace(',', '')\
-                                           .str.replace('  ', ' ')
-
-        # Reorder the columns
-        cols = list(df.columns)
-        if state_name is None:
-            cols = [cols[0]] + cols[-1:] + cols[1:-1]
-        else:
-            cols = [cols[0]] + cols[-2:] + cols[1:-2]
-        df = df[cols]
-
-        if main_df is None:
+        df = process_df(f, 'excel', formato_val)
+        if df is None:
+            continue
+        elif main_df is None:
             main_df = df
         else:
             main_df = pd.concat([main_df, df], axis=0, ignore_index=True)
 
-    for cfc in csv_files_clean:
-        df = pd.read_csv(cfc, encoding='latin-1', skiprows=3)
-
-        # If file path contains 'estados', add the state name to new column
-        state_name = None
-        if '/estados/' in f:
-            state_name = f.split('estados/')[1].split('/')[0]
-            if state_name:
-                df['ESTADO'] = state_name
-
-        # Add the 'Nombre del Sujeto Obligado' from the header
-        df_meta = pd.read_csv(
-            cfc, header=None, nrows=1, usecols=[0,1], 
-            names=['column', 'value'], encoding='latin-1')
-        for d in df_meta.to_dict('records'):
-            df[d['column'][:-1]] = d['value']
-        
-        # Standardize column names
-        df.columns = df.columns.str.strip().str.upper()\
-                                .str.replace(',', '').str.replace('  ', ' ')
-
-        # Reorder the columns
-        cols = list(df.columns)
-        if state_name is None:
-            cols = [cols[0]] + cols[-1:] + cols[1:-1]
-        else:
-            cols = [cols[0]] + cols[-2:] + cols[1:-2]
-        df = df[cols]
-
-        if main_df is None:
+    for f in csv_files_clean:
+        df = process_df(f, 'csv', formato_val)
+        if df is None:
+            continue
+        elif main_df is None:
             main_df = df
         else:
             main_df = pd.concat([main_df, df], axis=0, ignore_index=True)
@@ -118,13 +78,69 @@ def run_etl(input_dir, output_file):
     print(f'Se guardaron los resultados en {output_file}')
 
 
+def process_df(file_name, file_type, contract_type_full):
+    if file_type == 'excel':
+        df = pd.read_excel(file_name, header=5)
+    elif file_type == 'csv':
+        df = pd.read_csv(file_name, encoding='latin-1', skiprows=3)
+    else:
+        print("ERROR: 'file_type' debe ser 'excel' o 'csv'.")
+        return
+
+    # If file path contains 'estados', add the state name to new column
+    state_name = None
+    formato = None
+    if '/estados/' in file_name:
+        state_name = file_name.split('estados/')[1].split('/')[0]
+        if state_name:
+            df['ESTADO'] = state_name.upper()
+    
+    # Add the 'Nombre del Sujeto Obligado' from the header
+    if file_type == 'excel':
+        df_meta = pd.read_excel(
+            file_name, header=None, nrows=4, usecols=[0,1],
+            names=['column', 'value'])
+    elif file_type == 'csv':
+        df_meta = pd.read_csv(
+            file_name, header=None, nrows=4, usecols=[0,1], 
+            names=['column', 'value'], encoding='latin-1')
+
+    for d in df_meta.to_dict('records'):
+        try:
+            col = d['column'][:-1]
+        except:
+            print("ERROR:", file_name)
+            raise
+        if col == 'Nombre del Sujeto Obligado':
+            df[col] = d['value']
+        elif col == 'Formato':
+            formato = d['value']
+    if formato != contract_type_full:
+        print(f'Archivo {file_name} tiene un tipo de contracto inválido')
+        return
+
+    # Standardize column names
+    df.columns = df.columns.str.strip().str.upper().str.replace(',', '')\
+                                       .str.replace('  ', ' ')
+
+    # Reorder the columns
+    cols = list(df.columns)
+    if state_name is None:
+        cols = [cols[0]] + cols[-1:] + cols[1:-1]
+    else:
+        cols = [cols[0]] + cols[-2:] + cols[1:-2]
+    df = df[cols]
+
+    return df
+
+
 if __name__ == "__main__":
     args = sys.argv
 
     input_dir = None
     output_file = None
 
-    if len(args) != 3:
+    if len(args) != 4:
         print(usage)
     
     else:
@@ -135,10 +151,13 @@ if __name__ == "__main__":
                     input_dir += '/'
             elif "--output_file=" in arg:
                 output_file = arg.split('--output_file=')[1]
+            elif "--type=" in arg:
+                contract_type = arg.split('--type=')[1]
             else:
                 print(f"Unknown argument '{arg}'")
                 print(usage)
         if input_dir and output_file:
             print("input_dir:", input_dir)
             print("output_file:", output_file)
-            run_etl(input_dir, output_file)
+            print("type:", contract_type)
+            run_etl(input_dir, output_file, contract_type)
