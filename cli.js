@@ -163,7 +163,6 @@ const startUrl = 'https://consultapublicamx.plataformadetransparencia.org.mx/vut
 
     // Por si quedan algunas descargas pendientes
     await Promise.all(scraper.downloadsInProgress)
-    await page.close()
     await browser.close()
 
     console.log('Se descargaron %i archivos', scraper.downloadsInProgress.length)

@@ -448,6 +448,17 @@ async function startBrowser (params) {
         "--window-position=000,000"
       ]
     }
+  } else {
+    options = {
+      ignoreHTTPSErrors: true,
+      slowMo: 250,
+      args: [
+        "--no-sandbox",
+        "--no-zygote",
+        "--single-process",
+        "--window-position=000,000"
+      ]
+    }
   }
 
   const browser = await puppeteer.launch(options)
