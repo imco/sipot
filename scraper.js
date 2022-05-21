@@ -317,7 +317,7 @@ async function getPage (browser, opts) {
     }
   })
 
-  await page.setViewport({ width: 1800, height: 1000 })
+  await page.setViewport({ width: 1200, height: 1000 })
   page.setDefaultTimeout(timeout)
 
   page.on('response', (response) => responseHandler(response, dest_dir))
