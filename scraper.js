@@ -348,9 +348,9 @@ async function selectNextOrganization (page, orgId) {
   const dropdownButton = await page.$x('//button[@data-id="formEntidadFederativa:cboSujetoObligado"]')
   if (dropdownButton.length) {
     await dropdownButton[0].click()
-    const dropdownOrg = await page.$x(`//a/span[normalize-space(text())='${organizationName}']`)
+    const dropdownOrg = await page.$x(`//a/span[normalize-space(text())='${orgId}']`)
     if (!dropdownOrg.length) {
-      msg = `No encontramos la institución '${organizationName}' en el dropdown; brincando...`
+      msg = `No encontramos la institución '${orgId}' en el dropdown; brincando...`
       console.log(msg)
       throw new Error(msg)
     } else if (dropdownOrg.length == 1) {
