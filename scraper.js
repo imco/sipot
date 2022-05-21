@@ -344,19 +344,25 @@ async function navigateToOrganizations (page, stateCode) {
  * @param {string} orgId
  */
 async function selectNextOrganization (page, orgId) {
+  let msg
   const dropdownButton = await page.$x('//button[@data-id="formEntidadFederativa:cboSujetoObligado"]')
   if (dropdownButton.length) {
     await dropdownButton[0].click()
-    const dropdownOrg = await page.waitForXPath(`//a/span[normalize-space(text())='${orgId}']`)
-    if (!dropdownOrg) {
-      console.log('Organización no encontrada en dropdown', orgId)
+    const dropdownOrg = await page.$x(`//a/span[normalize-space(text())='${organizationName}']`)
+    if (!dropdownOrg.length) {
+      msg = `No encontramos la institución '${organizationName}' en el dropdown; brincando...`
+      console.log(msg)
+      throw new Error(msg)
+    } else if (dropdownOrg.length == 1) {
+      await dropdownOrg[0].click()
     } else {
-      console.log('Seleccionando del dropdown a', orgId)
-      await dropdownOrg.click()
-      await page.waitForSelector('div.capaBloqueaPantalla', { hidden: true })
+      await dropdownOrg[1].click()
     }
+    await page.waitForSelector('div.capaBloqueaPantalla', { hidden: true })
   } else {
-    console.log('No encontramos el dropdown de organizaciones')
+    msg = 'No encontramos el dropdown de organizaciones'
+    console.log(msg)
+    throw new Error(msg)
   }
 }
 
