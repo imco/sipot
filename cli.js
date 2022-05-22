@@ -144,7 +144,7 @@ const startUrl = 'https://consultapublicamx.plataformadetransparencia.org.mx/vut
         console.log(e)
         console.log(`La organización ${orgId} no se pudo escrapear; brincando...`)
         if (e.message.match('redirige')) {
-          await scraper.takeTo(page, stateCode, 'tarjetaInformativa', {
+          await scraper.takeTo(page, 'tarjetaInformativa', stateCode, {
             organizationName: invocationParams[0],
             organizationIndex: invocationParams[1],
             year
