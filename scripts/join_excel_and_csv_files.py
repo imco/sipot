@@ -31,8 +31,8 @@ def run_etl(input_dir, output_file, contract_type):
 
     main_df = None
 
-    excel_files = glob.glob(f'{input_dir}*.xls')
-    excel_files.extend(glob.glob(f'{input_dir}*.xlsx'))
+    excel_files = glob.glob(f'{input_dir}**/*.xls', recursive = True)
+    excel_files.extend(glob.glob(f'{input_dir}**/*.xlsx', recursive = True))
     csv_files = glob.glob(f'{input_dir}**/*.csv', recursive=True)
 
     # In some cases, Excel files were not receieved via email, so CSV files

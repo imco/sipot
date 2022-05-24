@@ -122,7 +122,7 @@ SIMAS General Cepeda
 SIMAS Matamoros
 SIMAS Monclova-Frontera
 SIMAS Morelos
-SIMAS  Múzquiz, San Juan de Sabinas, Sabinas y Progreso
+SIMAS Múzquiz, San Juan de Sabinas, Sabinas y Progreso
 SIMAS Parras De La Fuente
 SIMAS Piedras Negras
 SIMAS Sabinas
@@ -142,9 +142,9 @@ Universidad Politécnica de Monclova
 Universidad Politécnica de Piedras Negras
 Universidad Politécnica de Ramos Arizpe
 Universidad Tecnologica De Ciudad Acuña
-Universidad Tecnológica  de Coahuila
+Universidad Tecnológica de Coahuila
 Universidad Tecnológica de la Región Carbonifera
-Universidad Tecnológica  de la Región Centro de Coahuila
+Universidad Tecnológica de la Región Centro de Coahuila
 Universidad Tecnológica del Norte de Coahuila
 Universidad Tecnológica de Parras
 Universidad Tecnológica de Saltillo
