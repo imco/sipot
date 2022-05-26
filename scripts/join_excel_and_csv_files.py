@@ -21,12 +21,13 @@ Input options (required):
 
 
 def run_etl(input_dir, output_file, contract_type):
-    if contract_type.lower() not in {'adjudicaciones', 'licitaciones'}:
+    contract_type = contract_type.lower()
+    if contract_type not in {'adjudicaciones', 'licitaciones'}:
         print("Opción 'type' debe ser 'adjudicaciones' o 'licitaciones'.")
         return
-    if contract_type.lower() == 'licitaciones':
+    if contract_type == 'licitaciones':
         formato_val = 'Procedimientos de licitación pública e invitación a cuando menos tres personas'
-    elif contract_type.lower() == 'adjudicaciones':
+    elif contract_type == 'adjudicaciones':
         formato_val = 'Procedimientos de adjudicación directa'
 
     main_df = None
@@ -34,6 +35,8 @@ def run_etl(input_dir, output_file, contract_type):
     excel_files = glob.glob(f'{input_dir}**/*.xls', recursive = True)
     excel_files.extend(glob.glob(f'{input_dir}**/*.xlsx', recursive = True))
     csv_files = glob.glob(f'{input_dir}**/*.csv', recursive=True)
+    excel_files = [f for f in excel_files if contract_type in f]
+    csv_files = [f for f in csv_files if contract_type in f]
 
     # In some cases, Excel files were not receieved via email, so CSV files
     # were requested instead. The format for these is different.
@@ -46,7 +49,8 @@ def run_etl(input_dir, output_file, contract_type):
 
     print((
         f'Se encontraron {len(excel_files)} archivos excel y '
-        f'{len(csv_files_clean)} archivos csv en el directorio {input_dir}'))
+        f'{len(csv_files_clean)} archivos csv de tipo {contract_type} '
+        f'en el directorio {input_dir}'))
 
     for f in excel_files:
         df = process_df(f, 'excel', formato_val)

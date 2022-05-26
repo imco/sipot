@@ -1,0 +1,246 @@
+Archivo General del Estado
+Auditoría Superior del Estado (ASE)
+Ayuntamiento de Acacoyagua
+Ayuntamiento de Acala
+Ayuntamiento de Acapetahua
+Ayuntamiento de Aldama
+Ayuntamiento de Altamirano
+Ayuntamiento de Amatán
+Ayuntamiento de Amatenango de la Frontera
+Ayuntamiento de Amatenango del Valle
+Ayuntamiento de Angel Albino Corzo
+Ayuntamiento de Arriaga
+Ayuntamiento de Arriaga - SAPAM
+Ayuntamiento de Bejucal de Ocampo
+Ayuntamiento de Belisario Domínguez
+Ayuntamiento de Bella Vista
+Ayuntamiento de Benemerito de las Americas
+Ayuntamiento de Berriozabal
+Ayuntamiento de Berriozabal - SAPAM
+Ayuntamiento de Bochil
+Ayuntamiento de Cacahoatán
+Ayuntamiento de Capitán Luis Angel Vidal
+Ayuntamiento de Catazajá
+Ayuntamiento de Chalchihuitán
+Ayuntamiento de Chamula
+Ayuntamiento de Chanal
+Ayuntamiento de Chapultenango
+Ayuntamiento de Chenalho
+Ayuntamiento de Chiapa de Corzo
+Ayuntamiento de Chiapa de Corzo-SAPAM
+Ayuntamiento de Chiapilla
+Ayuntamiento de Chicoasén
+Ayuntamiento de Chicomuselo
+Ayuntamiento de Chilón
+Ayuntamiento de Cintalapa de Figueroa
+Ayuntamiento de Cintalapa-SAPAM
+Ayuntamiento de Cintalapa-Sistema DIF Municipal
+Ayuntamiento de Coapilla
+Ayuntamiento de Comitán - COAPAM
+Ayuntamiento de Comitán de Domínguez
+Ayuntamiento de Comitán de Domínguez - Sistema DIF municipal
+Ayuntamiento de Comitan - IMPLAN
+Ayuntamiento de Copainalá
+Ayuntamiento de El Bosque
+Ayuntamiento de El Parral
+Ayuntamiento de El Porvenir
+Ayuntamiento de EL Porvenir -DIF (Baja)
+Ayuntamiento de Emiliano Zapata
+Ayuntamiento de Escuintla
+Ayuntamiento de Francisco León
+Ayuntamiento de Frontera Comalapa
+Ayuntamiento de Frontera Hidalgo
+Ayuntamiento de Honduras de la Sierra
+Ayuntamiento de Huehuetán
+Ayuntamiento de Huitiupan
+Ayuntamiento de Huixtán
+Ayuntamiento de Huixtla
+Ayuntamiento de Huixtla - SAPAM
+Ayuntamiento de Ixhuatán
+Ayuntamiento de Ixtacomitán
+Ayuntamiento de Ixtapa
+Ayuntamiento de Ixtapangajoya
+Ayuntamiento de Jiquipilas
+Ayuntamiento de Jitotol
+Ayuntamiento de Juárez
+Ayuntamiento de La Concordia
+Ayuntamiento de La Grandeza
+Ayuntamiento de La Independencia
+Ayuntamiento de La Libertad
+Ayuntamiento de Larrainzar
+Ayuntamiento de Las Margaritas
+Ayuntamiento de Las Margaritas-SAPAM
+Ayuntamiento de Las Rosas
+Ayuntamiento de La Trinitaria
+Ayuntamiento de Mapastepec
+Ayuntamiento de Maravilla Tenejapa
+Ayuntamiento de Marques de Comillas
+Ayuntamiento de Mazapa de Madero
+Ayuntamiento de Mazatán
+Ayuntamiento de Metapa de Domínguez
+Ayuntamiento de Mezcalapá
+Ayuntamiento de Mitontic
+Ayuntamiento de Montecristo de Guerrero
+Ayuntamiento de Motozintla
+Ayuntamiento de Nicolas Ruiz
+Ayuntamiento de Ocosingo
+Ayuntamiento de Ocosingo - DIF
+Ayuntamiento de Ocosingo -  SAPAM
+Ayuntamiento de Ocotepec
+Ayuntamiento de Ocozocoautla de Espinosa
+Ayuntamiento de Ostuacan
+Ayuntamiento de Osumacinta
+Ayuntamiento de Oxchuc
+Ayuntamiento de Palenque
+Ayuntamiento de Palenque-DIF
+Ayuntamiento de Palenque-SAPAM
+Ayuntamiento de Pantelhó
+Ayuntamiento de Pantepec
+Ayuntamiento de Pichucalco
+Ayuntamiento de Pichucalco - SAPAM
+Ayuntamiento de Pijijiapan
+Ayuntamiento de Pueblo Nuevo Solistahuacan
+Ayuntamiento de Rayón
+Ayuntamiento de Reforma
+Ayuntamiento de Rincon Chamula San Pedro
+Ayuntamiento de Sabanilla
+Ayuntamiento de Salto de Agua
+Ayuntamiento de San Andres Duraznal
+Ayuntamiento de San Cristóbal de las Casas
+Ayuntamiento de San Cristobal de las Casas-DIF
+Ayuntamiento de San Cristobal de las Casas-SAPAM
+Ayuntamiento de San Fernando
+Ayuntamiento de San Juan Cancuc
+Ayuntamiento de San Lucas
+Ayuntamiento de Santiago el Pinar
+Ayuntamiento de Siltepec
+Ayuntamiento de Simojovel
+Ayuntamiento de Sitalá
+Ayuntamiento de Socoltenango
+Ayuntamiento de Solosuchiapa
+Ayuntamiento de Soyalo
+Ayuntamiento de Suchiapa
+Ayuntamiento de Suchiate
+Ayuntamiento de Suchiate -DIF
+Ayuntamiento de Suchiate - SAPAM
+Ayuntamiento de Sunuapa
+Ayuntamiento de Tapachula
+Ayuntamiento de Tapachula - COAPATAP
+Ayuntamiento de Tapachula - DIF
+Ayuntamiento de Tapalapa
+Ayuntamiento de Tapiilula
+Ayuntamiento de Tecpatan
+Ayuntamiento de Tenejapa
+Ayuntamiento de Teopisca
+Ayuntamiento de Tila
+Ayuntamiento de Tila - DIF
+Ayuntamiento de Tonalá
+Ayuntamiento de Tonalá - SAPAM
+Ayuntamiento de Totolapa
+Ayuntamiento de Totolapa - DIF (Baja)
+Ayuntamiento de Tumbala
+Ayuntamiento de Tuxtla Chico
+Ayuntamiento de Tuxtla Gutiérrez
+Ayuntamiento de Tuxtla Gutiérrez -DIF
+Ayuntamiento de Tuxtla Gutiérrez - ICIPLAM
+Ayuntamiento de Tuxtla Gutiérrez - SMAPA
+Ayuntamiento de Tuzantán
+Ayuntamiento de Tzimol
+Ayuntamiento de Unión Juárez
+Ayuntamiento de Venustiano Carranza
+Ayuntamiento de Villacomaltitlan
+Ayuntamiento de Villacomaltitlan - SAPAM
+Ayuntamiento de Villacorzo
+Ayuntamiento de Villaflores
+Ayuntamiento de Villaflores - SAPAM
+Ayuntamiento de Yajalon
+Ayuntamiento de Zinacantán
+Centro de Conciliación Laboral del Estado de Chiapas
+Centro de Rehabilitación e Inclusión Infatil - CRIT Chiapas(Baja)
+Centro Estatal de Control de Confianza Certificado del Estado de Chiapas
+Centro Estatal de Prevención Social de la Violencia y Participación Ciudadana
+Centro Estatal de Trasplantes del Estado de Chiapas
+Centro Regional de Formación Docente e Investigación Educativa
+Colegio de Bachilleres de Chiapas
+Colegio de Educación Profesional Técnica del  Estado de Chiapas
+Colegio de Estudios Científicos y Tecnológicos del Estado de Chiapas
+Comisión de Caminos e Infraestructura Hidraulica
+Comisión Ejecutiva Estatal de Atención a Víctimas
+Comisión Estatal De Búsqueda De Personas.
+Comisión Estatal de Conciliación y Arbitraje Médico del Estado de Chiapas
+Comisión Estatal de los Derechos Humanos
+Comisión Estatal de Mejora Regulatoria
+Comité de Fomento y Protección Pecuaria del Estado de Chiapas, A.C
+Comité Estatal de Sanidad Acuícola de Chiapas
+Comité Estatal de Sanidad Vegetal de Chiapas (CESAVECH)
+Congreso del Estado de Chiapas
+Consejeria Juridica del Gobernador
+Consejo de Ciencia y Tecnología del Estado de Chiapas (Información 2015-2018)
+Consejo Estatal para las Culturas y las Artes de Chiapas
+Coordinación de Fomento Agroalimentario Sustentable (Baja)
+Coordinación Ejecutiva del Fondo de Fomento Agropecuario del Estado de Chiapas "FOFAE" (Baja)
+Coordinación Ejecutiva del Fondo de Fomento Económico Chiapas Solidario (Baja)
+Fiscalía General de Justicia del Estado
+Gubernatura
+Instituto Chiapaneco de Educación para Jóvenes y Adultos
+Instituto de Bienestar Social (Información 2015-2018)
+Instituto de Bomberos del Estado de Chiapas.
+Instituto de Capacitación y Vinculación Tecnológica del Estado de Chiapas
+Instituto de Ciencia, Tecnologia e Innovacion del Estado de Chiapas
+Instituto de Comunicación Social del Estado de Chiapas (Información 2015-2018)
+Instituto de Comunicación Social y Relaciones Publicas del Estado de Chiapas
+Instituto de Desarrollo de Energías del Estado de Chiapas (Baja)
+Instituto de Elecciones y Participación Ciudadana
+Instituto de Estudios de Posgrado
+Instituto de Formación Policial
+Instituto de la Consejería Jurídica y de Asistencia Legal (Informaciión 2015-2018)
+Instituto de la Infraestructura Física Educativa del Estado de Chiapas
+Instituto de la Juventud del Estado de Chiapas
+Instituto del Café de Chiapas
+Instituto del Deporte del Estado de Chiapas
+Instituto de Patrimonio del Estado
+Instituto de Protección Social y Beneficencia Pública del Estado de Chiapas
+Instituto de Seguridad Social de los Trabajadores del Estado de Chiapas
+Instituto de Transparencia, Acceso a la Información y Protección de Datos Personales del Estado de Chiapas
+Instituto Estatal de Evaluación e Innovación Educativa
+Instituto Estatal del Agua
+Instituto Tecnológico Superior de Cintalapa
+Junta Local de Conciliación y Arbitraje
+Oficialía Mayor del Estado de Chiapas.
+Oficina del Gobernador (Información 2015-2018)
+Procuraduria Ambiental del Estado de Chiapas
+Procuraduría Ambiental en el Estado de Chiapas (Información 2015-2018))
+Régimen Estatal de Protección Social en Salud
+Secretaria de Agricultura, Ganaderia y Pesca - SAGyP
+Secretaria de Bienestar
+Secretaria de Economia y del Trabajo
+Secretaría de Educación
+Secretaría de Hacienda
+Secretaria de Igualdad de Genero-SEIGEN
+Secretaría de la Honestidad y la Función Pública (SHyFP)
+Secretaría de Medio Ambiente e Historia Natural - SEMAHN
+Secretaria de Movilidad y Transporte
+Secretaria de Obras Publicas- SOP
+Secretaría de Pesca y Acuacultura (Baja)
+Secretaría de Protección Civil / Instituto para la Gestión Integral de Riesgos de Desastres del Estado de Chiapas
+Secretaría de Seguridad y Protección Ciudadana
+Secretaría de Turismo-SECTUR
+Secretariado Ejecutivo del Sistema Estatal de Seguridad Publica
+Secretaría Ejecutiva del Sistema Anticorrupción del Estado de Chiapas (SESAECH)
+Secretaría General de Gobierno -SGG
+Secretaría-Instituto de Salud
+Secretaría para el Desarrollo Sustentable de los Pueblos Indígenas - SEDESPI
+Sistema Chiapaneco de Radio, Televisión y Cinematografía
+Sistema para el Desarrollo Integral de la Familia del Estado de Chiapas
+Tribunal Administrativo del Poder Judicial del Estado de Chiapas
+Tribunal Constitucional
+Tribunal de justicia Administativa (informacion 2019)
+Tribunal del Trabajo Burocrático
+Tribunal Electoral del Estado de Chiapas
+Tribunal Superior de Justicia - Consejo de la Judicatura.
+Universidad Autónoma de Chiapas
+Universidad de Ciencias y Artes de Chiapas
+Universidad Intercultural de Chiapas
+Universidad Politécnica de Chiapas
+Universidad Politécnica de Tapachula
+Universidad Tecnológica de la Selva
