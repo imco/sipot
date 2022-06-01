@@ -8,37 +8,37 @@ Ayuntamiento de Altamirano
 Ayuntamiento de Amatán
 Ayuntamiento de Amatenango de la Frontera
 Ayuntamiento de Amatenango del Valle
-Ayuntamiento de Angel Albino Corzo
+Ayuntamiento de Angel Albino Corzo 
 Ayuntamiento de Arriaga
 Ayuntamiento de Arriaga - SAPAM
 Ayuntamiento de Bejucal de Ocampo
-Ayuntamiento de Belisario Domínguez
-Ayuntamiento de Bella Vista
-Ayuntamiento de Benemerito de las Americas
-Ayuntamiento de Berriozabal
+Ayuntamiento de Belisario Domínguez 
+Ayuntamiento de Bella Vista 
+Ayuntamiento de Benemerito de las Americas 
+Ayuntamiento de Berriozabal 
 Ayuntamiento de Berriozabal - SAPAM
 Ayuntamiento de Bochil
 Ayuntamiento de Cacahoatán
 Ayuntamiento de Capitán Luis Angel Vidal
-Ayuntamiento de Catazajá
-Ayuntamiento de Chalchihuitán
+Ayuntamiento de Catazajá 
+Ayuntamiento de Chalchihuitán 
 Ayuntamiento de Chamula
 Ayuntamiento de Chanal
 Ayuntamiento de Chapultenango
-Ayuntamiento de Chenalho
+Ayuntamiento de Chenalho 
 Ayuntamiento de Chiapa de Corzo
 Ayuntamiento de Chiapa de Corzo-SAPAM
 Ayuntamiento de Chiapilla
-Ayuntamiento de Chicoasén
+Ayuntamiento de Chicoasén 
 Ayuntamiento de Chicomuselo
 Ayuntamiento de Chilón
 Ayuntamiento de Cintalapa de Figueroa
 Ayuntamiento de Cintalapa-SAPAM
-Ayuntamiento de Cintalapa-Sistema DIF Municipal
+Ayuntamiento de Cintalapa-Sistema DIF Municipal 
 Ayuntamiento de Coapilla
 Ayuntamiento de Comitán - COAPAM
 Ayuntamiento de Comitán de Domínguez
-Ayuntamiento de Comitán de Domínguez - Sistema DIF municipal
+Ayuntamiento de Comitán de Domínguez - Sistema DIF municipal 
 Ayuntamiento de Comitan - IMPLAN
 Ayuntamiento de Copainalá
 Ayuntamiento de El Bosque
@@ -53,16 +53,16 @@ Ayuntamiento de Frontera Hidalgo
 Ayuntamiento de Honduras de la Sierra
 Ayuntamiento de Huehuetán
 Ayuntamiento de Huitiupan
-Ayuntamiento de Huixtán
+Ayuntamiento de Huixtán 
 Ayuntamiento de Huixtla
 Ayuntamiento de Huixtla - SAPAM
-Ayuntamiento de Ixhuatán
-Ayuntamiento de Ixtacomitán
+Ayuntamiento de Ixhuatán 
+Ayuntamiento de Ixtacomitán 
 Ayuntamiento de Ixtapa
 Ayuntamiento de Ixtapangajoya
 Ayuntamiento de Jiquipilas
 Ayuntamiento de Jitotol
-Ayuntamiento de Juárez
+Ayuntamiento de Juárez 
 Ayuntamiento de La Concordia
 Ayuntamiento de La Grandeza
 Ayuntamiento de La Independencia
@@ -74,18 +74,18 @@ Ayuntamiento de Las Rosas
 Ayuntamiento de La Trinitaria
 Ayuntamiento de Mapastepec
 Ayuntamiento de Maravilla Tenejapa
-Ayuntamiento de Marques de Comillas
+Ayuntamiento de Marques de Comillas 
 Ayuntamiento de Mazapa de Madero
 Ayuntamiento de Mazatán
 Ayuntamiento de Metapa de Domínguez
-Ayuntamiento de Mezcalapá
+Ayuntamiento de Mezcalapá 
 Ayuntamiento de Mitontic
 Ayuntamiento de Montecristo de Guerrero
 Ayuntamiento de Motozintla
 Ayuntamiento de Nicolas Ruiz
 Ayuntamiento de Ocosingo
 Ayuntamiento de Ocosingo - DIF
-Ayuntamiento de Ocosingo -  SAPAM
+Ayuntamiento de Ocosingo - SAPAM
 Ayuntamiento de Ocotepec
 Ayuntamiento de Ocozocoautla de Espinosa
 Ayuntamiento de Ostuacan
@@ -148,7 +148,7 @@ Ayuntamiento de Tuzantán
 Ayuntamiento de Tzimol
 Ayuntamiento de Unión Juárez
 Ayuntamiento de Venustiano Carranza
-Ayuntamiento de Villacomaltitlan
+Ayuntamiento de Villa Comaltitlán
 Ayuntamiento de Villacomaltitlan - SAPAM
 Ayuntamiento de Villacorzo
 Ayuntamiento de Villaflores
@@ -162,7 +162,7 @@ Centro Estatal de Prevención Social de la Violencia y Participación Ciudadana
 Centro Estatal de Trasplantes del Estado de Chiapas
 Centro Regional de Formación Docente e Investigación Educativa
 Colegio de Bachilleres de Chiapas
-Colegio de Educación Profesional Técnica del  Estado de Chiapas
+Colegio de Educación Profesional Técnica del Estado de Chiapas
 Colegio de Estudios Científicos y Tecnológicos del Estado de Chiapas
 Comisión de Caminos e Infraestructura Hidraulica
 Comisión Ejecutiva Estatal de Atención a Víctimas

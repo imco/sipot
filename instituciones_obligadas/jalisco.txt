@@ -1,0 +1,432 @@
+Agencia de Energía del Estado de Jalisco
+Agencia de Sanidad, Inocuidad y Calidad Agroalimentaria de Jalisco, (ASICA)
+Agencia Estatal de Entretenimiento de Jalisco
+Agencia Integral de Regulación de Emisiones
+Agencia Metropolitana de Bosques Urbanos del Área Metropolitana de Guadalajara
+Agencia Metropolitana de Servicios de Infraestructura para la Movilidad del Área Metropolitana de Guadalajara
+Agencia para el Desarrollo de Industrias Creativas y Digitales del Estado de Jalisco
+Agua y Saneamiento del Municipio de Tepatitlán
+Asociación Intermunicipal para la Protección del Medio Ambiente y Desarrollo Sustentable del Lago de Chapala
+Auditoría Superior del Estado de Jalisco
+Ayuntamiento de Acatic
+Ayuntamiento de Acatlán de Juárez
+Ayuntamiento de Ahualulco de Mercado
+Ayuntamiento de Amacueca
+Ayuntamiento de Amatitán
+Ayuntamiento de Ameca
+Ayuntamiento de Arandas
+Ayuntamiento de Atemajac de Brizuela
+Ayuntamiento de Atengo
+Ayuntamiento de Atenguillo
+Ayuntamiento de Atotonilco el Alto
+Ayuntamiento de Atoyac
+Ayuntamiento de Autlán de Navarro
+Ayuntamiento de Ayotlán
+Ayuntamiento de Ayutla
+Ayuntamiento de Bolaños
+Ayuntamiento de Cabo Corrientes
+Ayuntamiento de Cañadas de Obregón
+Ayuntamiento de Casimiro Castillo
+Ayuntamiento de Chapala
+Ayuntamiento de Chimaltitán
+Ayuntamiento de Chiquilistlán
+Ayuntamiento de Cihuatlán
+Ayuntamiento de Cocula
+Ayuntamiento de Colotlán
+Ayuntamiento de Concepción de Buenos Aires
+Ayuntamiento de Cuautitlán de García Barragán
+Ayuntamiento de Cuautla
+Ayuntamiento de Cuquio
+Ayuntamiento de Degollado
+Ayuntamiento de Ejutla
+Ayuntamiento de El Arenal
+Ayuntamiento de El Grullo
+Ayuntamiento de El Limón
+Ayuntamiento de El Salto
+Ayuntamiento de Encarnación de Díaz
+Ayuntamiento de Etzatlán
+Ayuntamiento de Gómez Farias
+Ayuntamiento de Guachinango
+Ayuntamiento de Guadalajara
+Ayuntamiento de Hostotipaquillo
+Ayuntamiento de Huejúcar
+Ayuntamiento de Huejuquilla el Alto
+Ayuntamiento de Ixtlahuacán de los Membrillos
+Ayuntamiento de Ixtlahuacán del Río
+Ayuntamiento de Jalostotitlán
+Ayuntamiento de Jamay
+Ayuntamiento de Jesús María
+Ayuntamiento de Jilotlán de los Dolores
+Ayuntamiento de Jocotepec
+Ayuntamiento de Juanacatlán
+Ayuntamiento de Juchitlán
+Ayuntamiento de La Barca
+Ayuntamiento de Lagos de Moreno
+Ayuntamiento de La Huerta
+Ayuntamiento de La Manzanilla de la Paz
+Ayuntamiento de Magdalena
+Ayuntamiento de Mascota
+Ayuntamiento de Mazamitla
+Ayuntamiento de Mexticacán
+Ayuntamiento de Mezquitic
+Ayuntamiento de Mixtlán
+Ayuntamiento de Ocotlán
+Ayuntamiento de Ojuelos
+Ayuntamiento de Pihuamo
+Ayuntamiento de Poncitlán
+Ayuntamiento de Puerto Vallarta
+Ayuntamiento de Quitupán
+Ayuntamiento de San Cristóbal de la Barranca
+Ayuntamiento de San Diego de Alejandría
+Ayuntamiento de San Gabriel
+Ayuntamiento de San Ignacio Cerro Gordo
+Ayuntamiento de San Juan de los Lagos
+Ayuntamiento de San Juanito de Escobedo
+Ayuntamiento de San Julián
+Ayuntamiento de San Marcos
+Ayuntamiento de San Martín de Bolaños
+Ayuntamiento de San Martín Hidalgo
+Ayuntamiento de San Miguel el Alto
+Ayuntamiento de San Pedro Tlaquepaque
+Ayuntamiento de San Sebastián del Oeste
+Ayuntamiento de Santa María del Oro
+Ayuntamiento de Santa María de los Ángeles
+Ayuntamiento de Sayula
+Ayuntamiento de Tala
+Ayuntamiento de Talpa de Allende
+Ayuntamiento de Tamazula de Gordiano
+Ayuntamiento de Tapalpa
+Ayuntamiento de Tecalitlán
+Ayuntamiento de Techaluta de Montenegro
+Ayuntamiento de Tecolotlán
+Ayuntamiento de Tenamaxtlán
+Ayuntamiento de Teocaltiche
+Ayuntamiento de Teocuitatlán de Corona
+Ayuntamiento de Tepatitlán de Morelos
+Ayuntamiento de Tequila
+Ayuntamiento de Teuchitlán
+Ayuntamiento de Tizapán el Alto
+Ayuntamiento de Tlajomulco de Zúñiga
+Ayuntamiento de Tolimán
+Ayuntamiento de Tomatlán
+Ayuntamiento de Tonalá
+Ayuntamiento de Tonaya
+Ayuntamiento de Tonila
+Ayuntamiento de Totatiche
+Ayuntamiento de Tototlán
+Ayuntamiento de Tuxcacuesco
+Ayuntamiento de Tuxcueca
+Ayuntamiento de Tuxpan
+Ayuntamiento de Unión de San Antonio
+Ayuntamiento de Unión de Tula
+Ayuntamiento de Valle de Guadalupe
+Ayuntamiento de Valle de Juárez
+Ayuntamiento de Villa Corona
+Ayuntamiento de Villa Guerrero
+Ayuntamiento de Villa Hidalgo
+Ayuntamiento de Villa Purificación
+Ayuntamiento de Yahualica de González Gallo
+Ayuntamiento de Zacoalco de Torres
+Ayuntamiento de Zapopan
+Ayuntamiento de Zapotiltic
+Ayuntamiento de Zapotitlán de Vadillo
+Ayuntamiento de Zapotlán del Rey
+Ayuntamiento de Zapotlanejo
+Ayuntamiento de Zapotlán el Grande
+Bosque La Primavera
+Centro de Coordinación, Comando, Control, Comunicaciones y Cómputo del Estado de Jalisco
+Centro de Estimulación para Personas con Discapacidad Intelectual
+Colegio de Bachilleres del Estado de Jalisco
+Colegio de Educación Profesional Técnica del Estado de Jalisco
+Colegio de Estudios Científicos y Tecnológicos del Estado de Jalisco
+Colegio de Notarios del Estado de Jalisco
+Comisión de Arbitraje Médico del Estado de Jalisco
+Comisión de Selección Sistema Anticorrupción del Estado de Jalisco
+Comisión Estatal de Derechos Humanos de Jalisco
+Comisión Estatal del Agua de Jalisco
+Comisión Estatal Indígena
+Comité del Carnaval Sayula
+Comité de Participación Social Sistema Anticorrupción del Estado de Jalisco
+Congreso del Estado de Jalisco
+Consejería Jurídica del Poder Ejecutivo del Estado
+Consejo de la Judicatura del Estado de Jalisco
+Consejo Estatal Contra las Adicciones en Jalisco
+Consejo Estatal de Ciencia y Tecnología de Jalisco
+Consejo Estatal para el Fomento Deportivo del Estado de Jalisco
+Consejo Estatal para la Cultura y las Artes de Jalisco
+Consejo Estatal para la Prevención de Accidentes (CEPAJ)
+Consejo Estatal para la Prevención del Síndrome de Inmunodeficiencia Adquirida
+Consejo Estatal para la Prevención y Atención a la Violencia Intrafamiliar
+Consejo Municipal del Deporte de Guadalajara
+Consejo Municipal del Deporte de Jocotepec (extinto)
+Consejo Municipal del Deporte de Puerto Vallarta
+Consejo Municipal del Deporte de San Pedro Tlaquepaque
+Consejo Municipal del Deporte de Tlajomulco de Zúñiga, Jalisco
+Consejo Municipal del Deporte de Tonalá
+Consejo Municipal del Deporte de Yahualica de González Gallo
+Consejo Municipal del Deporte de Zapopan
+Consejo Municipal para el Combate a las Adicciones en San Pedro Tlaquepaque
+Consejo Social de Cooperación para el Desarrollo Urbano
+Contraloría del Estado
+Coordinación General de Comunicación
+Coordinación General de Transparencia
+Coordinación General Estratégica de Crecimiento y Desarrollo Económico (Desarrollo Económico, Agricultura, Desarrollo Rural, Turismo, Innov...
+Coordinación General Estratégica de Desarrollo Social (Educación, Salud, Asistencia Social, Igualdad Sustantiva, Cultura y Procuraduría Soc...
+Coordinación General Estratégica de Gestión del Territorio (Medio Ambiente, Desarrollo Territorial, Infraestructura, Obra Pública, Transpor...
+Coordinación General Estratégica de Seguridad
+Despacho del Gobernador y Unidades Auxiliares del Gobernador
+DIF Municipal de Acatic
+DIF Municipal de Acatlán de Juárez
+DIF Municipal de Ahualulco de Mercado
+DIF Municipal de Amacueca
+DIF Municipal de Amatitán
+DIF Municipal de Ameca
+DIF Municipal de Arandas
+DIF Municipal de Atemajac de Brizuela
+DIF Municipal de Atengo
+DIF Municipal de Atenguillo
+DIF Municipal de Atotonilco el Alto
+DIF Municipal de Atoyac
+DIF Municipal de Autlán de Navarro
+DIF Municipal de Ayotlán
+DIF Municipal de Ayutla
+DIF Municipal de Bolaños
+DIF Municipal de Cabo Corrientes
+DIF Municipal de Cañadas de Obregón
+DIF Municipal de Casimiro Castillo
+DIF Municipal de Chapala
+DIF Municipal de Chimaltitán
+DIF Municipal de Chiquilistlán
+DIF Municipal de Cihuatlán
+DIF Municipal de Cocula
+DIF Municipal de Colotlán
+DIF Municipal de Concepción de Buenos Aires
+DIF Municipal de Cuautitlán de Garcia Barragán
+DIF Municipal de Cuautla
+DIF Municipal de Cuquio
+DIF Municipal de Degollado
+DIF Municipal de Ejutla
+DIF Municipal de El Grullo
+DIF Municipal de El Limón
+DIF Municipal de El Salto
+DIF Municipal de Encarnación de Díaz
+DIF Municipal de Etzatlán
+DIF Municipal de Gómez Farias
+DIF Municipal de Guachinango
+DIF Municipal de Guadalajara
+DIF Municipal de Hostotipaquillo
+DIF Municipal de Huejucar
+DIF Municipal de Huejuquilla El Alto
+DIF Municipal de Ixtlahuacan de los Membrillos
+DIF Municipal de Ixtlahuacan del Río
+DIF Municipal de Jalostotitlán
+DIF Municipal de Jamay
+DIF Municipal de Jesús María
+DIF Municipal de Jilotlán de los Dolores
+DIF Municipal de Jocotepec
+DIF Municipal de Juanacatlán
+DIF Municipal de Juchitlán
+DIF Municipal de la Barca
+DIF Municipal de Lagos de Moreno
+DIF Municipal de La Huerta
+DIF Municipal de la Manzanilla de la Paz
+DIF Municipal de Magdalena
+DIF Municipal de Mascota
+DIF Municipal de Mazamitla
+DIF Municipal de Mexticacan
+DIF Municipal de Mezquitic
+DIF Municipal de Mixtlán
+DIF Municipal de Ocotlán
+DIF Municipal de Ojuelos
+DIF Municipal de Pihuamo
+DIF Municipal de Poncitlán
+DIF Municipal de Puerto Vallarta
+DIF Municipal de Quitupan
+DIF Municipal de San Cristóbal de la Barranca
+DIF Municipal de San Diego de Alejandría
+DIF Municipal de San Gabriel
+DIF Municipal de San Ignacio Cerro Gordo
+DIF Municipal de San Juan de los Lagos
+DIF Municipal de San Juanito de Escobedo
+DIF Municipal de San Julián
+DIF Municipal de San Marcos
+DIF Municipal de San Martín de Bolaños
+DIF Municipal de San Martín de Hidalgo
+DIF Municipal de San Miguel el Alto
+DIF Municipal de San Pedro Tlaquepaque
+DIF Municipal de San Sebastián del Oeste
+DIF Municipal de Santa María del Oro
+DIF Municipal de Santa María de los Angeles
+DIF Municipal de Sayula
+DIF Municipal de Tala
+DIF Municipal de Talpa de Allende
+Dif Municipal de Tamazula de Gordiano
+DIF Municipal de Tapalpa
+DIF Municipal de Tecalitlán
+DIF Municipal de Techaluta de Montenegro
+DIF Municipal de Tecolotlán
+DIF Municipal de Tenamaxtlán
+DIF Municipal de Teocaltiche
+DIF Municipal de Teocuitatlán de Corona
+DIF Municipal de Tepatitlán de Morelos
+DIF Municipal de Tequila
+DIF Municipal de Teuchitlán
+DIF Municipal de Tizapán el Alto
+DIF Municipal de Tlajomulco de Zúñiga
+DIF Municipal de Tolimán
+DIF Municipal de Tomatlán
+DIF Municipal de Tonalá
+DIF Municipal de Tonaya
+DIF Municipal de Tonila
+DIF Municipal de Totatiche
+DIF Municipal de Tototlán
+DIF Municipal de Tuxcacuesco
+DIF Municipal de Tuxcueca
+DIF Municipal de Tuxpan
+DIF Municipal de Unión de San Antonio
+DIF Municipal de Unión de Tula
+DIF Municipal de Valle de Guadalupe
+DIF Municipal de Valle de Juárez
+DIF Municipal de Villa Corona
+DIF Municipal de Villa Guerrero
+DIF Municipal de Villa Hidalgo
+DIF Municipal de Villa Purificación
+DIF Municipal de Yahualica de González Gallo
+DIF Municipal de Zacoalco de Torres
+DIF Municipal de Zapopan
+DIF Municipal de Zapotiltic
+DIF Municipal de Zapotitlán de Vadillo
+DIF Municipal de Zapotlán del Rey
+DIF Municipal de Zapotlanejo
+DIF Municipal de Zapotlán el Grande
+DIF Municipal El Arenal
+El Colegio de Jalisco A.C.
+Escuela de Conservación y Restauración de Occidente
+Fiscalía Especializada en Combate a la Corrupción
+Fiscalía Estatal
+Hospital Civil de Guadalajara
+Industria Jalisciense de Rehabilitación Social
+Instituto Cultural Cabañas
+Instituto de Alternativas Para los Jóvenes de Tlajomulco de Zúñiga
+Instituto de Formación para el Trabajo del Estado de Jalisco
+Instituto de Información Estadística y Geográfica del Estado de Jalisco
+Instituto de Justicia Alternativa
+Instituto de la Infraestructura Física Educativa del Estado de Jalisco
+Instituto de la Juventud Jocotepec (extinto)
+Instituto de la Juventud San Gabriel
+Instituto de la Juventud Tonalá
+Instituto de la Juventud Yahualica de González Gallo
+Instituto de las Mujeres de Cuquío
+Instituto de Pensiones del Estado de Jalisco
+Instituto de Planeación y Gestión del Desarrollo del Área Metropolitana de Guadalajara
+Instituto de Transparencia, Información Pública y Protección de Datos Personales del Estado de Jalisco
+Instituto Electoral y de Participación Ciudadana del Estado de Jalisco
+Instituto Estatal para la Educación de Jóvenes y Adultos
+Instituto Jalisciense de Cancerología
+Instituto Jalisciense de Ciencias Forenses
+Instituto Jalisciense de las Mujeres (Información 2015 - abril 2019)
+Instituto Jalisciense de la Vivienda
+Instituto Municipal de la Juventud en San Pedro Tlaquepaque
+Instituto Municipal de la Juventud Mazamitla
+Instituto Municipal de la Mujer del Municipio de Autlán de Navarro
+Instituto Municipal de la Mujer de Zapotlan de Vadillo
+Instituto Municipal de la Mujer en Jocotepec (extinto)
+Instituto Municipal de la Mujer en San Diego de Alejandría
+Instituto Municipal de la Mujer en San Ignacio Cerro Gordo
+Instituto Municipal de la Mujer en San Julián
+Instituto Municipal de la Mujer en Tonalá
+Instituto Municipal de la Mujer en Zapotlán el Grande
+Instituto Municipal de la Mujer Tlajomulquense
+Instituto Municipal de la Mujer Yahualicense
+Instituto Municipal de las Mujeres de El Grullo
+Instituto Municipal de las Mujeres de Ixtlahuacán de los Membrillos
+Instituto Municipal de las Mujeres de Mazamitla
+Instituto Municipal de las Mujeres en Guadalajara
+Instituto Municipal de las Mujeres en Jilotlán de los Dolores
+Instituto Municipal de las Mujeres en Tenamaxtlán
+Instituto Municipal de las Mujeres y para la Igualdad Sustantiva en San Pedro Tlaquepaque
+Instituto Municipal de las Mujeres Zapopanas para la Igualdad Sustantiva
+Instituto Municipal de Planeación de Lagos de Moreno
+Instituto Tecalitlense de la Mujer
+Instituto Tecnológico José Mario Molina Pasquel y Henríquez
+Jefatura de Gabinete
+Junta Intermunicipal del Medio Ambiente para la Gestión Integral de la Cuenca Baja del Río Ayuquila
+Junta Intermunicipal del Medio Ambiente para la gestión integral de la cuenca del Rio Cuahuayano
+Junta Intermunicipal de Medio Ambiente Altos Sur (JIAS)
+Junta Intermunicipal de Medio Ambiente de la Costa Sur
+Junta Intermunicipal de Medio Ambiente del Ayuquila Alto
+Junta Intermunicipal de Medio Ambiente de Sierra Occidental y Costa (JISOC)
+Junta Intermunicipal de Medio Ambiente Lagunas
+Junta Intermunicipal de Medio Ambiente para la Gestión Integral de la Región Norte del Estado de Jalisco (JINOR)
+Junta Intermunicipal de Medio Ambiente para la Gestión Integral de la Región Valles (JIMAV)
+O.P.D. Comité de la Feria de Zapotlán el Grande
+O.P.D. Estacionómetros para la Asistencia Social de Zapotlán el Grande
+O.P.D. Servicios de Salud del Municipio de Zapopan
+O.P.D. Servicios de Salud Jalisco
+Organismo Municipal de Agua y Saneamiento de Tala
+Plataforma Abierta de Innovación y Desarrollo de Jalisco
+Policía Metropolitana de Guadalajara
+Procuraduría de Desarrollo Urbano
+Procuraduría Estatal de Protección al Ambiente
+Procuraduría Social (Información del 2015 al 2018)
+Programa Caracol
+Programa Escuelas de Calidad
+Programas de Tecnologías Educativas y de la Información
+Secretaría de Administración
+Secretaría de Cultura (Información del 2015 al 2018)
+Secretaría de Desarrollo Económico (Información del 2015 al 2018)
+Secretaría de Desarrollo e Integración Social (Información del 2015 al 2018)
+Secretaría de Desarrollo Rural (Información del 2015 al 2018)
+Secretaría de Educación (Información del 2015 al 2018)
+Secretaría de Igualdad Sustantiva entre Mujeres y Hombres
+Secretaría de Infraestructura y Obra Pública (Información del 2015 al 2018)
+Secretaría de Innovación, Ciencia y Tecnología (Información del 2015 al 2018)
+Secretaría de la Hacienda Pública
+Secretaría de Medio Ambiente y Desarrollo Territorial (Información del 2015 al 2018)
+Secretaría de Movilidad (Información del 2015 al 2018)
+Secretaría de Planeación, Administración y Finanzas (Información del 2015 al 2018)
+Secretaría de Planeación y Participación Ciudadana
+Secretaría de Salud (Información del 2015 al 2018)
+Secretaría de Trabajo y Previsión Social (Información del 2015 al 2018)
+Secretaría de Turismo (Información del 2015 al 2018)
+Secretaría Ejecutiva del Sistema Estatal Anticorrupción
+Secretaría General de Gobierno
+Servicio de Agua Potable, Alcantarillado y Saneamiento del Municipio de Magdalena
+Sistema Administrativo Municipal de Agua Potable y Alcantarillado de Ixtlahuacan de los Membrillos
+Sistema de Agua Potable, Alcantarillado y Saneamiento del Municipio de Arandas
+Sistema de Agua Potable, Alcantarillado y Saneamiento del Municipio de Atotonilco el Alto (SAPAMA)
+Sistema de Agua Potable, Alcantarillado y Saneamiento del Municipio de Chapala (SIMAPA)
+Sistema de Agua Potable, Alcantarillado y Saneamiento del Municipio de Colotlán
+Sistema de Agua Potable, Alcantarillado y Saneamiento del Municipio de Degollado (SIAPADEG)
+Sistema de Agua Potable, Alcantarillado y Saneamiento del Municipio de Jamay (SIMAPAS)
+Sistema de Agua Potable, Alcantarillado y Saneamiento del Municipio de La Barca
+Sistema de Agua Potable, Alcantarillado y Saneamiento del Municipio de la Huerta
+Sistema de Agua Potable, Alcantarillado y Saneamiento del Municipio de Mazamitla
+Sistema de Agua potable, Alcantarillado y Saneamiento del Municipio de San Ignacio Cerro Gordo
+Sistema de Agua Potable, Alcantarillado y Saneamiento del Municipio de San Julián (SAPAJ)
+Sistema de Agua Potable, Alcantarillado y Saneamiento del Municipio de San Miguel el Alto (SAPASMA)
+Sistema de Agua Potable, Alcantarillado y Saneamiento del Municipio de Talpa de Allende
+Sistema de Agua Potable, Alcantarillado y Saneamiento del Municipio de Tapalpa
+Sistema de Agua Potable, Alcantarillado y Saneamiento del Municipio de Tototlán
+Sistema de Agua Potable, Alcantarillado y Saneamiento del Municipio de Villa Hidalgo
+Sistema de Agua Potable, Alcantarillado y Saneamiento del Municipio de Zapotlán el Grande
+Sistema de Agua Potable, Drenaje y Alcantarillado de Puerto Vallarta, Jalisco
+Sistema de Agua Potable Alcantarillado y Saneamiento del Municipio de Ameca
+Sistema de Agua Potable y Alcantarillado Mascota
+Sistema del Agua de San Martín Hidalgo
+Sistema de Tren Eléctrico Urbano
+Sistema Estatal de Ahorro para el Retiro
+Sistema Intermunicipal de Manejo de Residuos (SIMAR SURESTE)
+Sistema Intermunicipal para los Servicios de Agua Potable y Alcantarillado (SIAPA)
+Sistema Jalisciense de Radio y Televisión
+Sistema para el Desarrollo Integral de la Familia DIF Jalisco
+Supremo Tribunal de Justicia del Estado de Jalisco
+Tribunal de Arbitraje y Escalafón del Estado de Jalisco
+Tribunal de Justicia Administrativa del Estado de Jalisco
+Tribunal Electoral del Estado de Jalisco
+Unidad de Enlace Federal y Asuntos Internacionales
+Unidad Estatal de Protección Civil y Bomberos
+Universidad de Guadalajara
+Universidad Politécnica de la Zona Metropolitana de Guadalajara
+Universidad Tecnológica de Jalisco
+Universidad Tecnológica de la Zona Metropolitana de Guadalajara
