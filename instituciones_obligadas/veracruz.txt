@@ -1,0 +1,314 @@
+Academia Regional de Seguridad Pública del Sureste
+Academia Veracruzana de las Lenguas Indígenas
+Agencia Estatal de Energía
+API Sistema Portuario Veracruzano
+Ayuntamiento de Acajete
+Ayuntamiento de Acatlán
+Ayuntamiento de Acayucan
+Ayuntamiento de Actopan
+Ayuntamiento de Acula
+Ayuntamiento de Acultzingo
+Ayuntamiento de Agua Dulce
+Ayuntamiento de Álamo Temapache
+Ayuntamiento de Alpatláhuac
+Ayuntamiento de Alto Lucero de Gutiérrez Barrios
+Ayuntamiento de Altotonga
+Ayuntamiento de Alvarado
+Ayuntamiento de Amatitlán
+Ayuntamiento de Amatlán de Los Reyes
+Ayuntamiento de Ángel R. Cabada
+Ayuntamiento de Apazapan
+Ayuntamiento de Aquila
+Ayuntamiento de Astacinga
+Ayuntamiento de Atlahuilco
+Ayuntamiento de Atoyac
+Ayuntamiento de Atzacan
+Ayuntamiento de Atzalan
+Ayuntamiento de Ayahualulco
+Ayuntamiento de Banderilla
+Ayuntamiento de Benito Juárez
+Ayuntamiento de Boca del Río
+Ayuntamiento de Calcahualco
+Ayuntamiento de Camarón de Tejeda
+Ayuntamiento de Camerino Z. Mendoza
+Ayuntamiento de Carlos A. Carrillo
+Ayuntamiento de Carrillo Puerto
+Ayuntamiento de Castillo de Teayo
+Ayuntamiento de Catemaco
+Ayuntamiento de Cazones de Herrera
+Ayuntamiento de Cerro Azul
+Ayuntamiento de Chacaltianguis
+Ayuntamiento de Chalma
+Ayuntamiento de Chiconamel
+Ayuntamiento de Chiconquiaco
+Ayuntamiento de Chicontepec
+Ayuntamiento de Chinameca
+Ayuntamiento de Chinampa de Gorostiza
+Ayuntamiento de Chocamán
+Ayuntamiento de Chontla
+Ayuntamiento de Chumatlán
+Ayuntamiento de Citlaltépetl
+Ayuntamiento de Coacoatzintla
+Ayuntamiento de Coahuitlán
+Ayuntamiento de Coatepec
+Ayuntamiento de Coatzacoalcos
+Ayuntamiento de Coatzintla
+Ayuntamiento de Coetzala
+Ayuntamiento de Colipa
+Ayuntamiento de Comapa
+Ayuntamiento de Córdoba
+Ayuntamiento de Cosamaloapan
+Ayuntamiento de Cosautlán de Carvajal
+Ayuntamiento de Coscomatepec
+Ayuntamiento de Cosoleacaque
+Ayuntamiento de Cotaxtla
+Ayuntamiento de Coxquihui
+Ayuntamiento de Coyutla
+Ayuntamiento de Cuichapa
+Ayuntamiento de Cuitláhuac
+Ayuntamiento de El Higo
+Ayuntamiento de Emiliano Zapata
+Ayuntamiento de Espinal
+Ayuntamiento de Filomeno Mata
+Ayuntamiento de Fortín
+Ayuntamiento de Gutiérrez Zamora
+Ayuntamiento de Hidalgotitlán
+Ayuntamiento de Huatusco
+Ayuntamiento de Huayacocotla
+Ayuntamiento de Hueyapan de Ocampo
+Ayuntamiento de Huiloapan de Cuauhtémoc
+Ayuntamiento de Ignacio de la Llave
+Ayuntamiento de Ilamatlán
+Ayuntamiento de Isla
+Ayuntamiento de Ixcatepec
+Ayuntamiento de Ixhuacán de Los Reyes
+Ayuntamiento de Ixhuatlancillo
+Ayuntamiento de Ixhuatlán del Café
+Ayuntamiento de Ixhuatlán del Sureste
+Ayuntamiento de Ixhuatlán de Madero
+Ayuntamiento de Ixmatlahuacan
+Ayuntamiento de Ixtaczoquitlán
+Ayuntamiento de Jalacingo
+Ayuntamiento de Jalcomulco
+Ayuntamiento de Jáltipan
+Ayuntamiento de Jamapa
+Ayuntamiento de Jesús de Carranza
+Ayuntamiento de Jilotepec
+Ayuntamiento de José Azueta
+Ayuntamiento de Juan Rodríguez Clara
+Ayuntamiento de Juchique de Ferrer
+Ayuntamiento de La Antigua
+Ayuntamiento de Landero y Coss
+Ayuntamiento de La Perla
+Ayuntamiento de Las Choapas
+Ayuntamiento de Las Minas
+Ayuntamiento de Las Vigas de Ramírez
+Ayuntamiento de Lerdo de Tejada
+Ayuntamiento de Los Reyes
+Ayuntamiento de Magdalena
+Ayuntamiento de Maltrata
+Ayuntamiento de Manlio Fabio Altamirano
+Ayuntamiento de Mariano Escobedo
+Ayuntamiento de Martínez de la Torre
+Ayuntamiento de Mecatlán
+Ayuntamiento de Mecayapan
+Ayuntamiento de Medellín de Bravo
+Ayuntamiento de Miahuatlán
+Ayuntamiento de Minatitlán
+Ayuntamiento de Misantla
+Ayuntamiento de Mixtla de Altamirano
+Ayuntamiento de Moloacán
+Ayuntamiento de Nanchital de Lázaro Cárdenas del Río
+Ayuntamiento de Naolinco
+Ayuntamiento de Naranjal
+Ayuntamiento de Naranjos Amatlán
+Ayuntamiento de Nautla
+Ayuntamiento de Nogales
+Ayuntamiento de Oluta
+Ayuntamiento de Omealca
+Ayuntamiento de Orizaba
+Ayuntamiento de Otatitlán
+Ayuntamiento de Oteapan
+Ayuntamiento de Ozuluama
+Ayuntamiento de Pajapan
+Ayuntamiento de Pánuco
+Ayuntamiento de Papantla
+Ayuntamiento de Paso del Macho
+Ayuntamiento de Paso de Ovejas
+Ayuntamiento de Perote
+Ayuntamiento de Platón Sánchez
+Ayuntamiento de Playa Vicente
+Ayuntamiento de Poza Rica de Hidalgo
+Ayuntamiento de Pueblo Viejo
+Ayuntamiento de Puente Nacional
+Ayuntamiento de Rafael Delgado
+Ayuntamiento de Rafael Lucio
+Ayuntamiento de Río Blanco
+Ayuntamiento de Saltabarranca
+Ayuntamiento de San Andrés Tenejapan
+Ayuntamiento de San Andrés Tuxtla
+Ayuntamiento de San Juan Evangelista
+Ayuntamiento de San Rafael
+Ayuntamiento de Santiago Sochiapan
+Ayuntamiento de Santiago Tuxtla
+Ayuntamiento de Sayula de Alemán
+Ayuntamiento de Sochiapa
+Ayuntamiento de Soconusco
+Ayuntamiento de Soledad Atzompa
+Ayuntamiento de Soledad de Doblado
+Ayuntamiento de Soteapan
+Ayuntamiento de Tamalín
+Ayuntamiento de Tamiahua
+Ayuntamiento de Tampico Alto
+Ayuntamiento de Tancoco
+Ayuntamiento de Tantima
+Ayuntamiento de Tantoyuca
+Ayuntamiento de Tatahuicapan de Juárez
+Ayuntamiento de Tatatila
+Ayuntamiento de Tecolutla
+Ayuntamiento de Tehuipango
+Ayuntamiento de Tempoal
+Ayuntamiento de Tenampa
+Ayuntamiento de Tenochtitlán
+Ayuntamiento de Teocelo
+Ayuntamiento de Tepatlaxco
+Ayuntamiento de Tepetlán
+Ayuntamiento de Tepetzintla
+Ayuntamiento de Tequila
+Ayuntamiento de Texcatepec
+Ayuntamiento de Texhuacan
+Ayuntamiento de Texistepec
+Ayuntamiento de Tezonapa
+Ayuntamiento de Tierra Blanca
+Ayuntamiento de Tihuatlán
+Ayuntamiento de Tlachichilco
+Ayuntamiento de Tlacojalpan
+Ayuntamiento de Tlacolulan
+Ayuntamiento de Tlacotalpan
+Ayuntamiento de Tlacotepec de Mejía
+Ayuntamiento de Tlalixcoyan
+Ayuntamiento de Tlalnelhuayocan
+Ayuntamiento de Tlaltetela
+Ayuntamiento de Tlapacoyan
+Ayuntamiento de Tlaquilpa
+Ayuntamiento de Tlilápan
+Ayuntamiento de Tomatlán
+Ayuntamiento de Tonayán
+Ayuntamiento de Totutla
+Ayuntamiento de Tres Valles
+Ayuntamiento de Tuxpan
+Ayuntamiento de Tuxtilla
+Ayuntamiento de Úrsulo Galván
+Ayuntamiento de Uxpanapa
+Ayuntamiento de Vega de Alatorre
+Ayuntamiento de Veracruz
+Ayuntamiento de Villa Aldama
+Ayuntamiento de Xalapa
+Ayuntamiento de Xico
+Ayuntamiento de Xoxocotla
+Ayuntamiento de Yanga
+Ayuntamiento de Yecuatla
+Ayuntamiento de Zacualpan
+Ayuntamiento de Zaragoza
+Ayuntamiento de Zentla
+Ayuntamiento de Zongolica
+Ayuntamiento de Zontecomatlán
+Ayuntamiento de Zozocolco de Hidalgo
+Centro de Justicia Para Las Mujeres del Estado de Veracruz
+Colegio de Bachilleres del Estado de Veracruz
+Colegio de Educación Profesional Técnica del Estado de Veracruz
+Colegio de Estudios Científicos y Tecnológicos del Estado de Veracruz
+Comisión de Agua y Saneamiento de Fortín
+Comisión de Arbitraje Médico del Estado de Veracruz
+Comisión del Agua del Estado de Veracruz
+Comisión de Vigilancia y Liquidadora del Sindicato de Obreros y Artesanos Progresistas "Rafael Moreno" de la Fábrica San Lorenzo
+Comisión Ejecutiva Estatal para la Atención Integral a Víctimas
+Comisión Estatal de Derechos Humanos
+Comisión Estatal para la Atención y Protección de los Periodistas
+Comisión Municipal de Agua Potable Drenaje y Alcantarillado de Banderilla
+Comisión Municipal de Agua Potable y Saneamiento de Coatepec
+Comisión Municipal de Agua Potable y Saneamiento de Emiliano Zapata
+Comisión Municipal de Agua Potable y Saneamiento de Huatusco
+Comisión Municipal de Agua Potable y Saneamiento de Jamapa
+Comisión Municipal de Agua Potable y Saneamiento de La Antigua
+Comisión Municipal de Agua Potable y Saneamiento de Naolinco
+Comisión Municipal de Agua Potable y Saneamiento de San Andrés Tuxtla
+Comisión Municipal de Agua Potable y Saneamiento de San Juan Evangelista (Villa Juanita)
+Comisión Municipal de Agua Potable y Saneamiento de Úrsulo Galván
+Comisión Municipal de Agua Potable y Saneamiento de Xalapa
+Comisión Municipal de Agua y Saneamiento de Coscomatepec
+Comisión Municipal de Agua y Saneamiento de Lerdo de Tejada
+Consejo Veracruzano de Investigación Científica y Desarrollo Tecnológico
+Contraloría General del Estado
+Coordinación General de Comunicación Social
+El Colegio de Veracruz
+Expresión Ciudadana de Veracruz
+Fiscalía General del Estado de Veracruz
+Hidrosistema de Córdoba
+Instituto Consorcio Clavijero
+Instituto de Capacitación para el Trabajo del Estado de Veracruz
+Instituto de Espacios Educativos del Estado de Veracruz
+Instituto de la Policía Auxiliar y Protección Patrimonial para el Estado de Veracruz
+Instituto de Pensiones del Estado de Veracruz
+Instituto Metropolitano del Agua
+Instituto Tecnológico Superior de Acayucan
+Instituto Tecnológico Superior de Álamo Temapache
+Instituto Tecnológico Superior de Alvarado
+Instituto Tecnológico Superior de Chicontepec
+Instituto Tecnológico Superior de Coatzacoalcos
+Instituto Tecnológico Superior de Cosamaloapan
+Instituto Tecnológico Superior de Huatusco
+Instituto Tecnológico Superior de Jesús Carranza
+Instituto Tecnológico Superior de Juan Rodríguez Clara
+Instituto Tecnológico Superior de Las Choapas
+Instituto Tecnológico Superior de Martínez de la Torre
+Instituto Tecnológico Superior de Misantla
+Instituto Tecnológico Superior de Naranjos
+Instituto Tecnológico Superior de Pánuco
+Instituto Tecnológico Superior de Perote
+Instituto Tecnológico Superior de Poza Rica
+Instituto Tecnológico Superior de San Andrés Tuxtla
+Instituto Tecnológico Superior de Tantoyuca
+Instituto Tecnológico Superior de Tierra Blanca
+Instituto Tecnológico Superior de Xalapa
+Instituto Tecnológico Superior de Zongolica
+Instituto Veracruzano de Acceso a la Información y Protección de Datos Personales
+Instituto Veracruzano de Desarrollo Municipal
+Instituto Veracruzano de Educación para los Adultos
+Instituto Veracruzano de la Cultura
+Instituto Veracruzano de las Mujeres
+Instituto Veracruzano de la Vivienda
+Instituto Veracruzano del Deporte
+Oficina del Gobernador del Estado de Veracruz de Ignacio de la Llave
+Oficina de Programa de Gobierno
+Organismo Operador de Agua Potable y Alcantarillado Tierra Blanca
+Organismo Público Local Electoral del Estado de Veracruz
+Órgano de Fiscalización Superior del Estado de Veracruz
+Poder Judicial del Estado de Veracruz
+Poder Legislativo del Estado de Veracruz
+Procuraduría Estatal de Protección al Medio Ambiente
+Radio Televisión de Veracruz
+Régimen Veracruzano de Protección Social en Salud
+Secretaría de Desarrollo Agropecuario, Rural y Pesca
+Secretaría de Desarrollo Económico y Portuario
+Secretaría de Desarrollo Social
+Secretaría de Educación
+Secretaría de Finanzas y Planeación
+Secretaría de Gobierno
+Secretaría de Infraestructura y Obras Públicas
+Secretaría de Medio Ambiente
+Secretaría de Protección Civil
+Secretaría de Salud
+Secretaría de Seguridad Pública
+Secretaría de Trabajo, Previsión Social y Productividad
+Secretaría de Turismo y Cultura
+Secretaría Ejecutiva del Sistema Estatal Anticorrupción de Veracruz
+Sistema para el Desarrollo Integral de la Familia
+Tribunal Electoral del Estado de Veracruz
+Tribunal Estatal de Justicia Administrativa de Veracruz
+Universidad Politécnica de Huatusco
+Universidad Popular Autónoma de Veracruz
+Universidad Tecnológica de Gutiérrez Zamora
+Universidad Tecnológica del Centro de Veracruz
+Universidad Tecnológica del Sureste de Veracruz
+Universidad Veracruzana
