@@ -6,10 +6,10 @@ import sys
 
 usage = """
 Usage:
-  join_excel_and_csv_files.py --input_dir=str --output_file=str
+  join_excel_and_csv_files.py --input_dir=str --output_file=str --type=str
 
 Example:
-  python scripts/join_excel_and_csv_files.py --input_dir=/Users/me/Documents/github/sipot/data/adjudicaciones/2020/ --output_file=/Users/me/Downloads/sipot-federal-adjudicaciones2020.csv --type=licitaciones
+  python scripts/join_excel_and_csv_files.py --input_dir=/Users/me/Documents/sipot/data/federal/adjudicaciones/ --output_file=/Users/me/Downloads/sipot-federal-adjudicaciones2020-2021.csv --type=adjudicaciones
 
 
 Input options (required):

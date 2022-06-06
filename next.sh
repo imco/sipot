@@ -59,6 +59,13 @@ comm -23 file.only no-obligados.txt > file.obliged
 # Filtra las que no tuvieron resultados
 comm -23 file.obliged file.noresults > file.toget
 
+# Enumera las que siguen por trabajar
+cp file.toget pendientes.txt
+echo "\n----------------"
+echo "Organizaciones a scrapear de nuevo: $(wc -l < pendientes.txt)"
+echo "----------------"
+echo "$(cut -f1 pendientes.txt)"
+
 # Algunas organizaciones se tienen que pedir por correo
 grep -B7 -R "Execution context was destroyed" $DIR/*log | grep Objetivo | cut -d ' ' -f 2- > file.email
 grep -B7 -R "descarga excede" $DIR/*log | grep Objetivo | cut -d ' ' -f 2- >> file.email
@@ -70,13 +77,6 @@ echo "\n----------------"
 echo "De los logs, organizaciones que requieren email: $(wc -l < file.email)"
 echo "----------------"
 sort file.email | uniq | tee file.email
-
-# Finalmente, enumera las que siguen por trabajar
-cp file.toget pendientes.txt
-echo "\n----------------"
-echo "Organizaciones a scrapear de nuevo: $(wc -l < pendientes.txt)"
-echo "----------------"
-echo "$(cut -f1 pendientes.txt)"
 
 # Elimina archivos temporales, deja descargas, no obligados, y pendientes
 rm file.* no-obligados.txt
