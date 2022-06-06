@@ -1,10 +1,18 @@
-const puppeteer = require('puppeteer')
+// puppeteer-extra is a drop-in replacement for puppeteer,
+// it augments the installed puppeteer with plugin functionality
+const puppeteer = require('puppeteer-extra')
+
+// add stealth plugin and use defaults (all evasion techniques)
+const StealthPlugin = require('puppeteer-extra-plugin-stealth')
+puppeteer.use(StealthPlugin())
+
 const fs = require('fs')
 const { promisify } = require('util')
 const exists = promisify(fs.stat)
 const path = require('path')
+const { Console } = require('console')
 
-let didRedirect = false
+let didReload = false
 const downloadsInProgress = []
 const fromTargetUrl = res => res.url().endsWith('consultaPublica.xhtml')
 const hasDisplay = 'contains(@style, "display: block")'
@@ -48,7 +56,7 @@ async function backTo (page, nextLocation) {
   }
 }
 
-async function takeTo (page, nextLocation, params) {
+async function takeTo (page, nextLocation, stateCode, params) {
   const { organizationName, organizationIndex, year } = params
 
   const url = page.url()
@@ -71,7 +79,7 @@ async function takeTo (page, nextLocation, params) {
     console.log(`navegando a #${step}`)
     switch (step) {
       case 'sujetosObligados':
-        await navigateToOrganizations(page)
+        await navigateToOrganizations(page, stateCode)
         break
       case 'obligaciones':
         await navigateToObligations(page, organizationName, organizationIndex)
@@ -90,20 +98,53 @@ async function takeTo (page, nextLocation, params) {
  * @param {Number} organizationIndex o se puede usar índice (42)
  * @param {Number} year
  */
-async function getContract (page, organizationName = null, organizationIndex = 0, year = 2018, type) {
+async function getContract (page, organizationName = null, organizationIndex = 0, year = 2021, type) {
+  let selection
+  if (type === 1) {
+      selection = "Procedimientos de adjudicación directa"
+  } else {
+      selection = "Procedimientos de licitación pública e invitación a cuando menos tres personas"
+  }
   // Espera a que carge la página de documentos
   await page.waitForXPath('//div[@id="formListaFormatos:listaSelectorFormatos"]')
-
-  if (type === 1) {
-    const typeCheckbox = await page.$x('//label[contains(@class, "containerCheck")]')
-    await typeCheckbox[1].click()
-    await page.waitForSelector('div.capaBloqueaPantalla', { hidden: true })
+  const typeCheckbox = await page.$x('//label[contains(@class, "containerCheck")]')
+  if (typeCheckbox.length) {
+      let found = false
+      for (let option of typeCheckbox) {
+          let text = await page.evaluate(el => el.innerText, option);
+          if (text == selection) {
+            await option.click()
+            found = true
+            break
+          } 
+      }
+      if (found === false) {
+          const msg = `Opción '${selection}' no encontrada para ${organizationName}; brincando...`
+          console.log(msg)
+          throw new Error(msg)
+      }
+  } else {  
+      // Algunas instituciones no tienen este selector, porque solamente están disponibles descargas para Procedimientos de adjudicación directa
+      if (!type) {
+        const msg = `No se encontraron contratos del tipo '${selection}' para ${organizationName}; brincando...`
+        console.log(msg)
+        throw new Error(msg)
+      }
   }
 
+  await page.waitForSelector('div.capaBloqueaPantalla', { hidden: true })
+
   // Selecciona todos en Periodo de actualización
-  const checkboxPath = '//input[@id="formInformacionNormativa:checkPeriodos:4"]'
-  const checkbox = await page.$x(checkboxPath)
-  await checkbox[0].click()
+  const periodsCheckboxes = await page.$x('//label[contains(@for, "formInformacionNormativa:checkPeriodos")]')
+  let foundPeriods = false
+  for (let option of periodsCheckboxes) {
+      let text = await page.evaluate(el => el.innerText, option);
+      if (text == "Seleccionar todos") {
+        await option.click()
+        foundPeriods = true
+        break
+      } 
+  }
   console.log('Seleccionamos todos los periodos de actualización')
 
   // Consultar
@@ -117,7 +158,7 @@ async function getContract (page, organizationName = null, organizationIndex = 0
 
   // Espera a que el bloqueo de pantalla de la consulta se quite
   await page.waitForSelector('div.capaBloqueaPantalla', { hidden: true })
-  await page.waitFor(1000)
+  await page.waitForTimeout(1000)
 
   // Si no hay resultados nos brincamos la organización
   const downloadCounter = await page.$x('//span[contains(text(), "Se encontraron")]/..')
@@ -137,7 +178,7 @@ async function getContract (page, organizationName = null, organizationIndex = 0
   try {
     await downloadLabel.click()
   } catch (e) {
-    throw new Error('No se encontro el boton de descarga en el modal')
+    throw new Error('No se encontró el botón de descarga en el modal')
   }
 
   // Para hacer click en el dropdown menu en cada iteración
@@ -176,37 +217,43 @@ async function getContract (page, organizationName = null, organizationIndex = 0
     }, { timeout: 90000 })
 
     if (!downloadRequest.ok()) {
-      console.log('No contesto el servidor con éxito')
+      console.log('No contestó el servidor con éxito')
       return false
-    }
+    };
 
-    if (didRedirect) {
+    if (didReload === true) {
       // Algunas organizaciones no se pueden descargar, más que por email
-      // entonces el sistema redirige al inicio y muestra un modal
+      // entonces la página reinicia y muestra un modal
+
       const sizePopup = await page.waitForXPath(`//div[@id="modalAvisoError" and ${hasDisplay}]`)
       if (sizePopup) {
         const errorDiv = await page.$x(`//div[@id="modalAvisoError"]`)
         const errorMsg = await errorDiv[0].evaluate(node => node.innerText)
         console.log(errorMsg.trim().split('.')[0])
       }
+      const continuar = await page.waitForSelector('#modalCSV > div > div > div > div:nth-child(2) > div > button')
+      await continuar.evaluate(b => b.click())
 
-      const redirectMsg = 'Sitio redirige al inicio'
-      console.log(redirectMsg)
-      throw new Error(redirectMsg)
-      return false
+      const cerrar = await page.waitForSelector('#modalAvisoError > div > div > div > div:nth-child(2) > div > button')
+      await cerrar.evaluate(b => b.click())
+
+      // Resetear la variable
+      didReload = false
+
+      return true
     }
 
-    await page.waitFor(1000)
+    await page.waitForTimeout(1000)
     await Promise.all(downloadsInProgress)
   }
 
   // Wait again for any remaining download to get to the queue (esp. the last one)
-  await page.waitFor(1000)
+  await page.waitForTimeout(1000)
   await Promise.all(downloadsInProgress)
 
   // Quita la ventana modal
   const modal = await page.waitForSelector('#modalRangos')
-  await modal.click()
+  await modal.evaluate(b => b.click())
   await page.waitForSelector('div.capaBloqueaPantalla', { hidden: true })
 
   return true
@@ -217,24 +264,26 @@ async function getContract (page, organizationName = null, organizationIndex = 0
  * Agrega también una {Promise} de descarga (ver toDownload) a la
  * lista global de descargas pendientes.
  * @params {Response) res
+ * @params {string} dest_dir
  * @return {string|null} filename
  */
-function responseHandler (res) {
+function responseHandler (res, dest_dir) {
   if (fromTargetUrl(res)) {
     const headers = res.headers()
     // Si es un excel, registramos el nombre y monitoreamos la descarga
     if (headers['content-type'] === 'application/vnd.ms-excel') {
+      didReload = false
       // Si pedimos un excel, checar el nombre
       const match = headers['content-disposition'].match(/filename\="(.*)"/) || []
       const filename = match[1]
       console.log('Descargando', filename)
 
       // Marcamos la descarga como pendiente
-      downloadsInProgress.push(toDownload(filename))
+      downloadsInProgress.push(toDownload(filename, dest_dir))
 
       return filename
-    } else if ((headers['set-cookie'] || '').endsWith('path=/')) {
-      didRedirect = true
+    } else if (((headers['cache-control'] || '') != 'no-cache') && ((headers['content-length'] || '0') === '0') && ((headers['set-cookie'] || '').endsWith('path=/'))) {
+      didReload = true
     }
   }
 
@@ -250,11 +299,12 @@ function responseHandler (res) {
 async function getPage (browser, opts) {
   const page = await browser.newPage()
   const timeout = opts.timeout || 60000
+  const dest_dir = opts.downloads_dir
 
   // Descarga archivos en la carpeta local
   await page._client.send('Page.setDownloadBehavior', {
     behavior: 'allow',
-    downloadPath: process.cwd()
+    downloadPath: dest_dir
   })
 
   await page.setRequestInterception(true)
@@ -267,10 +317,10 @@ async function getPage (browser, opts) {
     }
   })
 
-  await page.setViewport({ width: 1280, height: 800 })
+  await page.setViewport({ width: 1200, height: 1000 })
   page.setDefaultTimeout(timeout)
 
-  page.on('response', responseHandler)
+  page.on('response', (response) => responseHandler(response, dest_dir))
 
   return page
 }
@@ -278,13 +328,13 @@ async function getPage (browser, opts) {
 /**
  * Getting from #inicio to #sujetosObligados
  */
-async function navigateToOrganizations (page) {
+async function navigateToOrganizations (page, stateCode) {
   // Click en el filtro "Estado o Federación"
-  const filter = await page.waitForSelector('#filaSelectEF > .col-md-4 > .btn-group > .btn > .filter-option')
+  const filter = await page.waitForSelector('#filaSelectEF > div.col-md-4 > div > button > span.filter-option.pull-left')
   await filter.click()
 
-  // Selecciona el segundo elemento del dropdown: "Federación"
-  const fed = await page.waitForSelector('.btn-group > .dropdown-menu > .dropdown-menu > li:nth-child(2) > a')
+  // Selecciona el estado dropdown (Default: segundo elemento del dropdown: "Federación")
+  const fed = await page.waitForSelector(`#filaSelectEF > div.col-md-4 > div > div > ul > li:nth-child(${stateCode + 1}) > a`)
   await fed.click()
 }
 
@@ -294,19 +344,25 @@ async function navigateToOrganizations (page) {
  * @param {string} orgId
  */
 async function selectNextOrganization (page, orgId) {
+  let msg
   const dropdownButton = await page.$x('//button[@data-id="formEntidadFederativa:cboSujetoObligado"]')
   if (dropdownButton.length) {
     await dropdownButton[0].click()
-    const dropdownOrg = await page.waitForXPath(`//a/span[contains(text(), '${orgId}')]`)
-    if (!dropdownOrg) {
-      console.log('Organización no encontrada en dropdown', orgId)
+    const dropdownOrg = await page.$x(`//a/span[normalize-space(text())='${orgId}']`)
+    if (!dropdownOrg.length) {
+      msg = `No encontramos la institución '${orgId}' en el dropdown; brincando...`
+      console.log(msg)
+      throw new Error(msg)
+    } else if (dropdownOrg.length == 1) {
+      await dropdownOrg[0].click()
     } else {
-      console.log('Seleccionando del dropdown a', orgId)
-      await dropdownOrg.click()
-      await page.waitForSelector('div.capaBloqueaPantalla', { hidden: true })
+      await dropdownOrg[1].click()
     }
+    await page.waitForSelector('div.capaBloqueaPantalla', { hidden: true })
   } else {
-    console.log('No encontramos el dropdown de organizaciones')
+    msg = 'No encontramos el dropdown de organizaciones'
+    console.log(msg)
+    throw new Error(msg)
   }
 }
 
@@ -314,42 +370,31 @@ async function selectNextOrganization (page, orgId) {
  * Getting from #sujetosObligados to #obligaciones
  */
 async function navigateToObligations (page, organizationName = null, organizationIndex = 0) {
-  // La página se divide en menús [.botonActiva] colapsables por letra del abecedario
-  await page.waitForSelector('.botonActiva')
 
-  if (!organizationName) {
-    // Buscamos la organización que le corresponde tal índice
-    const orgElements = await page.$x('//input[starts-with(@id, "formListaSujetosAZ")]')
-    const targetOrganization = orgElements[organizationIndex]
-    organizationName = await targetOrganization.evaluate(node => node.value)
-  }
+  // Seleccionamos la institución desde el dropdown
+  const institutionDropdown = await page.waitForSelector('#tooltipInst > div > button')
+  await institutionDropdown.click()
 
   console.log('Objetivo:', organizationName)
 
-  // Filtramos la lista para que aparezca nuestra opción,
-  // pero primero limpiamos el campo
-  const orgFilter = await page.waitForSelector('input.form-control.intitucionResp')
-  await page.evaluate(() => {
-    $('input.form-control.intitucionResp')[0].value = ''
-  })
-  await orgFilter.type(organizationName)
-
   // Hacemos click en la organización de interés
-  const orgInput = await page.waitForXPath(`//input[@value='${organizationName}']`)
-  orgInput.click()
+  const dropdownOrg = await page.$x(`//a/span[normalize-space(text())='${organizationName}']`)
+  if (!dropdownOrg.length) {
+    const msg = `No encontramos la institución '${organizationName}' en el dropdown`
+    console.log(msg)
+    throw new Error(msg)
+  } else if (dropdownOrg.length == 1) {
+    await dropdownOrg[0].click()
+  } else {
+    await dropdownOrg[1].click()
+  }
 }
 
 /**
  * Getting from #obligaciones to #tarjetaInformativa
  */
-async function navigateToInformationCard (page, year = 2018) {
+async function navigateToInformationCard (page, year = 2021) {
   await page.waitForXPath('//form[@id="formListaObligaciones"]')
-
-  // Selecciona el año del dropdown
-  const period = await page.waitForXPath('//select[@id="formEntidadFederativa:cboEjercicio"]')
-  await period.select(String(year))
-
-  console.log('Seleccionamos el año', year)
 
   // Espera a que el bloqueo de pantalla de la consulta se quite
   await page.waitForSelector('div.capaBloqueaPantalla', { hidden: true })
@@ -378,6 +423,19 @@ async function navigateToInformationCard (page, year = 2018) {
     throw new Error(msg)
   } else {
     await contractsLabel[0].click()
+
+    // Selecciona el año del dropdown
+    const period = await page.waitForXPath('//select[@id="formEntidadFederativa:cboEjercicio"]')
+    const selection = await (await period.getProperty("value")).jsonValue();
+    if (selection != year) {
+        await period.select(String(year))
+        console.log('Seleccionamos el año', year)
+
+        // Hacer clic en "CONTRATOS DE OBRAS, BIENES, Y SERVICIOS" de nuevo
+        await page.waitForXPath('//div[@class="tituloObligacion"]')
+        contractsLabel = await page.$x('//label[contains(text(), "CONTRATOS DE OBRAS, BIENES Y SERVICIOS")]')
+        await contractsLabel[0].click()
+    } 
   }
 }
 
@@ -385,8 +443,27 @@ async function startBrowser (params) {
   let options = params || {}
   if (options.development) {
     options = {
+    //   devtools: true,
       headless: false,
-      slowMo: 50
+      ignoreHTTPSErrors: true,
+      slowMo: 250,
+      args: [
+        "--no-sandbox",
+        "--no-zygote",
+        "--single-process",
+        "--window-position=000,000"
+      ]
+    }
+  } else {
+    options = {
+      ignoreHTTPSErrors: true,
+      slowMo: 250,
+      args: [
+        "--no-sandbox",
+        "--no-zygote",
+        "--single-process",
+        "--window-position=000,000"
+      ]
     }
   }
 
@@ -394,11 +471,11 @@ async function startBrowser (params) {
   return browser
 }
 
-function toDownload (filename, timeoutSeconds = 60, intervalSeconds = 1) {
+function toDownload (filename, dest_dir, timeoutSeconds = 60, intervalSeconds = 1) {
   return new Promise((resolve, reject) => {
     let interval
     let timeout
-    const filepath = path.join(process.cwd(), filename)
+    const filepath = path.join(dest_dir, filename)
 
     timeout = setTimeout(() => {
       clearInterval(interval)

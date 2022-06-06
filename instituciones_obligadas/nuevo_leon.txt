@@ -1,0 +1,153 @@
+Abasolo
+Agencia para la Racionalización y Modernización del Sistema de Transporte Público de Nuevo León (OPD)
+Agualeguas
+Allende
+Anáhuac
+Apodaca
+Aramberri
+Auditoria Superior del Estado de Nuevo León
+Bustamante
+Cadereyta Jiménez
+Cerralvo
+China
+Ciénega de Flores
+Colegio de Bachilleres Militarizado General Mariano Escobedo
+Colegio de Educación Profesional Técnica de Nuevo León (CONALEP) (OPD)
+Colegio de Estudios Científicos y Tecnológicos del Estado de Nuevo León (CECyTENL) (OPD)
+Comisión de Transparencia y Acceso a la Información del Estado de Nuevo León
+Comisión Estatal de Derechos Humanos
+Comisión Estatal Electoral
+Congreso del Estado de Nuevo León
+Consejo de la Judicatura (Poder Judicial)
+Consejo Estatal de Transporte y Vialidad (OPD)
+Consejo para la Cultura y las Artes de Nuevo León (OPD)
+Contraloría y Transparencia Gubernamental (DGC)
+Coordinación de Relaciones Públicas Institucionales
+Coordinación Ejecutiva de la Administración Pública del Estado de Nuevo León (DGC)
+Corporación para el Desarrollo Agropecuario de Nuevo León (OPDPC)
+Corporación para el Desarrollo de la Zona Fronteriza de Nuevo León (OPDPC)
+Corporación para el Desarrollo Turístico de Nuevo León (OPDPC)
+Doctor Arroyo
+Doctor Coss
+Doctor González
+El Carmen
+Fiscalía General de Justicia del Estado de Nuevo León
+Fomento Metropolitano de Monterrey (FOMERREY)
+Galeana
+García
+General Bravo
+General Escobedo
+General Terán
+General Treviño
+General Zaragoza
+General Zuazua
+Guadalupe
+Hidalgo
+Higueras
+Hualahuises
+Instituto Constructor de infraestructura Física, Educativa y Deportiva de Nuevo León (ICIFED) (OPD)
+Instituto de Capacitación y Educación para el Trabajo del Estado de Nuevo León, A.C. (OPD)
+Instituto de Control Vehicular del Estado de Nuevo León (OPD)
+Instituto de Defensoría Pública de Nuevo León (OPD)
+Instituto de innovación y Transferencia de Tecnología de Nuevo León (OPDPC)
+Instituto de Investigación, Innovación y Estudios de Posgrado para la Educación del Estado de Nuevo León (OPDPC)
+Instituto del Agua del Estado de Nuevo León (OPD)
+Instituto de la Juventud Regia de la Ciudad de Monterrey, Nuevo León
+Instituto de la Vivienda de Nuevo León (OPDPC)
+Instituto de Movilidad y Accesibilidad de Nuevo León
+Instituto de Planeación y Desarrollo Municipal de San Nicolás de los Garza
+Instituto de Seguridad y Servicios Sociales de los Trabajadores del Estado de Nuevo León (ISSSTELEON) (OPD)
+Instituto Estatal de Cultura Física y Deporte (OPDPC)
+Instituto Estatal de la Juventud (OPDPC)
+Instituto Estatal de las Mujeres (OPDPC)
+Instituto Estatal de las Personas Adultas Mayores
+Instituto Estatal de Seguridad Pública (OPD)
+Instituto Municipal de Desarrollo Policial de Guadalupe, Nuevo León
+Instituto Municipal de la Familia de San Pedro Garza García, Nuevo León
+Instituto Municipal de la Juventud de Apodaca, Nuevo León
+Instituto Municipal de la Juventud de Guadalupe, Nuevo León
+Instituto Municipal de la Juventud de San Pedro Garza García, Nuevo León
+Instituto Municipal de la Mujer de Guadalupe, Nuevo León
+Instituto Municipal de la Mujer del municipio de Apodaca, Nuevo León
+Instituto Municipal del Deporte de Guadalupe, Nuevo León
+Instituto Municipal de Mujeres Regias (Monterrey, Nuevo León)
+Instituto Municipal de Planeación Integral de Guadalupe, Nuevo León
+Instituto Municipal de Planeación Urbana y Convivencia de Monterrey, Nuevo León
+Instituto Municipal para el Desarrollo Cultural de San Nicolás de los Garza, Nuevo León
+Instituto Registral y Catastral del Estado de Nuevo León (OPD)
+Iturbide
+Juárez
+Junta Local de Conciliación y Arbitraje (DGC)
+Lampazos de Naranjo
+Linares
+Los Aldamas
+Los Herreras
+Los Ramones
+Marín
+Melchor Ocampo
+Mier y Noriega
+Mina
+Montemorelos
+Monterrey
+Oficina Ejecutiva del Gobernador
+Parás
+Pesquería
+Procuraduría General de Justicia (DGC)
+Promotora de Desarrollo Rural de Nuevo León (OPD)
+Rayones
+Red Estatal de Autopistas de Nuevo León (OPD)
+Red Rectitud Esperanza Demócrata
+Régimen de Protección Social en Salud (OPD)
+Representación del Gobierno del Estado en la Ciudad de México (DGC)
+Sabinas Hidalgo
+Salinas Victoria
+San Nicolás de los Garza
+San Pedro Garza García
+Santa Catarina
+Santiago
+Secretaría de Administración
+Secretaría de Cultura
+Secretaría de Desarrollo Agropecuario
+Secretaría de Desarrollo Regional y Agropecuario
+Secretaría de Desarrollo Social.(DGC)
+Secretaría de Desarrollo Sustentable.(DGC)
+Secretaría de Economía
+Secretaría de Economía y Trabajo.(DGC)
+Secretaría de Educación.(DGC)
+Secretaría de Finanzas y Tesorería General del Estado.(DGC)
+Secretaría de Igualdad e Inclusión del Estado
+Secretaría de Infraestructura.(DGC)
+Secretaría de las Mujeres
+Secretaría del Trabajo
+Secretaría de Medio Ambiente
+Secretaría de Movilidad y Planeación Urbana
+Secretaría de Participación Ciudadana
+Secretaría de Salud.(DGC)
+Secretaría de Seguridad
+Secretaría de Seguridad Pública.(DGC)
+Secretaría de Turismo
+Secretaría Ejecutiva del Sistema Estatal Anticorrupción
+Secretaría General de Gobierno.(DGC)
+Secretaría Particular del Gobernador (DGC)
+Servicios de Agua y Drenaje de Monterrey, I.P.D.
+Servicios de Salud de Nuevo León, O.P.D.
+Sistema de Caminos de Nuevo León (OPD)
+Sistema de Radio y Televisión de Nuevo León
+Sistema de Transporte Colectivo (METRORREY)
+Sistema Integral para el Manejo Ecológico y Procesamiento de Desechos (SIMEPRODE)
+Sistema para el Desarrollo Integral de la Familia de Nuevo León (DIF)
+Tribunal de Arbitraje
+Tribunal de Justicia Administrativa
+Tribunal Electoral del Estado
+Unidad de Integración Educativa
+Universidad Autónoma de Nuevo León
+Universidad de Ciencias de la Seguridad
+Universidad Politécnica de Apodaca
+Universidad Politécnica de García
+Universidad Tecnológica Bilingüe Franco Mexicana De Nuevo León
+Universidad Tecnológica de Cadereyta
+Universidad Tecnológica Gral. Mariano Escobedo
+Universidad Tecnológica Linares
+Universidad Tecnológica Santa Catarina
+Vallecillo
+Villaldama

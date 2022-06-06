@@ -1,0 +1,156 @@
+AY00100-Ayuntamiento de Ahome
+AY00101-Comisión Municipal de Desarrollo de Centros Poblados del Ayto. de Ahome
+AY00102-Instituto Municipal de Arte y Cultura del Ayuntamiento de Ahome
+AY00103-Instituto Municipal de la Juventud de Ahome
+AY00104-Instituto Municipal de Las Mujeres de Ahome
+AY00105-Instituto Municipal de Planeación de Ahome
+AY00106-Instituto Municipal del Deporte en Ahome
+AY00107-Junta de Agua Potable y Alcant. del Municipio de Ahome
+AY00108-Sistema DIF Ahome
+AY00200-Ayuntamiento de Angostura
+AY00201-Junta Municipal de Agua Potable y Alcant. de Angostura
+AY00202-Sistema DIF Angostura
+AY00300-Ayuntamiento de Badiraguato
+AY00305-Junta Municipal de Agua Potable y Alcant. de Badiraguato
+AY00306-Sistema DIF Badiraguato
+AY00400-Ayuntamiento de Choix
+AY00401-Instituto Municipal del Deporte de Choix
+AY00402-Instituto Municipal de las Mujeres de Choix
+AY00403-Junta de Agua Potable y Alcant. del Municipio de Choix
+AY00404-Sistema DIF Choix
+AY00500-Ayuntamiento de Concordia
+AY00501-Junta Municipal de Agua Potable y Alcant. de Concordia
+AY00502-Sistema DIF Concordia
+AY00600-Ayuntamiento de Cosalá
+AY00605-Junta de Agua Potable y Alcant. de Cosalá
+AY00606-Sistema DIF Cosalá
+AY00700-Ayuntamiento de Culiacán
+AY00701-Comisión Municipal de Desarrollo de Centros Poblados de Culiacán
+AY00702-Instituto de Vivienda del Municipio de Culiacán
+AY00703-Instituto Municipal de Cultura Culiacán
+AY00704-Instituto Municipal de la Juventud de Culiacán
+AY00705-Instituto Municipal de Las Mujeres de Culiacán
+AY00706-Instituto Municipal de Planeación Urbana de Culiacán
+AY00707-Instituto Municipal del Deporte y la Cultura Física
+AY00708-Junta Municipal de Agua Potable y Alcant. de Culiacán
+AY00712-Sistema DIF Culiacán
+AY00800-Ayuntamiento de El Fuerte
+AY00801-Instituto Municipal de la Juventud de El Fuerte
+AY00802-Instituto Municipal de las Mujeres de El Fuerte
+AY00803-Instituto Municipal del Deporte de El Fuerte
+AY00804-Junta Municipal de Agua Potable y Alcant. de El Fuerte
+AY00805-Sistema Municipal DIF El Fuerte
+AY00900-Ayuntamiento de Elota
+AY00901-Junta Municipal de Agua Potable y Alcant. del Municipio de Elota
+AY00902-Sistema DIF Elota
+AY01000-Ayuntamiento de Escuinapa
+AY01001-Junta Municipal de Agua Potable y Alcant. de Escuinapa
+AY01002-Sistema DIF Escuinapa
+AY01100-Ayuntamiento de Guasave
+AY01101-Desarrollo Urbano Río Sinaloa
+AY01102-Instituto Municipal de la Juventud de Guasave
+AY01103-Instituto Municipal de las Mujeres Guasave
+AY01104-Instituto Municipal de Planeación de Guasave
+AY01105-Instituto Municipal del Deporte de Guasave
+AY01106-Junta Municipal de Agua Potable y Alcant. de Guasave
+AY01107-Sistema DIF Guasave
+AY01200-Ayuntamiento de Mazatlán
+AY01202-Instituto Municipal de Cultura, Turismo y Arte de Mazatlán
+AY01203-Instituto Municipal de la Juventud de Mazatlán
+AY01204-Instituto Municipal de la Mujer de Mazatlán
+AY01205-Instituto Municipal de Planeación de Mazatlán
+AY01206-Instituto Municipal del Deporte de Mazatlán
+AY01207-Junta Municipal de Agua Potable y Alcant. de Mazatlán
+AY01208-Sistema DIF Mazatlán
+AY01300-Ayuntamiento de Mocorito
+AY01301-Junta Municipal de Agua Potable y Alcant. de Mocorito
+AY01302-Sistema DIF Mocorito
+AY01400-Ayuntamiento de Navolato
+AY01401-Junta Municipal de Agua Potable y Alcant. de Navolato
+AY01402-Sistema DIF Navolato
+AY01500-Ayuntamiento de Rosario
+AY01502-Junta Municipal de Agua Potable y Alcant. de El Rosario Sinaloa
+AY01503-Sistema DIF El Rosario
+AY01600-Ayuntamiento de Salvador Alvarado
+AY01601-Instituto Municipal de la Juventud de Salvador Alvarado
+AY01602-Instituto Municipal de la Mujer de Salvador Alvarado
+AY01603-Instituto Municipal de Planeación de Salvador Alvarado
+AY01604-Instituto Municipal del Deporte y Cultura Física de Salvador Alvarado
+AY01605-Junta Municipal de Agua Potable y Alcant. de Salvador Alvarado
+AY01606-Sistema DIF Salvador Alvarado
+AY01700-Ayuntamiento de San Ignacio
+AY01701-Junta Municipal de Agua Potable y Alcant. de San Ignacio
+AY01702-Sistema DIF San Ignacio
+AY01800-Ayuntamiento de Sinaloa
+AY01801-Junta Municipal de Agua Potable y Alcant. de Sinaloa
+AY01802-Sistema DIF Sinaloa Municipio
+OA00100-Comisión Estatal de los Derechos Humanos
+OA00200-Comisión Estatal para el Acceso a la Información Pública de Sinaloa
+OA00300-Instituto Electoral del Estado de Sinaloa
+OA00400-Tribunal de Justicia Administrativa del Estado de Sinaloa
+OA00500-Tribunal Electoral del Estado de Sinaloa
+OA00700-Universidad Autónoma de Sinaloa
+OA00800-Fiscalía General del Estado de Sinaloa
+OA00900-Universidad Autónoma Indígena de México
+OA01000-Universidad Autónoma de Occidente
+OS00600-Secretaría Ejecutiva del Sistema Estatal y Municipal Anticorrupción del Estado de Sinaloa
+PE00100-Centro de Ciencias de Sinaloa
+PE00200-Centro de Internamiento para Adolescentes
+PE00300-Colegio de Bachilleres del Estado de Sinaloa
+PE00400-Colegio de Educación Profesional Técnica del Estado de Sinaloa
+PE00500-Comisión Coordinadora de Capacitación y Asesoría Fiscal (EXTINTO)
+PE00600-Comisión de Arbitraje Médico de Sinaloa
+PE00700-Comisión Estatal de Agua Potable y Alcant. de Sinaloa
+PE00800-Comisión Estatal de Mejora Regulatoria y Gestión Empresarial de Sinaloa
+PE00900-Comisión Estatal para la Protección Contra Riesgos Sanitarios de Sinaloa
+PE01100-Consejo Estatal para la Prevención y Atención de la Violencia Familiar(EXTINTO)
+PE01200-Consejo para el Desarrollo Económico del Estado de Sinaloa CODESIN (Poder Ejecutivo)
+PE01500-Desarrollo Urbano Tres Ríos
+PE01600-El Colegio de Sinaloa
+PE01700-Escuela Libre de Derecho de Sinaloa (No es sujeto obligado)
+PE01800-Escuela Normal de Especialización del Estado
+PE01900-Escuela Normal de Sinaloa
+PE02000-Hospital Civil de Culiacán
+PE02200-Instituto Catastral del Estado de Sinaloa
+PE02300-Instituto de Apoyo a la Investigación e Innovación
+PE02400-Instituto de Capacitación para el Trabajo del Estado de Sinaloa -ICATSIN
+PE02500-Instituto de la Defensoría Pública del Estado de Sinaloa
+PE02600-Instituto de Pensiones del Estado de Sinaloa- IPES
+PE02700-Comisión de Vivienda del Estado de Sinaloa
+PE02800-Instituto Estatal de Ciencias Penales y Seguridad Pública -INECIPE
+PE03100-Instituto Sinaloense de Acuacultura y Pesca
+PE03200-Instituto Sinaloense de Cultura
+PE03300-Instituto Sinaloense de Desarrollo Social - ISDESOL
+PE03400-Instituto Sinaloense de Infraestructura Física Educativa
+PE03500-Instituto Sinaloense de la Juventud
+PE03700-Instituto Sinaloense de Cultura Física y el Deporte
+PE03800-Instituto Sinaloense para la Educación de los Jóvenes y Adultos
+PE03900-Instituto Tecnológico Superior de Eldorado
+PE04000-Instituto Tecnológico Superior de Guasave
+PE04100-Instituto de Seguridad y Servicios Sociales de los Trabajadores de la Educación del Estado de Sinaloa (ISSSTEESIN)
+PE04300-Junta Local de Conciliación y Arbitraje
+PE04400-Oficina del Gobernador
+PE04900-Secretaría de Administración y Finanzas
+PE05000-Secretaría de Agricultura y Ganadería
+PE05100-Secretaría de Economía
+PE05300-Secretaría de Obras Públicas
+PE05400-Secretaría de Educación Pública y Cultura
+PE05500-Secretaría General de Gobierno
+PE05700-Secretaría de Salud
+PE05800-Secretaría de Seguridad Pública
+PE05900-Secretaría de Turismo
+PE06000-Secretariado Ejecutivo del Sistema Estatal de Seguridad Pública
+PE06100-Servicios de Educación Pública Descentralizada del Estado de Sinaloa
+PE06200-Servicios de Salud de Sinaloa
+PE06400-Sistema para el Desarrollo Integral de la Familia
+PE06500-Secretaría de Transparencia y Rendición de Cuentas
+PE06800-Universidad Pedagógica del Estado de Sinaloa
+PE06900-Universidad Politécnica de Sinaloa
+PE07000-Universidad Politécnica del Mar y la Sierra
+PE07100-Universidad Politécnica del Valle del Évora
+PE07200-Universidad Tecnológica de Culiacán
+PE07300-Universidad Tecnológica de Escuinapa
+PE07500-Secretaría de Pesca y Acuacultura
+PE07700-Colegio de Estudios Científicos y Tecnológicos del Estado de Sinaloa
+PJ00100-Supremo Tribunal de Justicia del Estado de Sinaloa
+PL00100-Congreso del Estado de Sinaloa

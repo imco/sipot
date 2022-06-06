@@ -1,0 +1,253 @@
+Administradora de Servicios Aeroportuarios de Chihuahua
+Ahumada
+Aldama
+Allende
+Aquiles Serdán
+Ascensión
+Auditoría Superior del Estado de Chihuahua
+Bachíniva
+Balleza
+Batopilas
+Bocoyna
+Buenaventura
+Camargo
+Carichí
+Casas Grandes
+Centro de Atención y Prevención Psicológicas del Municipio de Chihuahua
+Centro de Conciliación Laboral del Estado de Chihuahua
+Centro Estatal de Transplantes
+Chihuahua
+Chínipas
+Colegio de Bachilleres del Estado de Chihuahua
+Colegio de Educación Profesional Técnica del Estado de Chihuahua
+Colegio de Estudios Científicos y Tecnológicos
+Comisión de Conciliación y Arbitraje Médico para el Estado de Chihuahua
+Comisión Estatal de Atención a las Adicciones
+Comisión Estatal de los Derechos Humanos
+Comisión Estatal de Vivienda, Suelo e Infraestructura del Estado de Chihuahua
+Comisión Estatal para la Protección contra Riesgos Sanitarios
+Comisión Estatal para los Pueblos Indígenas
+Consejería Jurídica del Estado
+Consejo de Urbanización Municipal de Chihuahua
+Consejo de Urbanización Municipal de Cuauhtémoc Chihuahua
+Consejo Estatal de Población y Atención a Migrantes
+Consejo Municipal de Estacionómetros de Camargo, Chihuahua
+Consejo Municipal de Estacionómetros de Cd. Delicias
+Consejo Municipal de Estacionómetros de Cuauhtémoc, Chih.
+Consejo Municipal de Estacionómetros de Hidalgo del Parral, Chih.
+Consejo Municipal de Estacionómetros de Meoqui, Chihuahua
+Consejo Municipal de Estacionómetros de Saucillo, Chihuahua
+Coordinación de Asesores y Proyectos Especiales
+Coordinación de Comunicación
+Coordinación de Gobierno Abierto
+Coordinación de Política Digital
+Coordinación de Relaciones Públicas
+Coordinación Ejecutiva de Gabinete
+Coronado
+Coyame
+Cuauhtémoc
+Cusihuiriachí
+Delicias
+Desarrollo Integral de la Familia del Estado de Chihuahua
+DIF Ahumada
+DIF Aldama
+DIF Allende
+DIF Aquiles Serdán
+DIF Ascensión
+DIF Bachíniva
+DIF Balleza
+DIF Batopilas
+DIF Bocoyna
+DIF Buenaventura
+DIF Camargo
+DIF Carichí
+DIF Casas Grandes
+DIF Chihuahua
+DIF Chínipas
+DIF Coronado
+DIF Coyame
+DIF Cuauhtémoc
+DIF Delicias
+DIF Dr. Belisario Domínguez
+DIF El Tule
+DIF Galeana
+DIF Gómez Farías
+DIF Gran Morelos
+DIF Guachochi
+DIF Guadalupe
+DIF Guazapares
+DIF Guerrero
+DIF Hidalgo del Parral
+DIF Huejotitán
+DIF Ignacio Zaragoza
+DIF Janos
+DIF Jiménez
+DIF Juárez
+DIF Julimes
+DIF López
+DIF Madera
+DIF Maguarichi
+DIF Manuel Benavides
+DIF Matachí
+DIF Matamoros
+DIF Meoqui
+DIF Morelos
+DIF Moris
+DIF Namiquipa
+DIF Nonoava
+DIF Nuevo Casas Grandes
+DIF Ocampo
+DIF Ojinaga
+DIF Riva Palacio
+DIF Rosales
+DIF San Francisco de Borja
+DIF San Francisco de Conchos
+DIF San Francisco del Oro
+DIF Santa Bárbara
+DIF Santa Isabel
+DIF Satevó
+DIF Saucillo
+DIF Temósachi
+DIF Urique
+DIF Uruachi
+DIF Valle de Zaragoza
+Dr. Belisario Domínguez
+El Colegio de Chihuahua
+El Tule
+Escuela Normal Superior Profesor José E. Medrano
+Fiscalía Anticorrupción del Estado de Chihuahua
+Fiscalía General del Estado de Chihuahua
+Galeana
+Gómez Farías
+Gran Morelos
+Guachochi
+Guadalupe
+Guadalupe y Calvo
+Guazapares
+Guerrero
+H. Congreso del Estado
+Hidalgo del Parral
+Huejotitán
+Ignacio Zaragoza
+Instituto Camarguense de la Mujer
+Instituto Chihuahuense de Educación para los Adultos
+Instituto Chihuahuense de Infraestructura Física Educativa
+Instituto Chihuahuense de la Juventud
+Instituto Chihuahuense de las Mujeres
+Instituto Chihuahuense del Deporte y Cultura Física
+Instituto Chihuahuense de Salud
+Instituto Chihuahuense de Salud Mental
+Instituto Chihuahuense para la Transparencia y Acceso a la Información Pública
+Instituto de Apoyo al Desarrollo Tecnológico
+Instituto de Capacitación para el Trabajo del Estado de Chihuahua
+Instituto de Cultura del Municipio de Chihuahua
+Instituto de Cultura del Municipio de Cuauhtémoc
+Instituto de Innovación y Competitividad
+Instituto de las Mujeres del Municipio de Delicias, Chihuahua
+Instituto de Planeación Integral del Municipio de Chihuahua
+Instituto Estatal Electoral
+Instituto Municipal de Investigación y Planeación de Juárez
+Instituto Municipal de la Cultura Física y el Deporte
+Instituto Municipal de la Juventud de Hidalgo del Parral
+Instituto Municipal de la Juventud de Juárez
+Instituto Municipal de las Mujeres
+Instituto Municipal de las Mujeres (Cd. Juárez)
+Instituto Municipal de las Mujeres de Nuevo Casas Grandes
+Instituto Municipal del Deporte y Cultura Física del Municipio de Juárez, Estado de Chihuahua
+Instituto Municipal del Deporte y la Juventud de Delicias
+Instituto Municipal de Pensiones de Chihuahua
+Instituto Municipal de Prevención y Atención a la Salud
+Instituto para la Cultura del Municipio de Juárez
+Instituto Tecnológico Superior de Nuevo Casas Grandes
+Janos
+Jiménez
+Juárez
+Julimes
+Junta Central de Agua y Saneamiento
+Junta Municipal de Agua y Saneamiento de Aldama
+Junta Municipal de Agua y Saneamiento de Allende
+Junta Municipal de Agua y Saneamiento de Aquiles Serdán
+Junta Municipal de Agua y Saneamiento de Camargo
+Junta Municipal de Agua y Saneamiento de Casas Grandes
+Junta Municipal de Agua y Saneamiento de Chihuahua
+Junta Municipal de Agua y Saneamiento de Cuauhtémoc
+Junta Municipal de Agua y Saneamiento de Delicias
+Junta Municipal de Agua y Saneamiento de Gran Morelos, Chihuahua
+Junta Municipal de Agua y Saneamiento de Guachochi, Chihuahua
+Junta Municipal de Agua y Saneamiento de Guerrero
+Junta Municipal de Agua y Saneamiento de Hidalgo del Parral
+Junta Municipal de Agua y Saneamiento de Jiménez
+Junta Municipal de Agua y Saneamiento de Juárez
+Junta Municipal de Agua y Saneamiento de Madera
+Junta Municipal de Agua y Saneamiento de Meoqui
+Junta Municipal de Agua y Saneamiento de Nuevo Casas Grandes
+Junta Municipal de Agua y Saneamiento de Ojinaga
+Junta Municipal de Agua y Saneamiento de San Francisco del Oro
+Junta Municipal de Agua y Saneamiento de Santa Isabel, Chihuahua
+Junta Rural de Agua y Saneamiento de Adolfo López Mateos, Chihuahua
+Junta Rural de Agua y Saneamiento de San Juanito
+La Cruz
+López
+Madera
+Maguarichi
+Manuel Benavides
+Matachí
+Matamoros
+Meoqui
+Morelos
+Moris
+Namiquipa
+Nonoava
+Ocampo
+Ojinaga
+Praxedis G. Guerrero
+Riva Palacio
+Rosales
+Rosario
+San Francisco de Borja
+San Francisco de Conchos
+San Francisco del Oro
+Santa Bárbara
+Santa Isabel
+Satevó
+Saucillo
+Secretaría de Comunicaciones y Obras Públicas
+Secretaría de Coordinación de Gabinete
+Secretaría de Cultura
+Secretaría de Desarrollo Humano y Bien Común
+Secretaría de Desarrollo Municipal
+Secretaría de Desarrollo Rural
+Secretaría de Desarrollo Urbano y Ecología
+Secretaría de Educación y Deporte
+Secretaría de Hacienda
+Secretaría de la Función Pública
+Secretaría de la Innovación y Desarrollo Económico
+Secretaría del Trabajo y Previsión Social
+Secretaría de Salud
+Secretaría de Seguridad Pública
+Secretariado Ejecutivo del Sistema Estatal de Seguridad Pública
+Secretaría Ejecutiva del Sistema Estatal Anticorrupción
+Secretaría General de Gobierno
+Secretaría Particular del Gobernador
+Servicios de Salud de Chihuahua
+Sistema de Urbanización Municipal Adicional de Juárez
+Temósachi
+Tribunal Estatal de Justicia Administrativa
+Tribunal Estatal Electoral
+Tribunal Superior de Justicia del Estado de Chihuahua
+Universidad Autónoma de Chihuahua
+Universidad Autónoma de Ciudad Juárez
+Universidad Pedagógica Nacional del Estado de Chihuahua
+Universidad Politécnica de Chihuahua
+Universidad Tecnológica de Camargo
+Universidad Tecnológica de Chihuahua
+Universidad Tecnológica de Chihuahua Sur
+Universidad Tecnológica de Ciudad Juárez
+Universidad Tecnológica de la Babícora
+Universidad Tecnológica de la Tarahumara
+Universidad Tecnológica de Paquimé
+Universidad Tecnológica de Parral
+Universidad Tecnológica Paso del Norte
+Urique
+Uruachi
+Valle de Zaragoza

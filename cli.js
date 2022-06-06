@@ -4,9 +4,61 @@
 // usage: cli.js --from 10 --to 12
 // Por default descarga documentos de Licitación pública e invitación a 3
 // Para descargar procedimientos de adjudicación directa usar type=1
-// usage: cli.js --from 10 --to 12 --type 1 --year 2018 --timeout 90000
+// usage: cli.js --from 10 --to 12 --type 1 --year 2018 --timeout 90000 --downloads_dir /path/to/destination/dir/
 
-const argv = require('minimist')(process.argv.slice(2))
+const buildOptions = require('minimist-options');
+
+const options = buildOptions({
+  downloads_dir: {
+    type: 'string',
+    default: process.cwd()
+  },
+  state: {
+    type: 'number',
+    default: 1
+  },
+  year: {
+    type: 'number',
+    default: 2021
+  }
+});
+
+// Options for 'state' input 
+// 1: Federación
+// 2: Aguascalientes
+// 3: Baja California
+// 4: Baja California Sur             
+// 5: Campeche
+// 6: Coahuila de Zaragoza    
+// 7: Colima
+// 8: Chiapas
+// 9: Chihuahua
+// 10: Ciudad de México
+// 11: Durango
+// 12: Guanajuato
+// 13: Guerrero
+// 14: Hidalgo
+// 15: Jalisco
+// 16: México
+// 17: Michoacán de Ocampo  
+// 18: Morelos
+// 19: Nayarit
+// 20: Nuevo León
+// 21: Oaxaca
+// 22: Puebla
+// 23: Querétaro
+// 24: Quintana Roo
+// 25: San Luis Potosí
+// 26: Sinaloa
+// 27: Sonora
+// 28: Tabasco
+// 29: Tamaulipas
+// 30: Tlaxcala
+// 31: Veracruz
+// 32: Yucatán
+// 33: Zacatecas
+
+const argv = require('minimist')(process.argv.slice(2), options)
 const fs = require('fs')
 const path = require('path')
 const scraper = require('./scraper')
@@ -20,8 +72,9 @@ const from = Number(argv.from || 0)
 const to = Number(argv.to || 965)
 const year = argv.year
 const type = Number(argv.type)
+const stateCode = argv.state
 
-const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consultaPublica.xhtml'
+const startUrl = 'https://consultapublicamx.plataformadetransparencia.org.mx/vut-web/faces/view/consultaPublica.xhtml'
 
 ;(async () => {
   console.log('Nueva sesión', new Date())
@@ -44,7 +97,7 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
   try {
     const page = await scraper.getPage(browser, argv)
 
-    await page.goto(startUrl + '#inicio')
+    await page.goto(startUrl + '#inicio', {waitUntil : 'networkidle2' }).catch(e => void 0)
 
     console.log('Descargando documentos para el año', year)
     if (type === 1) {
@@ -54,8 +107,9 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
     }
 
     if (organization) {
-      await scraper.takeTo(page, 'tarjetaInformativa', { organizationName: organization, year })
+      await scraper.takeTo(page, 'tarjetaInformativa', stateCode, { organizationName: organization, year })
       await scraper.getContract(page, organization, null, year, type)
+      await page.close()
       await browser.close()
       return true
     }
@@ -78,7 +132,7 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
 
       console.log('Trabajando en la organización', orgId)
       try {
-        await scraper.takeTo(page, 'tarjetaInformativa', {
+        await scraper.takeTo(page, 'tarjetaInformativa', stateCode, {
           organizationName: invocationParams[0],
           organizationIndex: invocationParams[1],
           year
@@ -90,7 +144,7 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
         console.log(e)
         console.log(`La organización ${orgId} no se pudo escrapear; brincando...`)
         if (e.message.match('redirige')) {
-          await scraper.takeTo(page, 'tarjetaInformativa', {
+          await scraper.takeTo(page, 'tarjetaInformativa', stateCode, {
             organizationName: invocationParams[0],
             organizationIndex: invocationParams[1],
             year
@@ -102,7 +156,7 @@ const startUrl = 'https://consultapublicamx.inai.org.mx/vut-web/faces/view/consu
       // Nota: seremos redirigidos a #obligaciones pero al inicio del loop llamamos a takeTo
       if (nextParams) {
         const nextId = nextParams[0] || nextParams[1]
-        console.log('La siguiente org sera', nextId)
+        console.log('La siguiente org será', nextId)
         await scraper.selectNextOrganization(page, nextId)
       }
     }
